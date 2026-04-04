@@ -1,0 +1,53 @@
+************************************************************************
+LMP Title (if any)      : EPISODE ONE TOUR
+Filename                : EPISODE1.LMP
+LMP Version             : 1.9
+Game                    : Doom
+Pwad(s)                 : N/A
+Map Level(s)            : E1M1-E1M9
+Skill                   : 4
+Character (Hexen)       : N/A
+Options                 : -DEVPARM
+Multiplayer Mode        : N/A
+Number of Players       : 1
+Perspective             : Green
+Length                  : 01:19:32.48 hours
+
+Author                  : Jeannot Langlois
+Email Address           : JLANGLOIS@cyberabitibi.qc.ca
+Misc. Author Info       : DOOM and DOOM ][ MANIAC...
+                          *NOT* impressed a bit by:
+                          - Dark Forces
+                          - Rise Of The Triads
+                          - Heretic
+                          - Hexen
+                          - Duke Nukem 3D
+                          - Descent 1 and 2
+                          - Terminator Rampage
+                          DOOM and DOOM ][ REALLY RULES...
+Description             : Get through DOOM's first episode without dying
+                          a single time!  First recorded for a competition
+                          with a friend, using only the shotgun or smaller
+                          weapons through the episode.
+
+Additional Credits to   : ID Software (A killer game)
+************************************************************************
+
+* Player Information *
+
+Green  : Jeannot Langlois (NUMBeRsiX) - 486-DX-33 - Mouse + Keyboard
+Indigo : Not Present                  - N/A       - N/A
+Brown  : Not Present                  - N/A       - N/A
+Red    : Not Present                  - N/A       - N/A
+
+* DeathMatch Score *
+
+N/A
+
+* Where to get this LMP *
+
+FTP sites: ftp.cdrom.com/pub/doom/lmps/doom/1.9/episode1.arj
+
+BBS numbers: None
+
+Other: None

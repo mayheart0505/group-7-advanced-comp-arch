@@ -1,0 +1,72 @@
+ Here are the changes between public POV-Ray 3.01 and 3.02.
+
+ Note: This is an extremly minor upgrade which fixes a few fatal
+ errors.  If you have not experienced any hard crashes in POV-Ray 3.01
+ then you need not obtain 3.02.  The bugs are...
+
+ 1) Fixed illegal number of intersections bug.
+
+ 2) Fixed queue overflow bug
+
+ 3) Fixed problem with Ray->Containing_Index out of bounds.
+
+ 4) Fixed problem with undeclared identifiers in color_map.
+
+ 5) Fixed problem with Mac ttf crash.
+
+ 6) Put in trap for undiagnosed error in polysolv.c numchanges routine.
+
+
+ Here are the changes between public POV-Ray 3.00 and 3.01.
+
+ 1) Fixed problem with some dda errors in height fields
+
+ 2) Fixed error line number bug.  Comments with // got double counted.
+
+ 3) Fixed problems with file input from stdin and file output to stdout.
+
+ 4) Fixed problem with PNG image maps.
+
+ 5) Fixed problem with illegal keywords in a # directive
+
+ 6) Fixed problem with smooth triangles that only bend in one direction.
+
+ 7) Fixed some blob bugs
+
+ 8) Fixed some lathe bugs; Modified lathe intersection code (much faster
+    now); Modified sor intersection code (much faster if sturm is used)
+    Fixed another bug in POLYSOLV.C
+
+ 9) Fixed problem with backslash in string literals
+
+10) Added experimental feature warning to halo, atmosphere, and radiosity.
+
+11) Fixed problem which split a file if you changed directory while
+    rendering.
+
+12) Fixed 'declare' with no '#' bug and added warning
+
+13) Eliminated unnecessary light buffer on shadowless light source
+
+14) Fixed TTF Normal bug
+    Applied patches to TTF code to fix visible tearing
+    Also added a check to allow Mac TT fonts to be used 
+
+15) Fixed empty texture bug
+
+16) Fixed problems with deeply nested #while, #if, #switch etc.
+
+MSDOS:Fixed true color Diamond 24X
+      Fixed djgpp make file
+      Fixed problems with +FS output creating corrupt targas.
+
+XWINDOWS: Changed colormap handling to dynamically allocate colors.
+
+Linux SVGA: Added grayscale palette for preview, fixed video mode
+      selection.
+
+UNIX: Fixed up prototypes and variable types to remove many compiler
+      warnings.
+      Fixed problem with interrupt handler when writing to a broken pipe.
+      Fixed problem with dithering code for mosaic preview.
+

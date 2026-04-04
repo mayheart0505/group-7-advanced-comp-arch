@@ -1,0 +1,55 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:626: checking for gcc
+configure:703: checking whether the C compiler (gcc  ) works
+configure:717: gcc -o conftest    conftest.c  1>&5
+configure:737: checking whether the C compiler (gcc  ) is a cross-compiler
+configure:742: checking whether we are using GNU C
+configure:766: checking whether gcc accepts -g
+configure:801: checking whether ln -s works
+configure:822: checking how to run the C preprocessor
+configure:883: checking for AIX
+configure:936: checking for a BSD compatible install
+configure:987: checking for POSIXized ISC
+configure:1011: checking for fcntl.h
+configure:1011: checking for limits.h
+configure:1011: checking for sys/select.h
+configure:1011: checking for sys/time.h
+configure:1011: checking for syslog.h
+configure:1011: checking for unistd.h
+configure:1011: checking for memory.h
+configure:1049: checking for working const
+configure:1124: checking for uid_t in sys/types.h
+configure:1158: checking for ANSI C header files
+configure:1262: checking for pid_t
+configure:1295: checking for size_t
+configure:1328: checking whether time.h and sys/time.h may both be included
+configure:1363: checking whether struct tm is in sys/time.h or time.h
+configure:1397: checking for inline
+configure:1440: checking for gethostname
+configure:1440: checking for gettimeofday
+configure:1440: checking for select
+configure:1440: checking for strdup
+configure:1440: checking for seteuid
+configure:1498: checking for X
+configure:1812: checking for dnet_ntoa in -ldnet
+configure:1853: checking for dnet_ntoa in -ldnet_stub
+configure:1901: checking for gethostbyname
+configure:1999: checking for connect
+configure:2091: checking for remove
+configure:2183: checking for shmat
+configure:2284: checking for IceConnectionNumber in -lICE
+configure:2392: checking for XPM
+configure:2555: checking for Motif
+configure:2721: checking for Editres
+configure:2880: checking for GL
+configure:3032: checking for DtSaver
+configure:3126: checking for RPLAY
+configure:3230: checking for NAS
+configure:3339: checking host system type
+configure:3434: checking for elf.h
+configure:3564: checking for dirent.h that defines DIR
+configure:3602: checking for opendir in -ldir
+configure:3687: checking for nanosleep
+configure:3791: checking for srand48

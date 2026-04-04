@@ -1,0 +1,127 @@
+
+
+ This file needs to be updated as time permits. And perhaps areas
+ from problems common to specific machines.
+
+
+--------------------------------------------------------------------------
+1) 
+ Problem:
+
+     Compiler reports following symbols as undefined
+     >   ld: Undefined symbol
+     >      _XtStrings
+     >      _XtShellStrings
+
+ Possible Reason:  
+
+   Your LD_LIBRARY_PATH doesn't match the XLIBDIR that is in the Makefile. 
+   This is because you're using the /usr/openwin/X11/includes, and some
+   unrelated X11 library release(usually /usr/lib/X11).
+
+
+2)
+ Problem:
+
+     Compiler reports following symbols as undefined
+     > .XShmDetach
+     > .XShmPutImage
+     > .XShmAttach
+     > .XShmCreateImage
+     > .XShmQueryExtension
+     > compile FAILED.
+
+ Probable Reason: 
+
+   Your machine doesn't support X11 Shared Memory Extension.
+     
+   These are all X11 Shared memory extensions and NOT all machines
+   supports them.  So, you'll want to edit Imakefile or Makefile and
+   comment out the following line:
+
+   XA_SHARED = -DXSHM
+
+   If you're using Imakfile you need to "xmkmf" and "make xanim"
+   or if you're using Makefile.unx, just "make xanim".
+
+3) 
+ Problem:
+
+     Compiler reports following symbols as undefined
+
+     ld: Undefined symbol
+        _get_wmShellWidgetClass
+        _get_applicationShellWidgetClass
+
+
+ Probable Reason:  
+
+     Certain revs of the OpenWindow's shared libXmu.a are missing
+     those symbols. The solution is the use the Makefile.unx and
+     use the following for the XA_REMOTE_LIBS:
+
+     XA_REMOTE_LIBS = -lXaw /usr/openwin/lib/libXmu.a
+
+     The static libXmu.a library has these symbols defined.
+
+4)
+ Problem:
+
+     Compiler reports the following:
+
+     ld: fatal: library -l/usr/openwin/lib/libXmu.a: not found
+
+ Reason:
+
+     XA_REMOTE_LIBS is using "-l/usr/openwin/lib/libXmu.a" instead
+     of "/usr/openwin/lib/libXmu.a". The "-l" should be removed.
+
+     
+5)
+ Problem:
+
+     Compiler reports following symbols as undefined
+         _gethostname   (first ref`d in /usr/openwin/lib/libXmu.a)
+         _gethostbyname 
+
+ Reason: 
+
+    You are using Solaris/SunOS 5.x and the -lnsl -lsockets haven't
+    been included in the link phase.  Use the Makefile.unx and
+    uncomment out the following line:
+
+    XA_SOLARIS_LIBS = -lsocket -lnsl
+
+    and the recompile.
+ 
+5)
+ Problem:
+
+     Compiler reports following symbols as undefined
+         _Xm*
+
+ Reason:
+
+    You have set the XA_REMOTE_* to use Motif and your system doesn't
+    have the Motif library(libXm.a).  Talk to your sysadm about getting
+    the Motif library OR use the Athena Widgets instead. The Athena
+    widgets are the default X11 widgets. Motif you pay extra for.
+
+6)
+ Problem:  
+
+    Compiler reports the following on HP machines:
+
+     anyfilename: too much defining - use -H option
+     anyfilename: no space
+
+    The solution is uncomment out the following line in the Makefile
+
+     XA_HPUX_DEFS = -Wp,-H150000
+
+    and then recompile
+
+
+
+---------------------------------------------------------------------------
+

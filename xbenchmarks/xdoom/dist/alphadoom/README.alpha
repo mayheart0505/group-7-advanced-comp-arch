@@ -1,0 +1,57 @@
+This is a patch agains the original sources as released by
+idsoftware. It gives you a source code ready for compile&run on
+dec osf alpha (3.2G, but 4.0x should be ok too)
+
+Changes made for dec alpha, second version
+- Sound now available via dec's mme extension api:
+  - SNDSERV no longer defined for OSF
+  - soundsupport gets included, if OSFMME is defined. (Default
+    in Makefile.alpha) most of the changes are in i_sound.c
+Changes made for dec alpha, first version:
+- all allocations (using Z_Malloc) have now a sizeof (bla) where
+  needed
+- pointer to numeric casts have been changed from cast to 
+  int to cast to P2NUM
+- OSF has values.h, but does not define MININT and MINLONG, defined them
+  in doomtype.h
+- ioctl not defined when using gcc, inserted in i_net.c and i_sound.c
+- includes of linux/soundcard protected everywhere with #ifdef LINUX
+- sys/filio.h not available in OSF
+- usleep not defined in OSF-headers, definition in i_system.c inserted
+- some XShm... routines not defined in headers, inserted in i_video.c
+- errnos.h not available in OSF, protected with ifndef OSF in i_video.c
+- multiply=1 changed to multiply=3 (otherwise microscope required to play)
+- gcc wants pointers printed with %lx instead of %x (i_video.c)
+- m_bbox.c needs doomtype.h included for MININT
+- ifdef __BIG_ENDIAN__ changed to ifndef __BIG_ENDIAN__ in m_swap.c
+  (Not required for the patch to work, but, Hmm, this way it's consistent 
+   with the definitions in m_swap.h, and it works. However, I think the 
+   name should be __LITTLE_ENDIAN__ ??? (confused, the alpha is big-endian 
+   isn't it???))
+- changed obsolete columndirectory-element from type void** to int
+  (this struct is read from file, so the void* hurts on the alpha)
+- ifndef SNDSRV changed to ifndef SNDSERV in s_sound.c
+- casted alloca to the lhs type where needed
+Note1: the changes should be compatible to linux, however, I did not test it
+       because I currently dont have a linux box
+Note2: The source code compiles and runs with gcc (version 2.7.2) and
+       dec cxx (version V5.4-006). It does NOT run when compiled with 
+       the dec cc. Both versions were built on an dec alpha running osf 3.2G
+Note3: No sound-card in my alpha, so I think sound does not work...
+       (second version: meanwhile looked at backpanel and found the soundcard,
+        so soundsupport is available now)
+Note4: Apply the patch the following way:
+       gzip -d alphadoom.patch
+       cat linuxdoom-1.10.src.tgz|gzip -dc|tar xvf -
+       patch -p0<alphadoom.patch
+       cd linuxdoom-1.10
+       mkdir alpha
+       gnumake -f Makefile.alpha
+       (for the linuxdoom-1.10.src.gz, look at
+        ftp://ftp.idsoftware.com/idstuff/source/doomsrc.zip)
+Note5: You need some wad-files to run doom. I used doom1.wad from the
+       shareware-version of doom for windows, which works fine
+       (look at ftp://ftp.idsoftware.com/idstuff/doom/doom19s.zip)
+
+Gruss PB (Peter Bauer, 100136.3530@compuserve.com)
+

@@ -1,0 +1,19 @@
+This archive contains documentation and sample scene files for
+POV-Ray 3.0.1.  It can NOT be used without programs located in
+another archive.  It is intended mainly for use by people who
+are compiling POV on a system for which POV is not officially
+supported, whether Unix based or not.
+
+This archive is not needed by those people who already have a
+complete distribution, such as the Linux, SunOS, DOS, or
+Windows versions.
+
+Questions and problems with Unix versions can be directed to
+Andreas Dilger.  Please make sure you have consulted with a
+local Unix person first if you think the problem is likely to
+be on your end.  If you are installing POV-Ray in a publicly
+accessible location, you must read and comply with the 'Online
+or Remote Execution' conditions in POVLEGAL.DOC.
+
+Andreas Dilger
+Internet:   adilger@povray.org  or adilger@enel.ucalgary.ca

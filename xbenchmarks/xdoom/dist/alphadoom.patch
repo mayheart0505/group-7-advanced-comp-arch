@@ -1,0 +1,1514 @@
+Common subdirectories: linuxdoom-1.10/CVS and alphadoom-1.10/CVS
+diff -c --new-file linuxdoom-1.10/Makefile.alpha alphadoom-1.10/Makefile.alpha
+*** linuxdoom-1.10/Makefile.alpha	Thu Jan  1 01:00:00 1970
+--- alphadoom-1.10/Makefile.alpha	Thu Jan  8 19:07:48 1998
+***************
+*** 0 ****
+--- 1,101 ----
++ ################################################################
++ #
++ # $Id:$
++ #
++ # $Log:$
++ #
++ # gcc settings
++ CC=  gcc  # gcc or g++
++ CFLAGS=-g -Wall -DNORMALUNIX -DGCC -DOSF -DOSFMME  # -DUSEASM 
++ # dec cxx settings
++ # CC=  cxx  # cxx, cc doesn't work
++ # CFLAGS=-O4 -DNORMALUNIX -DOSF -DOSFMME # -DUSEASM
++ 
++ LDFLAGS=-L/usr/X11R6/lib
++ # LIBS=-lXext -lX11 -lnsl -lm
++ LIBS=-lXext -lX11 -lm -lmme
++ 
++ # subdirectory for objects
++ O=alpha
++ 
++ # not too sophisticated dependency
++ OBJS=				\
++ 		$(O)/doomdef.o		\
++ 		$(O)/doomstat.o		\
++ 		$(O)/dstrings.o		\
++ 		$(O)/i_system.o		\
++ 		$(O)/i_sound.o		\
++ 		$(O)/i_video.o		\
++ 		$(O)/i_net.o			\
++ 		$(O)/tables.o			\
++ 		$(O)/f_finale.o		\
++ 		$(O)/f_wipe.o 		\
++ 		$(O)/d_main.o			\
++ 		$(O)/d_net.o			\
++ 		$(O)/d_items.o		\
++ 		$(O)/g_game.o			\
++ 		$(O)/m_menu.o			\
++ 		$(O)/m_misc.o			\
++ 		$(O)/m_argv.o  		\
++ 		$(O)/m_bbox.o			\
++ 		$(O)/m_fixed.o		\
++ 		$(O)/m_swap.o			\
++ 		$(O)/m_cheat.o		\
++ 		$(O)/m_random.o		\
++ 		$(O)/am_map.o			\
++ 		$(O)/p_ceilng.o		\
++ 		$(O)/p_doors.o		\
++ 		$(O)/p_enemy.o		\
++ 		$(O)/p_floor.o		\
++ 		$(O)/p_inter.o		\
++ 		$(O)/p_lights.o		\
++ 		$(O)/p_map.o			\
++ 		$(O)/p_maputl.o		\
++ 		$(O)/p_plats.o		\
++ 		$(O)/p_pspr.o			\
++ 		$(O)/p_setup.o		\
++ 		$(O)/p_sight.o		\
++ 		$(O)/p_spec.o			\
++ 		$(O)/p_switch.o		\
++ 		$(O)/p_mobj.o			\
++ 		$(O)/p_telept.o		\
++ 		$(O)/p_tick.o			\
++ 		$(O)/p_saveg.o		\
++ 		$(O)/p_user.o			\
++ 		$(O)/r_bsp.o			\
++ 		$(O)/r_data.o			\
++ 		$(O)/r_draw.o			\
++ 		$(O)/r_main.o			\
++ 		$(O)/r_plane.o		\
++ 		$(O)/r_segs.o			\
++ 		$(O)/r_sky.o			\
++ 		$(O)/r_things.o		\
++ 		$(O)/w_wad.o			\
++ 		$(O)/wi_stuff.o		\
++ 		$(O)/v_video.o		\
++ 		$(O)/st_lib.o			\
++ 		$(O)/st_stuff.o		\
++ 		$(O)/hu_stuff.o		\
++ 		$(O)/hu_lib.o			\
++ 		$(O)/s_sound.o		\
++ 		$(O)/z_zone.o			\
++ 		$(O)/info.o				\
++ 		$(O)/sounds.o
++ 
++ all:	 $(O)/alphadoom
++ 
++ clean:
++ 	rm -f *.o *~ *.flc
++ 	rm -f alpha/*
++ 
++ $(O)/alphadoom:	$(OBJS) $(O)/i_main.o
++ 	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) $(O)/i_main.o \
++ 	-o $(O)/alphadoom $(LIBS)
++ 
++ $(O)/%.o:	%.c
++ 	$(CC) $(CFLAGS) -c $< -o $@
++ 
++ #############################################################
++ #
++ #############################################################
++ 
+diff -c --new-file linuxdoom-1.10/README.alpha alphadoom-1.10/README.alpha
+*** linuxdoom-1.10/README.alpha	Thu Jan  1 01:00:00 1970
+--- alphadoom-1.10/README.alpha	Thu Jan  8 21:50:36 1998
+***************
+*** 0 ****
+--- 1,57 ----
++ This is a patch agains the original sources as released by
++ idsoftware. It gives you a source code ready for compile&run on
++ dec osf alpha (3.2G, but 4.0x should be ok too)
++ 
++ Changes made for dec alpha, second version
++ - Sound now available via dec's mme extension api:
++   - SNDSERV no longer defined for OSF
++   - soundsupport gets included, if OSFMME is defined. (Default
++     in Makefile.alpha) most of the changes are in i_sound.c
++ Changes made for dec alpha, first version:
++ - all allocations (using Z_Malloc) have now a sizeof (bla) where
++   needed
++ - pointer to numeric casts have been changed from cast to 
++   int to cast to P2NUM
++ - OSF has values.h, but does not define MININT and MINLONG, defined them
++   in doomtype.h
++ - ioctl not defined when using gcc, inserted in i_net.c and i_sound.c
++ - includes of linux/soundcard protected everywhere with #ifdef LINUX
++ - sys/filio.h not available in OSF
++ - usleep not defined in OSF-headers, definition in i_system.c inserted
++ - some XShm... routines not defined in headers, inserted in i_video.c
++ - errnos.h not available in OSF, protected with ifndef OSF in i_video.c
++ - multiply=1 changed to multiply=3 (otherwise microscope required to play)
++ - gcc wants pointers printed with %lx instead of %x (i_video.c)
++ - m_bbox.c needs doomtype.h included for MININT
++ - ifdef __BIG_ENDIAN__ changed to ifndef __BIG_ENDIAN__ in m_swap.c
++   (Not required for the patch to work, but, Hmm, this way it's consistent 
++    with the definitions in m_swap.h, and it works. However, I think the 
++    name should be __LITTLE_ENDIAN__ ??? (confused, the alpha is big-endian 
++    isn't it???))
++ - changed obsolete columndirectory-element from type void** to int
++   (this struct is read from file, so the void* hurts on the alpha)
++ - ifndef SNDSRV changed to ifndef SNDSERV in s_sound.c
++ - casted alloca to the lhs type where needed
++ Note1: the changes should be compatible to linux, however, I did not test it
++        because I currently dont have a linux box
++ Note2: The source code compiles and runs with gcc (version 2.7.2) and
++        dec cxx (version V5.4-006). It does NOT run when compiled with 
++        the dec cc. Both versions were built on an dec alpha running osf 3.2G
++ Note3: No sound-card in my alpha, so I think sound does not work...
++        (second version: meanwhile looked at backpanel and found the soundcard,
++         so soundsupport is available now)
++ Note4: Apply the patch the following way:
++        gzip -d alphadoom.patch
++        cat linuxdoom-1.10.src.tgz|gzip -dc|tar xvf -
++        patch -p0<alphadoom.patch
++        cd linuxdoom-1.10
++        mkdir alpha
++        gnumake -f Makefile.alpha
++        (for the linuxdoom-1.10.src.gz, look at
++         ftp://ftp.idsoftware.com/idstuff/source/doomsrc.zip)
++ Note5: You need some wad-files to run doom. I used doom1.wad from the
++        shareware-version of doom for windows, which works fine
++        (look at ftp://ftp.idsoftware.com/idstuff/doom/doom19s.zip)
++ 
++ Gruss PB (Peter Bauer, 100136.3530@compuserve.com)
++ 
+Common subdirectories: linuxdoom-1.10/alpha and alphadoom-1.10/alpha
+Binary files linuxdoom-1.10/core and alphadoom-1.10/core differ
+diff -c --new-file linuxdoom-1.10/d_main.c alphadoom-1.10/d_main.c
+*** linuxdoom-1.10/d_main.c	Mon Dec 22 21:32:03 1997
+--- alphadoom-1.10/d_main.c	Wed Jan  7 21:15:05 1998
+***************
+*** 1119,1125 ****
+  	// for statistics driver
+  	extern  void*	statcopy;                            
+  
+! 	statcopy = (void*)atoi(myargv[p+1]);
+  	printf ("External statistics registered.\n");
+      }
+      
+--- 1119,1125 ----
+  	// for statistics driver
+  	extern  void*	statcopy;                            
+  
+! 	statcopy = (void*)(P2NUM)atoi(myargv[p+1]);
+  	printf ("External statistics registered.\n");
+      }
+      
+diff -c --new-file linuxdoom-1.10/d_net.c alphadoom-1.10/d_net.c
+*** linuxdoom-1.10/d_net.c	Mon Dec 22 21:32:33 1997
+--- alphadoom-1.10/d_net.c	Wed Jan  7 21:13:51 1998
+***************
+*** 87,95 ****
+  //
+  //
+  //
+! int NetbufferSize (void)
+  {
+!     return (int)&(((doomdata_t *)0)->cmds[netbuffer->numtics]); 
+  }
+  
+  //
+--- 87,95 ----
+  //
+  //
+  //
+! P2NUM NetbufferSize (void)
+  {
+!     return (P2NUM)&(((doomdata_t *)0)->cmds[netbuffer->numtics]); 
+  }
+  
+  //
+Binary files linuxdoom-1.10/doom1.wad and alphadoom-1.10/doom1.wad differ
+diff -c --new-file linuxdoom-1.10/doomdef.h alphadoom-1.10/doomdef.h
+*** linuxdoom-1.10/doomdef.h	Mon Dec 22 21:04:44 1997
+--- alphadoom-1.10/doomdef.h	Thu Jan  8 17:57:14 1998
+***************
+*** 81,87 ****
+--- 81,89 ----
+  //  and unfinished. Default is synchronous.
+  // Experimental asynchronous timer based is
+  //  handled by SNDINTR. 
++ #ifndef OSF
+  #define SNDSERV  1
++ #endif
+  //#define SNDINTR  1
+  
+  
+Binary files linuxdoom-1.10/doomsav0.dsg and alphadoom-1.10/doomsav0.dsg differ
+Binary files linuxdoom-1.10/doomsav1.dsg and alphadoom-1.10/doomsav1.dsg differ
+diff -c --new-file linuxdoom-1.10/doomtype.h alphadoom-1.10/doomtype.h
+*** linuxdoom-1.10/doomtype.h	Mon Dec 22 21:05:27 1997
+--- alphadoom-1.10/doomtype.h	Wed Jan  7 22:42:44 1998
+***************
+*** 38,45 ****
+  
+  
+  // Predefined with some OS.
+! #ifdef LINUX
+  #include <values.h>
+  #else
+  #define MAXCHAR		((char)0x7f)
+  #define MAXSHORT	((short)0x7fff)
+--- 38,49 ----
+  
+  
+  // Predefined with some OS.
+! #if defined(LINUX)||defined(OSF)
+  #include <values.h>
++ #ifdef OSF
++ #define MININT		((int)0x80000000)	
++ #define MINLONG		((long)0x8000000000000000)
++ #endif
+  #else
+  #define MAXCHAR		((char)0x7f)
+  #define MAXSHORT	((short)0x7fff)
+***************
+*** 55,62 ****
+  #define MINLONG		((long)0x80000000)
+  #endif
+  
+! 
+! 
+  
+  #endif
+  //-----------------------------------------------------------------------------
+--- 59,74 ----
+  #define MINLONG		((long)0x80000000)
+  #endif
+  
+! // pointer-to-numeric casts
+! #ifdef OSF
+! #define P2NUM       long
+! #define UP2NUM      unsigned long
+! #define PTRSIZE     8
+! #else
+! #define P2NUM       int
+! #define UP2NUM      longint
+! #define PTRSIZE     4
+! #endif
+  
+  #endif
+  //-----------------------------------------------------------------------------
+diff -c --new-file linuxdoom-1.10/errlist alphadoom-1.10/errlist
+*** linuxdoom-1.10/errlist	Thu Jan  1 01:00:00 1970
+--- alphadoom-1.10/errlist	Thu Jan  8 19:08:29 1998
+***************
+*** 0 ****
+--- 1,2 ----
++ gcc   -g -Wall -DNORMALUNIX -DGCC -DOSF -DOSFMME   -c i_sound.c -o alpha/i_sound.o
++ gcc   -g -Wall -DNORMALUNIX -DGCC -DOSF -DOSFMME   -L/usr/X11R6/lib alpha/doomdef.o alpha/doomstat.o alpha/dstrings.o alpha/i_system.o alpha/i_sound.o alpha/i_video.o alpha/i_net.o alpha/tables.o alpha/f_finale.o alpha/f_wipe.o alpha/d_main.o alpha/d_net.o alpha/d_items.o alpha/g_game.o alpha/m_menu.o alpha/m_misc.o alpha/m_argv.o alpha/m_bbox.o alpha/m_fixed.o alpha/m_swap.o alpha/m_cheat.o alpha/m_random.o alpha/am_map.o alpha/p_ceilng.o alpha/p_doors.o alpha/p_enemy.o alpha/p_floor.o alpha/p_inter.o alpha/p_lights.o alpha/p_map.o alpha/p_maputl.o alpha/p_plats.o alpha/p_pspr.o alpha/p_setup.o alpha/p_sight.o alpha/p_spec.o alpha/p_switch.o alpha/p_mobj.o alpha/p_telept.o alpha/p_tick.o alpha/p_saveg.o alpha/p_user.o alpha/r_bsp.o alpha/r_data.o alpha/r_draw.o alpha/r_main.o alpha/r_plane.o alpha/r_segs.o alpha/r_sky.o alpha/r_things.o alpha/w_wad.o alpha/wi_stuff.o alpha/v_video.o alpha/st_lib.o alpha/st_stuff.o alpha/hu_stuff.o alpha/hu_lib.o alpha/s_sound.o alpha/z_zone.o alpha/info.o alpha/sounds.o alpha/i_main.o -o alpha/alphadoom -lXext -lX11 -lm -lmme
+diff -c --new-file linuxdoom-1.10/f_wipe.c alphadoom-1.10/f_wipe.c
+*** linuxdoom-1.10/f_wipe.c	Mon Dec 22 21:34:38 1997
+--- alphadoom-1.10/f_wipe.c	Wed Jan  7 20:03:23 1998
+***************
+*** 57,63 ****
+      int		y;
+      short*	dest;
+  
+!     dest = (short*) Z_Malloc(width*height*2, PU_STATIC, 0);
+  
+      for(y=0;y<height;y++)
+  	for(x=0;x<width;x++)
+--- 57,63 ----
+      int		y;
+      short*	dest;
+  
+!     dest = (short*) Z_Malloc(width*height*sizeof(short), PU_STATIC, 0);
+  
+      for(y=0;y<height;y++)
+  	for(x=0;x<width;x++)
+diff -c --new-file linuxdoom-1.10/i_net.c alphadoom-1.10/i_net.c
+*** linuxdoom-1.10/i_net.c	Mon Dec 22 21:37:46 1997
+--- alphadoom-1.10/i_net.c	Thu Jan  8 14:32:54 1998
+***************
+*** 237,242 ****
+--- 237,245 ----
+      return *(int *)hostentry->h_addr_list[0];
+  }
+  
++ #if defined(OSF)&&defined(GCC)
++ int  ioctl(int, int, ...);
++ #endif
+  
+  //
+  // I_InitNetwork
+diff -c --new-file linuxdoom-1.10/i_sound.c alphadoom-1.10/i_sound.c
+*** linuxdoom-1.10/i_sound.c	Mon Dec 22 20:57:15 1997
+--- alphadoom-1.10/i_sound.c	Thu Jan  8 19:07:53 1998
+***************
+*** 33,39 ****
+  #include <sys/time.h>
+  #include <sys/types.h>
+  
+! #ifndef LINUX
+  #include <sys/filio.h>
+  #endif
+  
+--- 33,39 ----
+  #include <sys/time.h>
+  #include <sys/types.h>
+  
+! #if !defined(LINUX)&&!defined(OSF)
+  #include <sys/filio.h>
+  #endif
+  
+***************
+*** 42,48 ****
+--- 42,50 ----
+  #include <sys/ioctl.h>
+  
+  // Linux voxware output.
++ #ifdef LINUX
+  #include <linux/soundcard.h>
++ #endif
+  
+  // Timer stuff. Experimental.
+  #include <time.h>
+***************
+*** 73,80 ****
+  // Get the interrupt. Set duration in millisecs.
+  int I_SoundSetTimer( int duration_of_tick );
+  void I_SoundDelTimer( void );
+  #else
+! // None?
+  #endif
+  
+  
+--- 75,95 ----
+  // Get the interrupt. Set duration in millisecs.
+  int I_SoundSetTimer( int duration_of_tick );
+  void I_SoundDelTimer( void );
++ #elif OSFMME
++ #include <mme/mme_api.h>
++ #include <assert.h>
++ MMRESULT r;
++ HWAVEOUT wo;
++ WAVEOUTCAPS *caps;
++ MMTIME *mmTime;
++ #define WAVEDEVICE 0
++ void CALLBACK cb (HWAVEOUT wo, UINT msg, DWORD dwInstance, LPARAM lParam1, LPARAM lParam2) {
++   // not called
++ }
++ typedef void (*waveCallBack)();
++ 
+  #else
+! 
+  #endif
+  
+  
+***************
+*** 146,157 ****
+  // Volume lookups.
+  int		vol_lookup[128*256];
+  
+  // Hardware left and right channel volume lookup.
+  int*		channelleftvol_lookup[NUM_CHANNELS];
+  int*		channelrightvol_lookup[NUM_CHANNELS];
+  
+! 
+! 
+  
+  //
+  // Safe ioctl, convenience.
+--- 161,176 ----
+  // Volume lookups.
+  int		vol_lookup[128*256];
+  
++ // count mixbuffers to avoid duplicate send
++ int bufno=0;
++ 
+  // Hardware left and right channel volume lookup.
+  int*		channelleftvol_lookup[NUM_CHANNELS];
+  int*		channelrightvol_lookup[NUM_CHANNELS];
+  
+! #if defined(OSF)&&defined(GCC)
+! int  ioctl(int, int, ...);
+! #endif
+  
+  //
+  // Safe ioctl, convenience.
+***************
+*** 175,182 ****
+  }
+  
+  
+! 
+! 
+  
+  //
+  // This function loads the sound data from the WAD lump,
+--- 194,237 ----
+  }
+  
+  
+! #ifdef OSFMME
+! int lastSample=0;
+! int lastsnd_SfxVolume=0;
+! int lastBufno=0;
+! void submitWave (void *buf, int len) {
+!   MMRESULT r;
+!   WAVEHDR *wh;
+!   if (bufno==lastBufno)
+!     return;
+!   lastBufno=bufno;
+!   if (snd_SfxVolume!=lastsnd_SfxVolume) {
+!     lastsnd_SfxVolume=snd_SfxVolume;
+!     if ((caps->dwSupport&WAVECAPS_VOLUME)!=0) {
+!       DWORD vol=(lastsnd_SfxVolume<<(12+16))|(lastsnd_SfxVolume<<12);
+!       waveOutSetVolume (WAVEDEVICE, vol);
+!     }
+!   }
+!   waveOutGetPosition (wo, mmTime, sizeof(MMTIME));
+!   assert (mmTime->wType==TIME_SAMPLES);
+!   if (lastSample&&(lastSample-1000>mmTime->u.sample)) {
+!     //printf ("%x %d %d\n",mmTime->wType, mmTime->u.sample, lastSample);
+!     return;
+!   }
+!   if (lastSample==mmTime->u.sample) {
+!     //printf ("too slow\n");
+!   }
+!   lastSample+=len/(2*SAMPLESIZE);
+!   //printf ("new lastSample %d\n",lastSample);
+!   wh=(WAVEHDR*)mmeAllocMem(sizeof(WAVEHDR));
+!   memset (wh, 0, sizeof(WAVEHDR));
+!   wh->lpData=(LPSTR)mmeAllocBuffer (len);
+!   memcpy (wh->lpData, buf, len);
+!   wh->dwBufferLength=len;
+!   r=waveOutWrite (wo, wh, sizeof(WAVEHDR));
+!   mmeFreeBuffer (wh->lpData);
+!   mmeFreeMem (wh);
+! }
+! #endif
+  
+  //
+  // This function loads the sound data from the WAD lump,
+***************
+*** 633,639 ****
+  	leftout += step;
+  	rightout += step;
+      }
+! 
+  #ifdef SNDINTR
+      // Debug check.
+      if ( flag )
+--- 688,694 ----
+  	leftout += step;
+  	rightout += step;
+      }
+!     bufno++;
+  #ifdef SNDINTR
+      // Debug check.
+      if ( flag )
+***************
+*** 666,672 ****
+--- 721,732 ----
+  I_SubmitSound(void)
+  {
+    // Write it to DSP device.
++ #ifdef OSFMME
++   submitWave (mixbuffer, SAMPLECOUNT*BUFMUL);
++ #endif
++ #ifndef OSF
+    write(audio_fd, mixbuffer, SAMPLECOUNT*BUFMUL);
++ #endif
+  }
+  
+  
+***************
+*** 766,772 ****
+      
+    // Secure and configure sound device first.
+    fprintf( stderr, "I_InitSound: ");
+!   
+    audio_fd = open("/dev/dsp", O_WRONLY);
+    if (audio_fd<0)
+      fprintf(stderr, "Could not open /dev/dsp\n");
+--- 826,852 ----
+      
+    // Secure and configure sound device first.
+    fprintf( stderr, "I_InitSound: ");
+! #ifdef OSFMME
+!   {PCMWAVEFORMAT *wv;
+!    caps=(WAVEOUTCAPS*)mmeAllocMem(sizeof(WAVEOUTCAPS));
+!    assert (caps!=0);
+!    r=waveOutGetDevCaps (WAVEDEVICE, caps, sizeof(WAVEOUTCAPS));
+!    mmTime=(MMTIME*)mmeAllocMem(sizeof(MMTIME));
+!    wv=(PCMWAVEFORMAT*)mmeAllocMem(sizeof(PCMWAVEFORMAT));
+!    assert (wv!=0);
+!    memset (wv, 0, sizeof(PCMWAVEFORMAT));
+!    wv->wf.wFormatTag=WAVE_FORMAT_PCM;
+!    wv->wf.nChannels=2;
+!    wv->wf.nSamplesPerSec=SAMPLERATE;
+!    wv->wf.nAvgBytesPerSec=SAMPLERATE*SAMPLESIZE;
+!    wv->wf.nBlockAlign=1;
+!    wv->wBitsPerSample=8*SAMPLESIZE;
+!    r=waveOutOpen(&wo, 0, (WAVEFORMAT*)wv, (waveCallBack)cb, 0, CALLBACK_FUNCTION|WAVE_OPEN_SHAREABLE);
+!    printf ("wo1 %d\n",r);
+!    mmeFreeMem (wv);
+!   }
+! #endif
+! #ifndef OSF
+    audio_fd = open("/dev/dsp", O_WRONLY);
+    if (audio_fd<0)
+      fprintf(stderr, "Could not open /dev/dsp\n");
+***************
+*** 789,795 ****
+      myioctl(audio_fd, SNDCTL_DSP_SETFMT, &i);
+    else
+      fprintf(stderr, "Could not play signed 16 data\n");
+! 
+    fprintf(stderr, " configured audio device\n" );
+  
+      
+--- 869,875 ----
+      myioctl(audio_fd, SNDCTL_DSP_SETFMT, &i);
+    else
+      fprintf(stderr, "Could not play signed 16 data\n");
+! #endif
+    fprintf(stderr, " configured audio device\n" );
+  
+      
+diff -c --new-file linuxdoom-1.10/i_system.c alphadoom-1.10/i_system.c
+*** linuxdoom-1.10/i_system.c	Mon Dec 22 17:29:13 1997
+--- alphadoom-1.10/i_system.c	Wed Jan  7 20:54:53 1998
+***************
+*** 122,128 ****
+      I_ShutdownGraphics();
+      exit(0);
+  }
+! 
+  void I_WaitVBL(int count)
+  {
+  #ifdef SGI
+--- 122,130 ----
+      I_ShutdownGraphics();
+      exit(0);
+  }
+! #ifdef OSF
+!   void usleep(unsigned mseconds); // /usr/include not complete on OSF
+! #endif
+  void I_WaitVBL(int count)
+  {
+  #ifdef SGI
+diff -c --new-file linuxdoom-1.10/i_video.c alphadoom-1.10/i_video.c
+*** linuxdoom-1.10/i_video.c	Mon Dec 22 21:39:01 1997
+--- alphadoom-1.10/i_video.c	Wed Jan  7 23:16:47 1998
+***************
+*** 39,52 ****
+  #ifdef LINUX
+  int XShmGetEventBase( Display* dpy ); // problems with g++?
+  #endif
+! 
+  #include <stdarg.h>
+  #include <sys/time.h>
+  #include <sys/types.h>
+  #include <sys/socket.h>
+  
+  #include <netinet/in.h>
+  #include <errnos.h>
+  #include <signal.h>
+  
+  #include "doomstat.h"
+--- 39,58 ----
+  #ifdef LINUX
+  int XShmGetEventBase( Display* dpy ); // problems with g++?
+  #endif
+! // need to dig on alpha little bit more...
+! #ifdef OSF
+! int XShmGetEventBase( Display* dpy ); // problems with g++?
+! int XShmQueryExtension (Display* dpy);
+! #endif
+  #include <stdarg.h>
+  #include <sys/time.h>
+  #include <sys/types.h>
+  #include <sys/socket.h>
+  
+  #include <netinet/in.h>
++ #ifndef OSF
+  #include <errnos.h>
++ #endif
+  #include <signal.h>
+  
+  #include "doomstat.h"
+***************
+*** 87,93 ****
+  // replace each 320x200 pixel with multiply*multiply pixels.
+  // According to Dave Taylor, it still is a bonehead thing
+  // to use ....
+! static int	multiply=1;
+  
+  
+  //
+--- 93,99 ----
+  // replace each 320x200 pixel with multiply*multiply pixels.
+  // According to Dave Taylor, it still is a bonehead thing
+  // to use ....
+! static int	multiply=3;
+  
+  
+  //
+***************
+*** 684,692 ****
+    
+    // attach to the shared memory segment
+    image->data = X_shminfo.shmaddr = shmat(id, 0, 0);
+!   
+!   fprintf(stderr, "shared memory id=%d, addr=0x%x\n", id,
+! 	  (int) (image->data));
+  }
+  
+  void I_InitGraphics(void)
+--- 690,698 ----
+    
+    // attach to the shared memory segment
+    image->data = X_shminfo.shmaddr = shmat(id, 0, 0);
+! 
+!   fprintf(stderr, "shared memory id=%d, addr=0x%lx\n", id,
+! 	  (P2NUM) (image->data));
+  }
+  
+  void I_InitGraphics(void)
+***************
+*** 986,998 ****
+  	{
+  	    fourpixels = lineptr[0];
+  			
+! 	    dpixel = *(double *)( (int)exp + ( (fourpixels&0xffff0000)>>13) );
+  	    xline[0] = dpixel;
+  	    xline[160] = dpixel;
+  	    xline[320] = dpixel;
+  	    xline[480] = dpixel;
+  			
+! 	    dpixel = *(double *)( (int)exp + ( (fourpixels&0xffff)<<3 ) );
+  	    xline[1] = dpixel;
+  	    xline[161] = dpixel;
+  	    xline[321] = dpixel;
+--- 992,1004 ----
+  	{
+  	    fourpixels = lineptr[0];
+  			
+! 	    dpixel = *(double *)( (P2NUM)exp + ( (fourpixels&0xffff0000)>>13) );
+  	    xline[0] = dpixel;
+  	    xline[160] = dpixel;
+  	    xline[320] = dpixel;
+  	    xline[480] = dpixel;
+  			
+! 	    dpixel = *(double *)( (P2NUM)exp + ( (fourpixels&0xffff)<<3 ) );
+  	    xline[1] = dpixel;
+  	    xline[161] = dpixel;
+  	    xline[321] = dpixel;
+***************
+*** 1000,1012 ****
+  
+  	    fourpixels = lineptr[1];
+  			
+! 	    dpixel = *(double *)( (int)exp + ( (fourpixels&0xffff0000)>>13) );
+  	    xline[2] = dpixel;
+  	    xline[162] = dpixel;
+  	    xline[322] = dpixel;
+  	    xline[482] = dpixel;
+  			
+! 	    dpixel = *(double *)( (int)exp + ( (fourpixels&0xffff)<<3 ) );
+  	    xline[3] = dpixel;
+  	    xline[163] = dpixel;
+  	    xline[323] = dpixel;
+--- 1006,1018 ----
+  
+  	    fourpixels = lineptr[1];
+  			
+! 	    dpixel = *(double *)( (P2NUM)exp + ( (fourpixels&0xffff0000)>>13) );
+  	    xline[2] = dpixel;
+  	    xline[162] = dpixel;
+  	    xline[322] = dpixel;
+  	    xline[482] = dpixel;
+  			
+! 	    dpixel = *(double *)( (P2NUM)exp + ( (fourpixels&0xffff)<<3 ) );
+  	    xline[3] = dpixel;
+  	    xline[163] = dpixel;
+  	    xline[323] = dpixel;
+***************
+*** 1014,1026 ****
+  
+  	    fourpixels = lineptr[2];
+  			
+! 	    dpixel = *(double *)( (int)exp + ( (fourpixels&0xffff0000)>>13) );
+  	    xline[4] = dpixel;
+  	    xline[164] = dpixel;
+  	    xline[324] = dpixel;
+  	    xline[484] = dpixel;
+  			
+! 	    dpixel = *(double *)( (int)exp + ( (fourpixels&0xffff)<<3 ) );
+  	    xline[5] = dpixel;
+  	    xline[165] = dpixel;
+  	    xline[325] = dpixel;
+--- 1020,1032 ----
+  
+  	    fourpixels = lineptr[2];
+  			
+! 	    dpixel = *(double *)( (P2NUM)exp + ( (fourpixels&0xffff0000)>>13) );
+  	    xline[4] = dpixel;
+  	    xline[164] = dpixel;
+  	    xline[324] = dpixel;
+  	    xline[484] = dpixel;
+  			
+! 	    dpixel = *(double *)( (P2NUM)exp + ( (fourpixels&0xffff)<<3 ) );
+  	    xline[5] = dpixel;
+  	    xline[165] = dpixel;
+  	    xline[325] = dpixel;
+***************
+*** 1028,1040 ****
+  
+  	    fourpixels = lineptr[3];
+  			
+! 	    dpixel = *(double *)( (int)exp + ( (fourpixels&0xffff0000)>>13) );
+  	    xline[6] = dpixel;
+  	    xline[166] = dpixel;
+  	    xline[326] = dpixel;
+  	    xline[486] = dpixel;
+  			
+! 	    dpixel = *(double *)( (int)exp + ( (fourpixels&0xffff)<<3 ) );
+  	    xline[7] = dpixel;
+  	    xline[167] = dpixel;
+  	    xline[327] = dpixel;
+--- 1034,1046 ----
+  
+  	    fourpixels = lineptr[3];
+  			
+! 	    dpixel = *(double *)( (P2NUM)exp + ( (fourpixels&0xffff0000)>>13) );
+  	    xline[6] = dpixel;
+  	    xline[166] = dpixel;
+  	    xline[326] = dpixel;
+  	    xline[486] = dpixel;
+  			
+! 	    dpixel = *(double *)( (P2NUM)exp + ( (fourpixels&0xffff)<<3 ) );
+  	    xline[7] = dpixel;
+  	    xline[167] = dpixel;
+  	    xline[327] = dpixel;
+Common subdirectories: linuxdoom-1.10/linux and alphadoom-1.10/linux
+diff -c --new-file linuxdoom-1.10/m_bbox.c alphadoom-1.10/m_bbox.c
+*** linuxdoom-1.10/m_bbox.c	Mon Dec 22 21:40:50 1997
+--- alphadoom-1.10/m_bbox.c	Wed Jan  7 23:17:09 1998
+***************
+*** 32,38 ****
+  #pragma implementation "m_bbox.h"
+  #endif
+  #include "m_bbox.h"
+! 
+  
+  
+  
+--- 32,38 ----
+  #pragma implementation "m_bbox.h"
+  #endif
+  #include "m_bbox.h"
+! #include "doomtype.h" // to get MININT
+  
+  
+  
+diff -c --new-file linuxdoom-1.10/m_menu.c alphadoom-1.10/m_menu.c
+*** linuxdoom-1.10/m_menu.c	Mon Dec 22 21:42:21 1997
+--- alphadoom-1.10/m_menu.c	Wed Jan  7 22:15:34 1998
+***************
+*** 529,535 ****
+  	    LoadMenu[i].status = 0;
+  	    continue;
+  	}
+! 	count = read (handle, &savegamestrings[i], SAVESTRINGSIZE);
+  	close (handle);
+  	LoadMenu[i].status = 1;
+      }
+--- 529,535 ----
+  	    LoadMenu[i].status = 0;
+  	    continue;
+  	}
+! 	count = read (handle, savegamestrings[i], SAVESTRINGSIZE);
+  	close (handle);
+  	LoadMenu[i].status = 1;
+      }
+diff -c --new-file linuxdoom-1.10/m_misc.c alphadoom-1.10/m_misc.c
+*** linuxdoom-1.10/m_misc.c	Mon Dec 22 21:43:11 1997
+--- alphadoom-1.10/m_misc.c	Wed Jan  7 21:39:40 1998
+***************
+*** 226,232 ****
+  {
+      char*	name;
+      int*	location;
+!     int		defaultvalue;
+      int		scantranslate;		// PC scan code hack
+      int		untranslated;		// lousy hack
+  } default_t;
+--- 226,232 ----
+  {
+      char*	name;
+      int*	location;
+!     P2NUM	defaultvalue;
+      int		scantranslate;		// PC scan code hack
+      int		untranslated;		// lousy hack
+  } default_t;
+***************
+*** 254,260 ****
+  
+  // UNIX hack, to be removed. 
+  #ifdef SNDSERV
+!     {"sndserver", (int *) &sndserver_filename, (int) "sndserver"},
+      {"mb_used", &mb_used, 2},
+  #endif
+      
+--- 254,260 ----
+  
+  // UNIX hack, to be removed. 
+  #ifdef SNDSERV
+!     {"sndserver", (int *) &sndserver_filename, (P2NUM) "sndserver"},
+      {"mb_used", &mb_used, 2},
+  #endif
+      
+***************
+*** 285,300 ****
+  
+      {"usegamma",&usegamma, 0},
+  
+!     {"chatmacro0", (int *) &chat_macros[0], (int) HUSTR_CHATMACRO0 },
+!     {"chatmacro1", (int *) &chat_macros[1], (int) HUSTR_CHATMACRO1 },
+!     {"chatmacro2", (int *) &chat_macros[2], (int) HUSTR_CHATMACRO2 },
+!     {"chatmacro3", (int *) &chat_macros[3], (int) HUSTR_CHATMACRO3 },
+!     {"chatmacro4", (int *) &chat_macros[4], (int) HUSTR_CHATMACRO4 },
+!     {"chatmacro5", (int *) &chat_macros[5], (int) HUSTR_CHATMACRO5 },
+!     {"chatmacro6", (int *) &chat_macros[6], (int) HUSTR_CHATMACRO6 },
+!     {"chatmacro7", (int *) &chat_macros[7], (int) HUSTR_CHATMACRO7 },
+!     {"chatmacro8", (int *) &chat_macros[8], (int) HUSTR_CHATMACRO8 },
+!     {"chatmacro9", (int *) &chat_macros[9], (int) HUSTR_CHATMACRO9 }
+  
+  };
+  
+--- 285,300 ----
+  
+      {"usegamma",&usegamma, 0},
+  
+!     {"chatmacro0", (int *) &chat_macros[0], (P2NUM) HUSTR_CHATMACRO0 },
+!     {"chatmacro1", (int *) &chat_macros[1], (P2NUM) HUSTR_CHATMACRO1 },
+!     {"chatmacro2", (int *) &chat_macros[2], (P2NUM) HUSTR_CHATMACRO2 },
+!     {"chatmacro3", (int *) &chat_macros[3], (P2NUM) HUSTR_CHATMACRO3 },
+!     {"chatmacro4", (int *) &chat_macros[4], (P2NUM) HUSTR_CHATMACRO4 },
+!     {"chatmacro5", (int *) &chat_macros[5], (P2NUM) HUSTR_CHATMACRO5 },
+!     {"chatmacro6", (int *) &chat_macros[6], (P2NUM) HUSTR_CHATMACRO6 },
+!     {"chatmacro7", (int *) &chat_macros[7], (P2NUM) HUSTR_CHATMACRO7 },
+!     {"chatmacro8", (int *) &chat_macros[8], (P2NUM) HUSTR_CHATMACRO8 },
+!     {"chatmacro9", (int *) &chat_macros[9], (P2NUM) HUSTR_CHATMACRO9 }
+  
+  };
+  
+***************
+*** 392,398 ****
+  			    *defaults[i].location = parm;
+  			else
+  			    *defaults[i].location =
+! 				(int) newstring;
+  			break;
+  		    }
+  	    }
+--- 392,398 ----
+  			    *defaults[i].location = parm;
+  			else
+  			    *defaults[i].location =
+! 				(P2NUM) newstring;
+  			break;
+  		    }
+  	    }
+***************
+*** 434,440 ****
+      unsigned char	data;		// unbounded
+  } pcx_t;
+  
+! 
+  //
+  // WritePCXfile
+  //
+--- 434,441 ----
+      unsigned char	data;		// unbounded
+  } pcx_t;
+  
+! #undef max
+! #define max(a,b) (a)>(b)?(a):(b)
+  //
+  // WritePCXfile
+  //
+***************
+*** 451,457 ****
+      pcx_t*	pcx;
+      byte*	pack;
+  	
+!     pcx = Z_Malloc (width*height*2+1000, PU_STATIC, NULL);
+  
+      pcx->manufacturer = 0x0a;		// PCX id
+      pcx->version = 5;			// 256 color
+--- 452,458 ----
+      pcx_t*	pcx;
+      byte*	pack;
+  	
+!     pcx = Z_Malloc (width*height*2+max(1000,sizeof(pcx_t)), PU_STATIC, NULL);
+  
+      pcx->manufacturer = 0x0a;		// PCX id
+      pcx->version = 5;			// 256 color
+diff -c --new-file linuxdoom-1.10/m_swap.c alphadoom-1.10/m_swap.c
+*** linuxdoom-1.10/m_swap.c	Mon Dec 22 21:43:51 1997
+--- alphadoom-1.10/m_swap.c	Wed Jan  7 15:05:38 1998
+***************
+*** 31,38 ****
+  #include "m_swap.h"
+  
+  
+! // Not needed with big endian.
+! #ifndef __BIG_ENDIAN__
+  
+  // Swap 16bit, that is, MSB and LSB byte.
+  unsigned short SwapSHORT(unsigned short x)
+--- 31,38 ----
+  #include "m_swap.h"
+  
+  
+! // Not needed with little endian.
+! #ifdef __BIG_ENDIAN__
+  
+  // Swap 16bit, that is, MSB and LSB byte.
+  unsigned short SwapSHORT(unsigned short x)
+diff -c --new-file linuxdoom-1.10/m_swap.h alphadoom-1.10/m_swap.h
+*** linuxdoom-1.10/m_swap.h	Mon Dec 22 21:14:41 1997
+--- alphadoom-1.10/m_swap.h	Wed Jan  7 15:03:04 1998
+***************
+*** 32,39 ****
+  // Endianess handling.
+  // WAD files are stored little endian.
+  #ifdef __BIG_ENDIAN__
+! short	SwapSHORT(short);
+! long	SwapLONG(long);
+  #define SHORT(x)	((short)SwapSHORT((unsigned short) (x)))
+  #define LONG(x)         ((long)SwapLONG((unsigned long) (x)))
+  #else
+--- 32,39 ----
+  // Endianess handling.
+  // WAD files are stored little endian.
+  #ifdef __BIG_ENDIAN__
+! unsigned short	SwapSHORT(unsigned short);
+! unsigned long	SwapLONG(unsigned long);
+  #define SHORT(x)	((short)SwapSHORT((unsigned short) (x)))
+  #define LONG(x)         ((long)SwapLONG((unsigned long) (x)))
+  #else
+diff -c --new-file linuxdoom-1.10/p_saveg.c alphadoom-1.10/p_saveg.c
+*** linuxdoom-1.10/p_saveg.c	Sun Dec 21 17:03:15 1997
+--- alphadoom-1.10/p_saveg.c	Wed Jan  7 22:42:25 1998
+***************
+*** 37,43 ****
+  
+  // Pads save_p to a 4-byte boundary
+  //  so that the load/save works on SGI&Gecko.
+! #define PADSAVEP()	save_p += (4 - ((int) save_p & 3)) & 3
+  
+  
+  
+--- 37,43 ----
+  
+  // Pads save_p to a 4-byte boundary
+  //  so that the load/save works on SGI&Gecko.
+! #define PADSAVEP()	save_p += (PTRSIZE - ((P2NUM) save_p & (PTRSIZE-1))) & (PTRSIZE-1)
+  
+  
+  
+***************
+*** 101,107 ****
+  	    if (players[i]. psprites[j].state)
+  	    {
+  		players[i]. psprites[j].state 
+! 		    = &states[ (int)players[i].psprites[j].state ];
+  	    }
+  	}
+      }
+--- 101,107 ----
+  	    if (players[i]. psprites[j].state)
+  	    {
+  		players[i]. psprites[j].state 
+! 		    = &states[ (P2NUM)players[i].psprites[j].state ];
+  	    }
+  	}
+      }
+***************
+*** 299,309 ****
+  	    mobj = Z_Malloc (sizeof(*mobj), PU_LEVEL, NULL);
+  	    memcpy (mobj, save_p, sizeof(*mobj));
+  	    save_p += sizeof(*mobj);
+! 	    mobj->state = &states[(int)mobj->state];
+  	    mobj->target = NULL;
+  	    if (mobj->player)
+  	    {
+! 		mobj->player = &players[(int)mobj->player-1];
+  		mobj->player->mo = mobj;
+  	    }
+  	    P_SetThingPosition (mobj);
+--- 299,309 ----
+  	    mobj = Z_Malloc (sizeof(*mobj), PU_LEVEL, NULL);
+  	    memcpy (mobj, save_p, sizeof(*mobj));
+  	    save_p += sizeof(*mobj);
+! 	    mobj->state = &states[(P2NUM)mobj->state];
+  	    mobj->target = NULL;
+  	    if (mobj->player)
+  	    {
+! 		mobj->player = &players[(P2NUM)mobj->player-1];
+  		mobj->player->mo = mobj;
+  	    }
+  	    P_SetThingPosition (mobj);
+***************
+*** 498,504 ****
+  	    ceiling = Z_Malloc (sizeof(*ceiling), PU_LEVEL, NULL);
+  	    memcpy (ceiling, save_p, sizeof(*ceiling));
+  	    save_p += sizeof(*ceiling);
+! 	    ceiling->sector = &sectors[(int)ceiling->sector];
+  	    ceiling->sector->specialdata = ceiling;
+  
+  	    if (ceiling->thinker.function.acp1)
+--- 498,504 ----
+  	    ceiling = Z_Malloc (sizeof(*ceiling), PU_LEVEL, NULL);
+  	    memcpy (ceiling, save_p, sizeof(*ceiling));
+  	    save_p += sizeof(*ceiling);
+! 	    ceiling->sector = &sectors[(P2NUM)ceiling->sector];
+  	    ceiling->sector->specialdata = ceiling;
+  
+  	    if (ceiling->thinker.function.acp1)
+***************
+*** 513,519 ****
+  	    door = Z_Malloc (sizeof(*door), PU_LEVEL, NULL);
+  	    memcpy (door, save_p, sizeof(*door));
+  	    save_p += sizeof(*door);
+! 	    door->sector = &sectors[(int)door->sector];
+  	    door->sector->specialdata = door;
+  	    door->thinker.function.acp1 = (actionf_p1)T_VerticalDoor;
+  	    P_AddThinker (&door->thinker);
+--- 513,519 ----
+  	    door = Z_Malloc (sizeof(*door), PU_LEVEL, NULL);
+  	    memcpy (door, save_p, sizeof(*door));
+  	    save_p += sizeof(*door);
+! 	    door->sector = &sectors[(P2NUM)door->sector];
+  	    door->sector->specialdata = door;
+  	    door->thinker.function.acp1 = (actionf_p1)T_VerticalDoor;
+  	    P_AddThinker (&door->thinker);
+***************
+*** 524,530 ****
+  	    floor = Z_Malloc (sizeof(*floor), PU_LEVEL, NULL);
+  	    memcpy (floor, save_p, sizeof(*floor));
+  	    save_p += sizeof(*floor);
+! 	    floor->sector = &sectors[(int)floor->sector];
+  	    floor->sector->specialdata = floor;
+  	    floor->thinker.function.acp1 = (actionf_p1)T_MoveFloor;
+  	    P_AddThinker (&floor->thinker);
+--- 524,530 ----
+  	    floor = Z_Malloc (sizeof(*floor), PU_LEVEL, NULL);
+  	    memcpy (floor, save_p, sizeof(*floor));
+  	    save_p += sizeof(*floor);
+! 	    floor->sector = &sectors[(P2NUM)floor->sector];
+  	    floor->sector->specialdata = floor;
+  	    floor->thinker.function.acp1 = (actionf_p1)T_MoveFloor;
+  	    P_AddThinker (&floor->thinker);
+***************
+*** 535,541 ****
+  	    plat = Z_Malloc (sizeof(*plat), PU_LEVEL, NULL);
+  	    memcpy (plat, save_p, sizeof(*plat));
+  	    save_p += sizeof(*plat);
+! 	    plat->sector = &sectors[(int)plat->sector];
+  	    plat->sector->specialdata = plat;
+  
+  	    if (plat->thinker.function.acp1)
+--- 535,541 ----
+  	    plat = Z_Malloc (sizeof(*plat), PU_LEVEL, NULL);
+  	    memcpy (plat, save_p, sizeof(*plat));
+  	    save_p += sizeof(*plat);
+! 	    plat->sector = &sectors[(P2NUM)plat->sector];
+  	    plat->sector->specialdata = plat;
+  
+  	    if (plat->thinker.function.acp1)
+***************
+*** 550,556 ****
+  	    flash = Z_Malloc (sizeof(*flash), PU_LEVEL, NULL);
+  	    memcpy (flash, save_p, sizeof(*flash));
+  	    save_p += sizeof(*flash);
+! 	    flash->sector = &sectors[(int)flash->sector];
+  	    flash->thinker.function.acp1 = (actionf_p1)T_LightFlash;
+  	    P_AddThinker (&flash->thinker);
+  	    break;
+--- 550,556 ----
+  	    flash = Z_Malloc (sizeof(*flash), PU_LEVEL, NULL);
+  	    memcpy (flash, save_p, sizeof(*flash));
+  	    save_p += sizeof(*flash);
+! 	    flash->sector = &sectors[(P2NUM)flash->sector];
+  	    flash->thinker.function.acp1 = (actionf_p1)T_LightFlash;
+  	    P_AddThinker (&flash->thinker);
+  	    break;
+***************
+*** 560,566 ****
+  	    strobe = Z_Malloc (sizeof(*strobe), PU_LEVEL, NULL);
+  	    memcpy (strobe, save_p, sizeof(*strobe));
+  	    save_p += sizeof(*strobe);
+! 	    strobe->sector = &sectors[(int)strobe->sector];
+  	    strobe->thinker.function.acp1 = (actionf_p1)T_StrobeFlash;
+  	    P_AddThinker (&strobe->thinker);
+  	    break;
+--- 560,566 ----
+  	    strobe = Z_Malloc (sizeof(*strobe), PU_LEVEL, NULL);
+  	    memcpy (strobe, save_p, sizeof(*strobe));
+  	    save_p += sizeof(*strobe);
+! 	    strobe->sector = &sectors[(P2NUM)strobe->sector];
+  	    strobe->thinker.function.acp1 = (actionf_p1)T_StrobeFlash;
+  	    P_AddThinker (&strobe->thinker);
+  	    break;
+***************
+*** 570,576 ****
+  	    glow = Z_Malloc (sizeof(*glow), PU_LEVEL, NULL);
+  	    memcpy (glow, save_p, sizeof(*glow));
+  	    save_p += sizeof(*glow);
+! 	    glow->sector = &sectors[(int)glow->sector];
+  	    glow->thinker.function.acp1 = (actionf_p1)T_Glow;
+  	    P_AddThinker (&glow->thinker);
+  	    break;
+--- 570,576 ----
+  	    glow = Z_Malloc (sizeof(*glow), PU_LEVEL, NULL);
+  	    memcpy (glow, save_p, sizeof(*glow));
+  	    save_p += sizeof(*glow);
+! 	    glow->sector = &sectors[(P2NUM)glow->sector];
+  	    glow->thinker.function.acp1 = (actionf_p1)T_Glow;
+  	    P_AddThinker (&glow->thinker);
+  	    break;
+diff -c --new-file linuxdoom-1.10/p_setup.c alphadoom-1.10/p_setup.c
+*** linuxdoom-1.10/p_setup.c	Mon Dec 22 21:52:39 1997
+--- alphadoom-1.10/p_setup.c	Wed Jan  7 20:08:35 1998
+***************
+*** 533,539 ****
+      }
+  	
+      // build line tables for each sector	
+!     linebuffer = Z_Malloc (total*4, PU_LEVEL, 0);
+      sector = sectors;
+      for (i=0 ; i<numsectors ; i++, sector++)
+      {
+--- 533,539 ----
+      }
+  	
+      // build line tables for each sector	
+!     linebuffer = Z_Malloc (total*sizeof(line_t*), PU_LEVEL, 0);
+      sector = sectors;
+      for (i=0 ; i<numsectors ; i++, sector++)
+      {
+diff -c --new-file linuxdoom-1.10/r_data.c alphadoom-1.10/r_data.c
+*** linuxdoom-1.10/r_data.c	Mon Dec 22 21:57:47 1997
+--- alphadoom-1.10/r_data.c	Wed Jan  7 22:55:47 1998
+***************
+*** 41,47 ****
+  #include "doomstat.h"
+  #include "r_sky.h"
+  
+! #ifdef LINUX
+  #include  <alloca.h>
+  #endif
+  
+--- 41,47 ----
+  #include "doomstat.h"
+  #include "r_sky.h"
+  
+! #if defined(LINUX)||defined(OSF)
+  #include  <alloca.h>
+  #endif
+  
+***************
+*** 87,93 ****
+      boolean		masked;	
+      short		width;
+      short		height;
+!     void		**columndirectory;	// OBSOLETE
+      short		patchcount;
+      mappatch_t	patches[1];
+  } maptexture_t;
+--- 87,93 ----
+      boolean		masked;	
+      short		width;
+      short		height;
+!     int			lala; // must be 4 (lives in file) //void		**columndirectory;	// OBSOLETE
+      short		patchcount;
+      mappatch_t	patches[1];
+  } maptexture_t;
+***************
+*** 448,454 ****
+      names = W_CacheLumpName ("PNAMES", PU_STATIC);
+      nummappatches = LONG ( *((int *)names) );
+      name_p = names+4;
+!     patchlookup = alloca (nummappatches*sizeof(*patchlookup));
+      
+      for (i=0 ; i<nummappatches ; i++)
+      {
+--- 448,454 ----
+      names = W_CacheLumpName ("PNAMES", PU_STATIC);
+      nummappatches = LONG ( *((int *)names) );
+      name_p = names+4;
+!     patchlookup = (int*)alloca (nummappatches*sizeof(*patchlookup));
+      
+      for (i=0 ; i<nummappatches ; i++)
+      {
+***************
+*** 479,491 ****
+      }
+      numtextures = numtextures1 + numtextures2;
+  	
+!     textures = Z_Malloc (numtextures*4, PU_STATIC, 0);
+!     texturecolumnlump = Z_Malloc (numtextures*4, PU_STATIC, 0);
+!     texturecolumnofs = Z_Malloc (numtextures*4, PU_STATIC, 0);
+!     texturecomposite = Z_Malloc (numtextures*4, PU_STATIC, 0);
+!     texturecompositesize = Z_Malloc (numtextures*4, PU_STATIC, 0);
+!     texturewidthmask = Z_Malloc (numtextures*4, PU_STATIC, 0);
+!     textureheight = Z_Malloc (numtextures*4, PU_STATIC, 0);
+  
+      totalwidth = 0;
+      
+--- 479,491 ----
+      }
+      numtextures = numtextures1 + numtextures2;
+  	
+!     textures = Z_Malloc (numtextures*sizeof(void*), PU_STATIC, 0);
+!     texturecolumnlump = Z_Malloc (numtextures*sizeof(void*), PU_STATIC, 0);
+!     texturecolumnofs = Z_Malloc (numtextures*sizeof(void*), PU_STATIC, 0);
+!     texturecomposite = Z_Malloc (numtextures*sizeof(void*), PU_STATIC, 0);
+!     texturecompositesize = Z_Malloc (numtextures*sizeof(void*), PU_STATIC, 0);
+!     texturewidthmask = Z_Malloc (numtextures*sizeof(void*), PU_STATIC, 0);
+!     textureheight = Z_Malloc (numtextures*sizeof(void*), PU_STATIC, 0);
+  
+      totalwidth = 0;
+      
+***************
+*** 545,552 ****
+  			 texture->name);
+  	    }
+  	}		
+! 	texturecolumnlump[i] = Z_Malloc (texture->width*2, PU_STATIC,0);
+! 	texturecolumnofs[i] = Z_Malloc (texture->width*2, PU_STATIC,0);
+  
+  	j = 1;
+  	while (j*2 <= texture->width)
+--- 545,552 ----
+  			 texture->name);
+  	    }
+  	}		
+! 	texturecolumnlump[i] = Z_Malloc (texture->width*sizeof(short), PU_STATIC,0);
+! 	texturecolumnofs[i] = Z_Malloc (texture->width*sizeof(short), PU_STATIC,0);
+  
+  	j = 1;
+  	while (j*2 <= texture->width)
+***************
+*** 567,573 ****
+  	R_GenerateLookup (i);
+      
+      // Create translation table for global animation.
+!     texturetranslation = Z_Malloc ((numtextures+1)*4, PU_STATIC, 0);
+      
+      for (i=0 ; i<numtextures ; i++)
+  	texturetranslation[i] = i;
+--- 567,573 ----
+  	R_GenerateLookup (i);
+      
+      // Create translation table for global animation.
+!     texturetranslation = Z_Malloc ((numtextures+1)*sizeof(int), PU_STATIC, 0);
+      
+      for (i=0 ; i<numtextures ; i++)
+  	texturetranslation[i] = i;
+***************
+*** 587,593 ****
+      numflats = lastflat - firstflat + 1;
+  	
+      // Create translation table for global animation.
+!     flattranslation = Z_Malloc ((numflats+1)*4, PU_STATIC, 0);
+      
+      for (i=0 ; i<numflats ; i++)
+  	flattranslation[i] = i;
+--- 587,593 ----
+      numflats = lastflat - firstflat + 1;
+  	
+      // Create translation table for global animation.
+!     flattranslation = Z_Malloc ((numflats+1)*sizeof(int), PU_STATIC, 0);
+      
+      for (i=0 ; i<numflats ; i++)
+  	flattranslation[i] = i;
+***************
+*** 609,617 ****
+      lastspritelump = W_GetNumForName ("S_END") - 1;
+      
+      numspritelumps = lastspritelump - firstspritelump + 1;
+!     spritewidth = Z_Malloc (numspritelumps*4, PU_STATIC, 0);
+!     spriteoffset = Z_Malloc (numspritelumps*4, PU_STATIC, 0);
+!     spritetopoffset = Z_Malloc (numspritelumps*4, PU_STATIC, 0);
+  	
+      for (i=0 ; i< numspritelumps ; i++)
+      {
+--- 609,617 ----
+      lastspritelump = W_GetNumForName ("S_END") - 1;
+      
+      numspritelumps = lastspritelump - firstspritelump + 1;
+!     spritewidth = Z_Malloc (numspritelumps*sizeof(fixed_t), PU_STATIC, 0);
+!     spriteoffset = Z_Malloc (numspritelumps*sizeof(fixed_t), PU_STATIC, 0);
+!     spritetopoffset = Z_Malloc (numspritelumps*sizeof(fixed_t), PU_STATIC, 0);
+  	
+      for (i=0 ; i< numspritelumps ; i++)
+      {
+***************
+*** 639,645 ****
+      lump = W_GetNumForName("COLORMAP"); 
+      length = W_LumpLength (lump) + 255; 
+      colormaps = Z_Malloc (length, PU_STATIC, 0); 
+!     colormaps = (byte *)( ((int)colormaps + 255)&~0xff); 
+      W_ReadLump (lump,colormaps); 
+  }
+  
+--- 639,645 ----
+      lump = W_GetNumForName("COLORMAP"); 
+      length = W_LumpLength (lump) + 255; 
+      colormaps = Z_Malloc (length, PU_STATIC, 0); 
+!     colormaps = (byte *)( ((P2NUM)colormaps + 255)&~0xff); 
+      W_ReadLump (lump,colormaps); 
+  }
+  
+diff -c --new-file linuxdoom-1.10/r_draw.c alphadoom-1.10/r_draw.c
+*** linuxdoom-1.10/r_draw.c	Mon Dec 22 21:58:20 1997
+--- alphadoom-1.10/r_draw.c	Wed Jan  7 21:25:02 1998
+***************
+*** 461,467 ****
+      int		i;
+  	
+      translationtables = Z_Malloc (256*3+255, PU_STATIC, 0);
+!     translationtables = (byte *)(( (int)translationtables + 255 )& ~255);
+      
+      // translate just the 16 green colors
+      for (i=0 ; i<256 ; i++)
+--- 461,467 ----
+      int		i;
+  	
+      translationtables = Z_Malloc (256*3+255, PU_STATIC, 0);
+!     translationtables = (byte *)(( (P2NUM)translationtables + 255 )& ~255);
+      
+      // translate just the 16 green colors
+      for (i=0 ; i<256 ; i++)
+diff -c --new-file linuxdoom-1.10/s_sound.c alphadoom-1.10/s_sound.c
+*** linuxdoom-1.10/s_sound.c	Mon Dec 22 22:01:29 1997
+--- alphadoom-1.10/s_sound.c	Wed Jan  7 21:38:04 1998
+***************
+*** 364,370 ****
+    if (sfx->lumpnum < 0)
+      sfx->lumpnum = I_GetSfxLumpNum(sfx);
+  
+! #ifndef SNDSRV
+    // cache data if necessary
+    if (!sfx->data)
+    {
+--- 364,370 ----
+    if (sfx->lumpnum < 0)
+      sfx->lumpnum = I_GetSfxLumpNum(sfx);
+  
+! #ifndef SNDSERV
+    // cache data if necessary
+    if (!sfx->data)
+    {
+diff -c --new-file linuxdoom-1.10/w_wad.c alphadoom-1.10/w_wad.c
+*** linuxdoom-1.10/w_wad.c	Mon Dec 22 22:05:36 1997
+--- alphadoom-1.10/w_wad.c	Wed Jan  7 22:57:01 1998
+***************
+*** 33,39 ****
+--- 33,41 ----
+  #include <unistd.h>
+  #include <malloc.h>
+  #include <fcntl.h>
++ #include <errno.h>
+  #include <sys/stat.h>
++ #include <malloc.h>
+  #include <alloca.h>
+  #define O_BINARY		0
+  #endif
+***************
+*** 48,54 ****
+  #endif
+  #include "w_wad.h"
+  
+! 
+  
+  
+  
+--- 50,59 ----
+  #endif
+  #include "w_wad.h"
+  
+! #ifdef OSF
+!   void *malloc(size_t size);
+!   void *realloc(void *pointer, size_t size);
+! #endif
+  
+  
+  
+***************
+*** 196,202 ****
+  	header.numlumps = LONG(header.numlumps);
+  	header.infotableofs = LONG(header.infotableofs);
+  	length = header.numlumps*sizeof(filelump_t);
+! 	fileinfo = alloca (length);
+  	lseek (handle, header.infotableofs, SEEK_SET);
+  	read (handle, fileinfo, length);
+  	numlumps += header.numlumps;
+--- 201,207 ----
+  	header.numlumps = LONG(header.numlumps);
+  	header.infotableofs = LONG(header.infotableofs);
+  	length = header.numlumps*sizeof(filelump_t);
+! 	fileinfo = (filelump_t*)alloca (length);
+  	lseek (handle, header.infotableofs, SEEK_SET);
+  	read (handle, fileinfo, length);
+  	numlumps += header.numlumps;
+***************
+*** 253,259 ****
+      lumpcount = LONG(header.numlumps);
+      header.infotableofs = LONG(header.infotableofs);
+      length = lumpcount*sizeof(filelump_t);
+!     fileinfo = alloca (length);
+      lseek (handle, header.infotableofs, SEEK_SET);
+      read (handle, fileinfo, length);
+      
+--- 258,264 ----
+      lumpcount = LONG(header.numlumps);
+      header.infotableofs = LONG(header.infotableofs);
+      length = lumpcount*sizeof(filelump_t);
+!     fileinfo = (filelump_t*)alloca (length);
+      lseek (handle, header.infotableofs, SEEK_SET);
+      read (handle, fileinfo, length);
+      
+Binary files linuxdoom-1.10/xxx and alphadoom-1.10/xxx differ
+diff -c --new-file linuxdoom-1.10/z_zone.c alphadoom-1.10/z_zone.c
+*** linuxdoom-1.10/z_zone.c	Mon Dec 22 22:07:09 1997
+--- alphadoom-1.10/z_zone.c	Wed Jan  7 22:57:50 1998
+***************
+*** 192,198 ****
+      memblock_t* newblock;
+      memblock_t*	base;
+  
+!     size = (size + 3) & ~3;
+      
+      // scan through the block list,
+      // looking for the first free block
+--- 192,198 ----
+      memblock_t* newblock;
+      memblock_t*	base;
+  
+!     size = (size + (PTRSIZE-1)) & ~(PTRSIZE-1);
+      
+      // scan through the block list,
+      // looking for the first free block
+***************
+*** 437,443 ****
+      if (block->id != ZONEID)
+  	I_Error ("Z_ChangeTag: freed a pointer without ZONEID");
+  
+!     if (tag >= PU_PURGELEVEL && (unsigned)block->user < 0x100)
+  	I_Error ("Z_ChangeTag: an owner is required for purgable blocks");
+  
+      block->tag = tag;
+--- 437,443 ----
+      if (block->id != ZONEID)
+  	I_Error ("Z_ChangeTag: freed a pointer without ZONEID");
+  
+!     if (tag >= PU_PURGELEVEL && (UP2NUM)block->user < 0x100)
+  	I_Error ("Z_ChangeTag: an owner is required for purgable blocks");
+  
+      block->tag = tag;

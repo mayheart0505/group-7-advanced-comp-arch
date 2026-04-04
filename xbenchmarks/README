@@ -1,0 +1,103 @@
+Greetings...  Contained in this distribution are Alpha AXP X-windows
+binaries that run on the SimpleScalar/Alpha simulators.  All programs were
+built with the DEC C compiler (version DEC C V5.2-036 on Digital UNIX V4.0
+(Rev. 564.32)) with optimization level "-O5" and linked statically with
+the "-non_shared" flag.
+
+All programs contain two top level directories:
+
+  dist/ - contain sources and data files, pre-configured for Alpha build
+  exe/  - statically linked Alpha binaries and data files
+
+Directions on running the benchmarks follow (replace "sim-fast" with your
+simulator of choice...):
+
+  ** povray - Persistence of Vision Ray-Tracer
+
+  to run:
+
+    cd povray/exe
+    sim-fast ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov
+
+  you should see a window pop up, in which Povray will render a bridge
+  through a river mist.
+
+
+  ** xanim - Multiformat animation/video/audio viewer for X
+
+  to run:
+
+    cd xanim/exe
+    sim-fast ./xanim -Cn ./schnecky.mpg
+
+  you should see two windows pop up (one control, one view) in which
+  xanim will image a cool little video, NOTE: xanim does a significant
+  amount of preprocessing of the input file, so be patient...
+
+
+  ** xdoom - iD Software's DOOM, a first person shooter game
+
+  to run:
+
+    cd xdoom/exe
+    sim-fast ./alphadoom -playdemo rockin
+
+  you should see a single window in which a DOOM demo will play, if the colors
+  seem messed up, move the cursor into the DOOM window, this will install
+  the correct color map, hit escape to get the main menu, from which you
+  can start your own game or quit the demo.  NOTE: if you get a colormap
+  error during startup, you'll need to configure Xserver into 256 color
+  pseudocolor mode, as this is required by DOOM, alternatively, get an
+  Xserver that supports visual emulation.
+
+
+  ** xlock - An X windows-based screen saver
+
+  to run:
+
+    cd xlock/exe
+    sim-fast ./xlock -inwindow -nolock -delay 0 -h	(lists all options)
+    sim-fast ./xlock -inwindow -nolock -delay 0 -mode bouboule
+    sim-fast ./xlock -inwindow -nolock -delay 0 -mode mountain
+    sim-fast ./xlock -inwindow -nolock -delay 0 -mode swarm
+
+  you should see a single window pop up into which xlock will draw various
+  things, depending on the "-mode" option, use "-h" to the see the modes
+  available, I've listed a few above that I've tested; NOTE: don't forget
+  the "-nolock" option as this disables password checks which will fail on
+  non-OSF Unix machines.
+
+
+NOTE: I've tested these programs on SimpleScalar/Alpha build on Alpha OSF
+Unix and Linux/x86 machines.  My X configuration requires that I run the
+programs on one machine and view their output on another via the network.
+My X server is eXceed version 5.1 running on Windows NT version 4.0.  My
+Xserver is configured in 256 pseudocolor mode, as this mode is required by
+DOOM.  If you have problems running on a local host to the same machine,
+try setting your DISPLAY variable to 127.0.0.1:0.  Please report
+problems/fixes/comments/suggestions to taustin@cse.ogi.edu.
+
+NOTE1: if when you attempt to run these programs and you get "invalid" or
+"unimplemented" system call errors, your host cannot handle the system
+calls that these programs are making; for example, these programs cannot
+be run live on Windows NT because there is no easy way to emulate the
+socket support required by the Xwindows libraries.  You've got two
+options: a) get to a more Unix-like little-endian machine, or b) get
+someone who can run these benchmarks to generate external I/O traces (EIO
+traces are supported by SimpleScalar 3.0 and later) and then run the
+external I/O traces.  External I/O traces of these programs will work on
+any host that can build SimpleScalar/Alpha.
+
+NOTE2: I've done some preliminary analysis of these programs: povray,
+xanim, and xdoom perform all rasterization within the simulated program.
+These codes only use to the Xserver to manage colors and image pixels and
+images.  Xdoom, for instance, draws the each game frame with a single
+XPutImage command, all rasterization occurs in the simulated program.
+Xlock on the other hand uses the Xserver for rasterization, the simulated
+program performs geometry setup operations and then sends high-level
+drawing commands (e.g., XDrawPoly) to the Xserver.
+
+Regards, -Todd Austin
+September 1998
+
+

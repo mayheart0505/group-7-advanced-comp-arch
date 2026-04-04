@@ -1,0 +1,455 @@
+cd tests ; \
+make "MAKE=make" "RM=rm -f" "ENDIAN=`../sysprobe -s`" tests \
+	"DIFF=diff" "SIM_DIR=.." "SIM_BIN=sim-fast" \
+	"X=/" "CS=;" ; \
+cd ..
+make[1]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make "MAKE=make" "RM=rm -f" "ENDIAN=little" \
+	"SIM_DIR=.." "SIM_BIN=sim-fast" \
+	"SIM_OPTS=" "DIFF=diff" "X=/" "CS=;" \
+	do-tests
+make[2]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+cd results ; rm -f dummy.out ; cd ..
+../sim-fast -redir:prog results/anagram.progout \
+	-redir:sim results/anagram.simout  \
+	bin/anagram inputs/words < inputs/input.txt \
+	> results/dummy.out
+../sim-fast -redir:prog results/test-math.progout \
+	-redir:sim results/test-math.simout  \
+	bin/test-math
+../sim-fast -redir:prog results/test-printf.progout \
+	-redir:sim results/test-printf.simout  \
+	bin/test-printf
+../sim-fast -redir:prog results/test-fmath.progout \
+	-redir:sim results/test-fmath.simout  \
+	bin/test-fmath
+../sim-fast -redir:prog results/test-llong.progout \
+	-redir:sim results/test-llong.simout  \
+	bin/test-llong
+../sim-fast -redir:prog results/test-lswlr.progout \
+	-redir:sim results/test-lswlr.simout \
+	bin/test-lswlr
+make[2]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make "MAKE=make" "RM=rm -f" "ENDIAN=little" \
+	"SIM_DIR=.." "SIM_BIN=sim-fast" \
+	"SIM_OPTS=" "DIFF=diff" "X=/" "CS=;" \
+	diff-tests
+make[2]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+#
+# diff'ing output, NOTE: no differences should be detected...
+#
+diff outputs/anagram.progout results/anagram.progout
+diff outputs/test-math.progout results/test-math.progout
+diff outputs/test-printf.progout results/test-printf.progout
+diff outputs/test-fmath.progout results/test-fmath.progout
+diff outputs/test-llong.progout results/test-llong.progout
+diff outputs/test-lswlr.progout results/test-lswlr.progout
+make[2]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make "MAKE=make" "RM=rm -f" "ENDIAN=little" \
+	"SIM_DIR=.." "SIM_BIN=sim-fast" \
+	"SIM_OPTS=" "DIFF=diff" "X=/" "CS=;" \
+	tests-eio
+make[2]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+#
+# executing w/EIO traces, NOTE: no errors should be detected...
+#
+../sim-fast -redir:prog results/anagram.eio-progout \
+	-redir:sim results/anagram.eio-simout  \
+	eio/anagram.eio
+../sim-fast -redir:prog results/test-math.eio-progout \
+	-redir:sim results/test-math.eio-simout  \
+	eio/test-math.eio
+../sim-fast -redir:prog results/test-printf.eio-progout \
+	-redir:sim results/test-printf.eio-simout  \
+	eio/test-printf.eio
+../sim-fast -redir:prog results/test-fmath.eio-progout \
+	-redir:sim results/test-fmath.eio-simout  \
+	eio/test-fmath.eio
+../sim-fast -redir:prog results/test-llong.eio-progout \
+	-redir:sim results/test-llong.eio-simout  \
+	eio/test-llong.eio
+../sim-fast -redir:prog results/test-lswlr.eio-progout \
+	-redir:sim results/test-lswlr.eio-simout  \
+	eio/test-lswlr.eio
+make[2]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make[1]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+cd tests ; \
+make "MAKE=make" "RM=rm -f" "ENDIAN=`../sysprobe -s`" tests \
+	"DIFF=diff" "SIM_DIR=.." "SIM_BIN=sim-safe" \
+	"X=/" "CS=;" ; \
+cd ..
+make[1]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make "MAKE=make" "RM=rm -f" "ENDIAN=little" \
+	"SIM_DIR=.." "SIM_BIN=sim-safe" \
+	"SIM_OPTS=" "DIFF=diff" "X=/" "CS=;" \
+	do-tests
+make[2]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+cd results ; rm -f dummy.out ; cd ..
+../sim-safe -redir:prog results/anagram.progout \
+	-redir:sim results/anagram.simout  \
+	bin/anagram inputs/words < inputs/input.txt \
+	> results/dummy.out
+../sim-safe -redir:prog results/test-math.progout \
+	-redir:sim results/test-math.simout  \
+	bin/test-math
+../sim-safe -redir:prog results/test-printf.progout \
+	-redir:sim results/test-printf.simout  \
+	bin/test-printf
+../sim-safe -redir:prog results/test-fmath.progout \
+	-redir:sim results/test-fmath.simout  \
+	bin/test-fmath
+../sim-safe -redir:prog results/test-llong.progout \
+	-redir:sim results/test-llong.simout  \
+	bin/test-llong
+../sim-safe -redir:prog results/test-lswlr.progout \
+	-redir:sim results/test-lswlr.simout \
+	bin/test-lswlr
+make[2]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make "MAKE=make" "RM=rm -f" "ENDIAN=little" \
+	"SIM_DIR=.." "SIM_BIN=sim-safe" \
+	"SIM_OPTS=" "DIFF=diff" "X=/" "CS=;" \
+	diff-tests
+make[2]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+#
+# diff'ing output, NOTE: no differences should be detected...
+#
+diff outputs/anagram.progout results/anagram.progout
+diff outputs/test-math.progout results/test-math.progout
+diff outputs/test-printf.progout results/test-printf.progout
+diff outputs/test-fmath.progout results/test-fmath.progout
+diff outputs/test-llong.progout results/test-llong.progout
+diff outputs/test-lswlr.progout results/test-lswlr.progout
+make[2]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make "MAKE=make" "RM=rm -f" "ENDIAN=little" \
+	"SIM_DIR=.." "SIM_BIN=sim-safe" \
+	"SIM_OPTS=" "DIFF=diff" "X=/" "CS=;" \
+	tests-eio
+make[2]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+#
+# executing w/EIO traces, NOTE: no errors should be detected...
+#
+../sim-safe -redir:prog results/anagram.eio-progout \
+	-redir:sim results/anagram.eio-simout  \
+	eio/anagram.eio
+../sim-safe -redir:prog results/test-math.eio-progout \
+	-redir:sim results/test-math.eio-simout  \
+	eio/test-math.eio
+../sim-safe -redir:prog results/test-printf.eio-progout \
+	-redir:sim results/test-printf.eio-simout  \
+	eio/test-printf.eio
+../sim-safe -redir:prog results/test-fmath.eio-progout \
+	-redir:sim results/test-fmath.eio-simout  \
+	eio/test-fmath.eio
+../sim-safe -redir:prog results/test-llong.eio-progout \
+	-redir:sim results/test-llong.eio-simout  \
+	eio/test-llong.eio
+../sim-safe -redir:prog results/test-lswlr.eio-progout \
+	-redir:sim results/test-lswlr.eio-simout  \
+	eio/test-lswlr.eio
+make[2]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make[1]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+cd tests ; \
+make "MAKE=make" "RM=rm -f" "ENDIAN=`../sysprobe -s`" tests \
+	"DIFF=diff" "SIM_DIR=.." "SIM_BIN=sim-cache" \
+	"X=/" "CS=;" ; \
+cd ..
+make[1]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make "MAKE=make" "RM=rm -f" "ENDIAN=little" \
+	"SIM_DIR=.." "SIM_BIN=sim-cache" \
+	"SIM_OPTS=" "DIFF=diff" "X=/" "CS=;" \
+	do-tests
+make[2]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+cd results ; rm -f dummy.out ; cd ..
+../sim-cache -redir:prog results/anagram.progout \
+	-redir:sim results/anagram.simout  \
+	bin/anagram inputs/words < inputs/input.txt \
+	> results/dummy.out
+../sim-cache -redir:prog results/test-math.progout \
+	-redir:sim results/test-math.simout  \
+	bin/test-math
+../sim-cache -redir:prog results/test-printf.progout \
+	-redir:sim results/test-printf.simout  \
+	bin/test-printf
+../sim-cache -redir:prog results/test-fmath.progout \
+	-redir:sim results/test-fmath.simout  \
+	bin/test-fmath
+../sim-cache -redir:prog results/test-llong.progout \
+	-redir:sim results/test-llong.simout  \
+	bin/test-llong
+../sim-cache -redir:prog results/test-lswlr.progout \
+	-redir:sim results/test-lswlr.simout \
+	bin/test-lswlr
+make[2]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make "MAKE=make" "RM=rm -f" "ENDIAN=little" \
+	"SIM_DIR=.." "SIM_BIN=sim-cache" \
+	"SIM_OPTS=" "DIFF=diff" "X=/" "CS=;" \
+	diff-tests
+make[2]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+#
+# diff'ing output, NOTE: no differences should be detected...
+#
+diff outputs/anagram.progout results/anagram.progout
+diff outputs/test-math.progout results/test-math.progout
+diff outputs/test-printf.progout results/test-printf.progout
+diff outputs/test-fmath.progout results/test-fmath.progout
+diff outputs/test-llong.progout results/test-llong.progout
+diff outputs/test-lswlr.progout results/test-lswlr.progout
+make[2]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make "MAKE=make" "RM=rm -f" "ENDIAN=little" \
+	"SIM_DIR=.." "SIM_BIN=sim-cache" \
+	"SIM_OPTS=" "DIFF=diff" "X=/" "CS=;" \
+	tests-eio
+make[2]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+#
+# executing w/EIO traces, NOTE: no errors should be detected...
+#
+../sim-cache -redir:prog results/anagram.eio-progout \
+	-redir:sim results/anagram.eio-simout  \
+	eio/anagram.eio
+../sim-cache -redir:prog results/test-math.eio-progout \
+	-redir:sim results/test-math.eio-simout  \
+	eio/test-math.eio
+../sim-cache -redir:prog results/test-printf.eio-progout \
+	-redir:sim results/test-printf.eio-simout  \
+	eio/test-printf.eio
+../sim-cache -redir:prog results/test-fmath.eio-progout \
+	-redir:sim results/test-fmath.eio-simout  \
+	eio/test-fmath.eio
+../sim-cache -redir:prog results/test-llong.eio-progout \
+	-redir:sim results/test-llong.eio-simout  \
+	eio/test-llong.eio
+../sim-cache -redir:prog results/test-lswlr.eio-progout \
+	-redir:sim results/test-lswlr.eio-simout  \
+	eio/test-lswlr.eio
+make[2]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make[1]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+#cd tests ; \
+#make "MAKE=make" "RM=rm -f" "ENDIAN=`../sysprobe -s`" tests \
+#	"DIFF=diff" "SIM_DIR=.." "SIM_BIN=sim-cheetah" \
+#	"X=/" "CS=;" ; \
+#cd ..
+cd tests ; \
+make "MAKE=make" "RM=rm -f" "ENDIAN=`../sysprobe -s`" tests \
+	"DIFF=diff" "SIM_DIR=.." "SIM_BIN=sim-bpred" \
+	"X=/" "CS=;" ; \
+cd ..
+make[1]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make "MAKE=make" "RM=rm -f" "ENDIAN=little" \
+	"SIM_DIR=.." "SIM_BIN=sim-bpred" \
+	"SIM_OPTS=" "DIFF=diff" "X=/" "CS=;" \
+	do-tests
+make[2]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+cd results ; rm -f dummy.out ; cd ..
+../sim-bpred -redir:prog results/anagram.progout \
+	-redir:sim results/anagram.simout  \
+	bin/anagram inputs/words < inputs/input.txt \
+	> results/dummy.out
+../sim-bpred -redir:prog results/test-math.progout \
+	-redir:sim results/test-math.simout  \
+	bin/test-math
+../sim-bpred -redir:prog results/test-printf.progout \
+	-redir:sim results/test-printf.simout  \
+	bin/test-printf
+../sim-bpred -redir:prog results/test-fmath.progout \
+	-redir:sim results/test-fmath.simout  \
+	bin/test-fmath
+../sim-bpred -redir:prog results/test-llong.progout \
+	-redir:sim results/test-llong.simout  \
+	bin/test-llong
+../sim-bpred -redir:prog results/test-lswlr.progout \
+	-redir:sim results/test-lswlr.simout \
+	bin/test-lswlr
+make[2]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make "MAKE=make" "RM=rm -f" "ENDIAN=little" \
+	"SIM_DIR=.." "SIM_BIN=sim-bpred" \
+	"SIM_OPTS=" "DIFF=diff" "X=/" "CS=;" \
+	diff-tests
+make[2]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+#
+# diff'ing output, NOTE: no differences should be detected...
+#
+diff outputs/anagram.progout results/anagram.progout
+diff outputs/test-math.progout results/test-math.progout
+diff outputs/test-printf.progout results/test-printf.progout
+diff outputs/test-fmath.progout results/test-fmath.progout
+diff outputs/test-llong.progout results/test-llong.progout
+diff outputs/test-lswlr.progout results/test-lswlr.progout
+make[2]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make "MAKE=make" "RM=rm -f" "ENDIAN=little" \
+	"SIM_DIR=.." "SIM_BIN=sim-bpred" \
+	"SIM_OPTS=" "DIFF=diff" "X=/" "CS=;" \
+	tests-eio
+make[2]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+#
+# executing w/EIO traces, NOTE: no errors should be detected...
+#
+../sim-bpred -redir:prog results/anagram.eio-progout \
+	-redir:sim results/anagram.eio-simout  \
+	eio/anagram.eio
+../sim-bpred -redir:prog results/test-math.eio-progout \
+	-redir:sim results/test-math.eio-simout  \
+	eio/test-math.eio
+../sim-bpred -redir:prog results/test-printf.eio-progout \
+	-redir:sim results/test-printf.eio-simout  \
+	eio/test-printf.eio
+../sim-bpred -redir:prog results/test-fmath.eio-progout \
+	-redir:sim results/test-fmath.eio-simout  \
+	eio/test-fmath.eio
+../sim-bpred -redir:prog results/test-llong.eio-progout \
+	-redir:sim results/test-llong.eio-simout  \
+	eio/test-llong.eio
+../sim-bpred -redir:prog results/test-lswlr.eio-progout \
+	-redir:sim results/test-lswlr.eio-simout  \
+	eio/test-lswlr.eio
+make[2]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make[1]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+cd tests ; \
+make "MAKE=make" "RM=rm -f" "ENDIAN=`../sysprobe -s`" tests \
+	"DIFF=diff" "SIM_DIR=.." "SIM_BIN=sim-profile" \
+	"X=/" "CS=;" "SIM_OPTS=-all" ; \
+cd ..
+make[1]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make "MAKE=make" "RM=rm -f" "ENDIAN=little" \
+	"SIM_DIR=.." "SIM_BIN=sim-profile" \
+	"SIM_OPTS=-all" "DIFF=diff" "X=/" "CS=;" \
+	do-tests
+make[2]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+cd results ; rm -f dummy.out ; cd ..
+../sim-profile -redir:prog results/anagram.progout \
+	-redir:sim results/anagram.simout -all \
+	bin/anagram inputs/words < inputs/input.txt \
+	> results/dummy.out
+../sim-profile -redir:prog results/test-math.progout \
+	-redir:sim results/test-math.simout -all \
+	bin/test-math
+../sim-profile -redir:prog results/test-printf.progout \
+	-redir:sim results/test-printf.simout -all \
+	bin/test-printf
+../sim-profile -redir:prog results/test-fmath.progout \
+	-redir:sim results/test-fmath.simout -all \
+	bin/test-fmath
+../sim-profile -redir:prog results/test-llong.progout \
+	-redir:sim results/test-llong.simout -all \
+	bin/test-llong
+../sim-profile -redir:prog results/test-lswlr.progout \
+	-redir:sim results/test-lswlr.simout -all\
+	bin/test-lswlr
+make[2]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make "MAKE=make" "RM=rm -f" "ENDIAN=little" \
+	"SIM_DIR=.." "SIM_BIN=sim-profile" \
+	"SIM_OPTS=-all" "DIFF=diff" "X=/" "CS=;" \
+	diff-tests
+make[2]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+#
+# diff'ing output, NOTE: no differences should be detected...
+#
+diff outputs/anagram.progout results/anagram.progout
+diff outputs/test-math.progout results/test-math.progout
+diff outputs/test-printf.progout results/test-printf.progout
+diff outputs/test-fmath.progout results/test-fmath.progout
+diff outputs/test-llong.progout results/test-llong.progout
+diff outputs/test-lswlr.progout results/test-lswlr.progout
+make[2]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make "MAKE=make" "RM=rm -f" "ENDIAN=little" \
+	"SIM_DIR=.." "SIM_BIN=sim-profile" \
+	"SIM_OPTS=-all" "DIFF=diff" "X=/" "CS=;" \
+	tests-eio
+make[2]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+#
+# executing w/EIO traces, NOTE: no errors should be detected...
+#
+../sim-profile -redir:prog results/anagram.eio-progout \
+	-redir:sim results/anagram.eio-simout -all \
+	eio/anagram.eio
+../sim-profile -redir:prog results/test-math.eio-progout \
+	-redir:sim results/test-math.eio-simout -all \
+	eio/test-math.eio
+../sim-profile -redir:prog results/test-printf.eio-progout \
+	-redir:sim results/test-printf.eio-simout -all \
+	eio/test-printf.eio
+../sim-profile -redir:prog results/test-fmath.eio-progout \
+	-redir:sim results/test-fmath.eio-simout -all \
+	eio/test-fmath.eio
+../sim-profile -redir:prog results/test-llong.eio-progout \
+	-redir:sim results/test-llong.eio-simout -all \
+	eio/test-llong.eio
+../sim-profile -redir:prog results/test-lswlr.eio-progout \
+	-redir:sim results/test-lswlr.eio-simout -all \
+	eio/test-lswlr.eio
+make[2]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make[1]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+cd tests ; \
+make "MAKE=make" "RM=rm -f" "ENDIAN=`../sysprobe -s`" tests \
+	"DIFF=diff" "SIM_DIR=.." "SIM_BIN=sim-outorder" \
+	"X=/" "CS=;" ; \
+cd ..
+make[1]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make "MAKE=make" "RM=rm -f" "ENDIAN=little" \
+	"SIM_DIR=.." "SIM_BIN=sim-outorder" \
+	"SIM_OPTS=" "DIFF=diff" "X=/" "CS=;" \
+	do-tests
+make[2]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+cd results ; rm -f dummy.out ; cd ..
+../sim-outorder -redir:prog results/anagram.progout \
+	-redir:sim results/anagram.simout  \
+	bin/anagram inputs/words < inputs/input.txt \
+	> results/dummy.out
+../sim-outorder -redir:prog results/test-math.progout \
+	-redir:sim results/test-math.simout  \
+	bin/test-math
+../sim-outorder -redir:prog results/test-printf.progout \
+	-redir:sim results/test-printf.simout  \
+	bin/test-printf
+../sim-outorder -redir:prog results/test-fmath.progout \
+	-redir:sim results/test-fmath.simout  \
+	bin/test-fmath
+../sim-outorder -redir:prog results/test-llong.progout \
+	-redir:sim results/test-llong.simout  \
+	bin/test-llong
+../sim-outorder -redir:prog results/test-lswlr.progout \
+	-redir:sim results/test-lswlr.simout \
+	bin/test-lswlr
+make[2]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make "MAKE=make" "RM=rm -f" "ENDIAN=little" \
+	"SIM_DIR=.." "SIM_BIN=sim-outorder" \
+	"SIM_OPTS=" "DIFF=diff" "X=/" "CS=;" \
+	diff-tests
+make[2]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+#
+# diff'ing output, NOTE: no differences should be detected...
+#
+diff outputs/anagram.progout results/anagram.progout
+diff outputs/test-math.progout results/test-math.progout
+diff outputs/test-printf.progout results/test-printf.progout
+diff outputs/test-fmath.progout results/test-fmath.progout
+diff outputs/test-llong.progout results/test-llong.progout
+diff outputs/test-lswlr.progout results/test-lswlr.progout
+make[2]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make "MAKE=make" "RM=rm -f" "ENDIAN=little" \
+	"SIM_DIR=.." "SIM_BIN=sim-outorder" \
+	"SIM_OPTS=" "DIFF=diff" "X=/" "CS=;" \
+	tests-eio
+make[2]: Entering directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+#
+# executing w/EIO traces, NOTE: no errors should be detected...
+#
+../sim-outorder -redir:prog results/anagram.eio-progout \
+	-redir:sim results/anagram.eio-simout  \
+	eio/anagram.eio
+../sim-outorder -redir:prog results/test-math.eio-progout \
+	-redir:sim results/test-math.eio-simout  \
+	eio/test-math.eio
+../sim-outorder -redir:prog results/test-printf.eio-progout \
+	-redir:sim results/test-printf.eio-simout  \
+	eio/test-printf.eio
+../sim-outorder -redir:prog results/test-fmath.eio-progout \
+	-redir:sim results/test-fmath.eio-simout  \
+	eio/test-fmath.eio
+../sim-outorder -redir:prog results/test-llong.eio-progout \
+	-redir:sim results/test-llong.eio-simout  \
+	eio/test-llong.eio
+../sim-outorder -redir:prog results/test-lswlr.eio-progout \
+	-redir:sim results/test-lswlr.eio-simout  \
+	eio/test-lswlr.eio
+make[2]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
+make[1]: Leaving directory '/home/abhilasha/Documents/Grad School/Spring 2026/CDA 5106 (Advanced Computer Architecture)/final-project/simplesim-3.0/tests-alpha'
