@@ -1,6 +1,6 @@
 This is a repository for our final project in CDA-5106 (Advanced Computer Architecture), in which we are modifying a branch predictor to use opcode information to improve branch prediction.
 
-## Compilation
+## Introduction
 
 This project relies on the open source hardware simulation software [SimpleSim 3.0](https://github.com/toddmaustin/simplesim-3.0) for branch prediction, which we modify slightly for our purposes. This software uses one of two ISAs to simulate low level processes such as branch prediction, caching, etc. To use this project, SimpleSim must first be compiled, which can be done by following instructions b-f as listed under the installation instructions of the SimpleSim README.
 
@@ -8,4 +8,15 @@ SimpleSim can be compiled in one of two ways, one for each of the ISAs it uses. 
 
 ## Compilation
 
-## Running Tests
+To compile SimpleSim, follow the instructions b-f as listed in the SimpleSim readme (located at `/simplesim-3.0/README.md`). This will produce 6 executables: sim-fast, sim-cache, sim-bpred, sim-profile, sim-outorder, sim-safe. Since our project only involves branch prediction we will only be using sim-bpred, but you may use the other programs for testing.
+
+## Running SimpleSim
+
+After checking that SimpleSim has compiled correctly, you should check that SimpleSim can work on your system. Run the following commands.
+
+```bash
+cd /xbenchmarks/xanim/exe
+../../../simplesim-3.0/sim-bpred ./xanim -Cn ./schnecky.mpg
+```
+
+You should see two small windows appear, one of which has an animation that starts with zooming in on a book.
