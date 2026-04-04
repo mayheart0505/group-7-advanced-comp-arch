@@ -77,7 +77,7 @@
 ##	RS/6000 AIX Unix version 4, GNU GCC version cygnus-2.7-96q4
 ##	Windows NT version 4.0, Cygnus CygWin/32 beta 19
 ##
-CC = gcc
+CC = /usr/bin/gcc
 OFLAGS = -O0 -g -Wall
 MFLAGS = `./sysprobe -flags`
 _MFLAGS = `../sysprobe -flags`
