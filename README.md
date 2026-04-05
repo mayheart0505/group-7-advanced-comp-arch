@@ -16,7 +16,7 @@ After checking that SimpleSim has compiled correctly, you should check that Simp
 
 ```bash
 cd spec95-little/
-../simplesim-3.0/sim-bpred applu.ss
+../simplesim-3.0/sim-bpred (one of the files in the directory)
 ```
 
-You should see two small windows appear, one of which has an animation that starts with zooming in on a book.
+Some of the compiled programs may not work on your machine. If so they will likely print out messages about missing syscalls. Keep trying until you find one that works. Note that it may run for a while.
