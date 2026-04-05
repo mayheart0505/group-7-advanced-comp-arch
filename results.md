@@ -30,8 +30,14 @@ bpred_comb.bpred_addr_rate 0.9433 # branch address-prediction rate (i.e., addr-h
 bpred_comb.bpred_dir_rate 0.9657 # branch direction-prediction rate (i.e., all-hits/updates)
 bpred_comb.bpred_jr_rate 0.9389 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
 
-## Opcode
+## Previous Opcode
 
 bpred_opcode.bpred_addr_rate 0.8777 # branch address-prediction rate (i.e., addr-hits/updates)
 bpred_opcode.bpred_dir_rate 0.9043 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_opcode.bpred_jr_rate 0.9389 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+
+## Previous + Branch Instruction Opcode
+
+bpred_opcode.bpred_addr_rate 0.9046 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_opcode.bpred_dir_rate 0.9308 # branch direction-prediction rate (i.e., all-hits/updates)
 bpred_opcode.bpred_jr_rate 0.9389 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)

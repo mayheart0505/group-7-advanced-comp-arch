@@ -541,7 +541,7 @@ void sim_main(void)
         pred_PC = bpred_lookup(pred,
                                /* branch addr */ regs.regs_PC,
                                /* target */ target_PC,
-                               /* prev inst opcode */ prev,
+                               /* prev inst opcode */ op << 8 + prev,
                                /* inst opcode */ op,
                                /* call? */ MD_IS_CALL(op),
                                /* return? */ MD_IS_RETURN(op),
@@ -563,7 +563,7 @@ void sim_main(void)
                      /* pred taken? */ pred_PC != (regs.regs_PC +
                                                    sizeof(md_inst_t)),
                      /* correct pred? */ pred_PC == regs.regs_NPC,
-                     /* opcode */ prev,
+                     /* opcode */ op << 8 + prev,
                      /* opcode */ op,
                      /* predictor update pointer */ &update_rec);
       }
