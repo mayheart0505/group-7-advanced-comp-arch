@@ -15,8 +15,8 @@ To compile SimpleSim, follow the instructions b-f as listed in the SimpleSim rea
 After checking that SimpleSim has compiled correctly, you should check that SimpleSim can work on your system. Run the following commands.
 
 ```bash
-cd /xbenchmarks/xanim/exe
-../../../simplesim-3.0/sim-bpred ./xanim -Cn ./schnecky.mpg
+cd spec95-little/
+../simplesim-3.0/sim-bpred applu.ss
 ```
 
 You should see two small windows appear, one of which has an animation that starts with zooming in on a book.
