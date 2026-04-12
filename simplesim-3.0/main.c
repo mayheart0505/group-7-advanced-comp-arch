@@ -2,20 +2,20 @@
 
 /* SimpleScalar(TM) Tool Suite
  * Copyright (C) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
- * All Rights Reserved. 
- * 
+ * All Rights Reserved.
+ *
  * THIS IS A LEGAL DOCUMENT, BY USING SIMPLESCALAR,
  * YOU ARE AGREEING TO THESE TERMS AND CONDITIONS.
- * 
+ *
  * No portion of this work may be used by any commercial entity, or for any
  * commercial purpose, without the prior, written permission of SimpleScalar,
  * LLC (info@simplescalar.com). Nonprofit and noncommercial use is permitted
  * as described below.
- * 
+ *
  * 1. SimpleScalar is provided AS IS, with no warranty of any kind, express
  * or implied. The user of the program accepts full responsibility for the
  * application of the program and the use of any results.
- * 
+ *
  * 2. Nonprofit and noncommercial use is encouraged. SimpleScalar may be
  * downloaded, compiled, executed, copied, and modified solely for nonprofit,
  * educational, noncommercial research, and noncommercial scholarship
@@ -24,13 +24,13 @@
  * solely for nonprofit, educational, noncommercial research, and
  * noncommercial scholarship purposes provided that this notice in its
  * entirety accompanies all copies.
- * 
+ *
  * 3. ALL COMMERCIAL USE, AND ALL USE BY FOR PROFIT ENTITIES, IS EXPRESSLY
  * PROHIBITED WITHOUT A LICENSE FROM SIMPLESCALAR, LLC (info@simplescalar.com).
- * 
+ *
  * 4. No nonprofit user may place any restrictions on the use of this software,
  * including as modified by the user, by any other authorized user.
- * 
+ *
  * 5. Noncommercial and nonprofit users may distribute copies of SimpleScalar
  * in compiled or executable form as set forth in Section 2, provided that
  * either: (A) it is accompanied by the corresponding machine-readable source
@@ -40,14 +40,13 @@
  * must permit verbatim duplication by anyone, or (C) it is distributed by
  * someone who received only the executable form, and is accompanied by a
  * copy of the written offer of source code.
- * 
+ *
  * 6. SimpleScalar was developed by Todd M. Austin, Ph.D. The tool suite is
  * currently maintained by SimpleScalar LLC (info@simplescalar.com). US Mail:
  * 2395 Timbercrest Court, Ann Arbor, MI 48105.
- * 
+ *
  * Copyright (C) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
  */
-
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -149,13 +148,13 @@ static int nice_priority;
 #endif
 
 /* default simulator scheduling priority */
-#define NICE_DEFAULT_VALUE		0
+#define NICE_DEFAULT_VALUE 0
 
 static int
 orphan_fn(int i, int argc, char **argv)
 {
   exec_index = i;
-  return /* done */FALSE;
+  return /* done */ FALSE;
 }
 
 static void
@@ -164,15 +163,15 @@ banner(FILE *fd, int argc, char **argv)
   char *s;
 
   fprintf(fd,
-	  "%s: SimpleScalar/%s Tool Set version %d.%d of %s.\n"
-	  "Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.\n"
-	  "All Rights Reserved. This version of SimpleScalar is licensed for academic\n"
-	  "non-commercial use.  No portion of this work may be used by any commercial\n"
-	  "entity, or for any commercial purpose, without the prior written permission\n"
-	  "of SimpleScalar, LLC (info@simplescalar.com).\n"
-	  "\n",
-	  ((s = strrchr(argv[0], '/')) ? s+1 : argv[0]),
-	  VER_TARGET, VER_MAJOR, VER_MINOR, VER_UPDATE);
+          "%s: SimpleScalar/%s Tool Set version %d.%d of %s.\n"
+          "Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.\n"
+          "All Rights Reserved. This version of SimpleScalar is licensed for academic\n"
+          "non-commercial use.  No portion of this work may be used by any commercial\n"
+          "entity, or for any commercial purpose, without the prior written permission\n"
+          "of SimpleScalar, LLC (info@simplescalar.com).\n"
+          "\n",
+          ((s = strrchr(argv[0], '/')) ? s + 1 : argv[0]),
+          VER_TARGET, VER_MAJOR, VER_MINOR, VER_UPDATE);
 }
 
 static void
@@ -185,8 +184,7 @@ usage(FILE *fd, int argc, char **argv)
 static int running = FALSE;
 
 /* print all simulator stats */
-void
-sim_print_stats(FILE *fd)		/* output stream */
+void sim_print_stats(FILE *fd) /* output stream */
 {
 #if 0 /* not portable... :-( */
   extern char etext, *sbrk(int);
@@ -225,8 +223,7 @@ exit_now(int exit_code)
   exit(exit_code);
 }
 
-int
-main(int argc, char **argv, char **envp)
+int main(int argc, char **argv, char **envp)
 {
   char *s;
   int i, exit_code;
@@ -244,45 +241,45 @@ main(int argc, char **argv, char **envp)
 
   /* set up a non-local exit point */
   if ((exit_code = setjmp(sim_exit_buf)) != 0)
-    {
-      /* special handling as longjmp cannot pass 0 */
-      exit_now(exit_code-1);
-    }
+  {
+    /* special handling as longjmp cannot pass 0 */
+    exit_now(exit_code - 1);
+  }
 
   /* register global options */
   sim_odb = opt_new(orphan_fn);
   opt_reg_flag(sim_odb, "-h", "print help message",
-	       &help_me, /* default */FALSE, /* !print */FALSE, NULL);
+               &help_me, /* default */ FALSE, /* !print */ FALSE, NULL);
   opt_reg_flag(sim_odb, "-v", "verbose operation",
-	       &verbose, /* default */FALSE, /* !print */FALSE, NULL);
+               &verbose, /* default */ FALSE, /* !print */ FALSE, NULL);
 #ifdef DEBUG
   opt_reg_flag(sim_odb, "-d", "enable debug message",
-	       &debugging, /* default */FALSE, /* !print */FALSE, NULL);
+               &debugging, /* default */ FALSE, /* !print */ FALSE, NULL);
 #endif /* DEBUG */
   opt_reg_flag(sim_odb, "-i", "start in Dlite debugger",
-	       &dlite_active, /* default */FALSE, /* !print */FALSE, NULL);
+               &dlite_active, /* default */ FALSE, /* !print */ FALSE, NULL);
   opt_reg_int(sim_odb, "-seed",
-	      "random number generator seed (0 for timer seed)",
-	      &rand_seed, /* default */1, /* print */TRUE, NULL);
+              "random number generator seed (0 for timer seed)",
+              &rand_seed, /* default */ 1, /* print */ TRUE, NULL);
   opt_reg_flag(sim_odb, "-q", "initialize and terminate immediately",
-	       &init_quit, /* default */FALSE, /* !print */FALSE, NULL);
+               &init_quit, /* default */ FALSE, /* !print */ FALSE, NULL);
   opt_reg_string(sim_odb, "-chkpt", "restore EIO trace execution from <fname>",
-		 &sim_chkpt_fname, /* default */NULL, /* !print */FALSE, NULL);
+                 &sim_chkpt_fname, /* default */ NULL, /* !print */ FALSE, NULL);
 
   /* stdio redirection options */
   opt_reg_string(sim_odb, "-redir:sim",
-		 "redirect simulator output to file (non-interactive only)",
-		 &sim_simout,
-		 /* default */NULL, /* !print */FALSE, NULL);
+                 "redirect simulator output to file (non-interactive only)",
+                 &sim_simout,
+                 /* default */ NULL, /* !print */ FALSE, NULL);
   opt_reg_string(sim_odb, "-redir:prog",
-		 "redirect simulated program output to file",
-		 &sim_progout, /* default */NULL, /* !print */FALSE, NULL);
+                 "redirect simulated program output to file",
+                 &sim_progout, /* default */ NULL, /* !print */ FALSE, NULL);
 
 #ifndef _MSC_VER
   /* scheduling priority option */
   opt_reg_int(sim_odb, "-nice",
-	      "simulator scheduling priority", &nice_priority,
-	      /* default */NICE_DEFAULT_VALUE, /* print */TRUE, NULL);
+              "simulator scheduling priority", &nice_priority,
+              /* default */ NICE_DEFAULT_VALUE, /* print */ TRUE, NULL);
 #endif
 
   /* FIXME: add stats intervals and max insts... */
@@ -296,59 +293,59 @@ main(int argc, char **argv, char **envp)
 
   /* redirect I/O? */
   if (sim_simout != NULL)
-    {
-      /* send simulator non-interactive output (STDERR) to file SIM_SIMOUT */
-      fflush(stderr);
-      if (!freopen(sim_simout, "w", stderr))
-	fatal("unable to redirect simulator output to file `%s'", sim_simout);
-    }
+  {
+    /* send simulator non-interactive output (STDERR) to file SIM_SIMOUT */
+    fflush(stderr);
+    if (!freopen(sim_simout, "a", stderr))
+      fatal("unable to redirect simulator output to file `%s'", sim_simout);
+  }
 
   if (sim_progout != NULL)
-    {
-      /* redirect simulated program output to file SIM_PROGOUT */
-      sim_progfd = fopen(sim_progout, "w");
-      if (!sim_progfd)
-	fatal("unable to redirect program output to file `%s'", sim_progout);
-    }
+  {
+    /* redirect simulated program output to file SIM_PROGOUT */
+    sim_progfd = fopen(sim_progout, "a");
+    if (!sim_progfd)
+      fatal("unable to redirect program output to file `%s'", sim_progout);
+  }
 
   /* need at least two argv values to run */
   if (argc < 2)
-    {
-      banner(stderr, argc, argv);
-      usage(stderr, argc, argv);
-      exit(1);
-    }
+  {
+    banner(stderr, argc, argv);
+    usage(stderr, argc, argv);
+    exit(1);
+  }
 
   /* opening banner */
   banner(stderr, argc, argv);
 
   if (help_me)
-    {
-      /* print help message and exit */
-      usage(stderr, argc, argv);
-      exit(1);
-    }
+  {
+    /* print help message and exit */
+    usage(stderr, argc, argv);
+    exit(1);
+  }
 
   /* seed the random number generator */
   if (rand_seed == 0)
-    {
-      /* seed with the timer value, true random */
-      mysrand(time((time_t *)NULL));
-    }
+  {
+    /* seed with the timer value, true random */
+    mysrand(time((time_t *)NULL));
+  }
   else
-    {
-      /* seed with default or user-specified random number generator seed */
-      mysrand(rand_seed);
-    }
+  {
+    /* seed with default or user-specified random number generator seed */
+    mysrand(rand_seed);
+  }
 
   /* exec_index is set in orphan_fn() */
   if (exec_index == -1)
-    {
-      /* executable was not found */
-      fprintf(stderr, "error: no executable specified\n");
-      usage(stderr, argc, argv);
-      exit(1);
-    }
+  {
+    /* executable was not found */
+    fprintf(stderr, "error: no executable specified\n");
+    usage(stderr, argc, argv);
+    exit(1);
+  }
   /* else, exec_index points to simulated program arguments */
 
   /* check simulator-specific options */
@@ -357,10 +354,10 @@ main(int argc, char **argv, char **envp)
 #ifndef _MSC_VER
   /* set simulator scheduling priority */
   if (nice(0) < nice_priority)
-    {
-      if (nice(nice_priority - nice(0)) < 0)
-        fatal("could not renice simulator process");
-    }
+  {
+    if (nice(nice_priority - nice(0)) < 0)
+      fatal("could not renice simulator process");
+  }
 #endif
 
   /* default architected value... */
@@ -378,7 +375,7 @@ main(int argc, char **argv, char **envp)
   sim_init();
 
   /* initialize architected state */
-  sim_load_prog(argv[exec_index], argc-exec_index, argv+exec_index, envp);
+  sim_load_prog(argv[exec_index], argc - exec_index, argv + exec_index, envp);
 
   /* register all simulator stats */
   sim_sdb = stat_new();
@@ -394,16 +391,16 @@ main(int argc, char **argv, char **envp)
 
   /* emit the command line for later reuse */
   fprintf(stderr, "sim: command line: ");
-  for (i=0; i < argc; i++)
+  for (i = 0; i < argc; i++)
     fprintf(stderr, "%s ", argv[i]);
   fprintf(stderr, "\n");
 
   /* output simulation conditions */
   s = ctime(&sim_start_time);
-  if (s[strlen(s)-1] == '\n')
-    s[strlen(s)-1] = '\0';
+  if (s[strlen(s) - 1] == '\n')
+    s[strlen(s) - 1] = '\0';
   fprintf(stderr, "\nsim: simulation started @ %s, options follow:\n", s);
-  opt_print_options(sim_odb, stderr, /* short */TRUE, /* notes */TRUE);
+  opt_print_options(sim_odb, stderr, /* short */ TRUE, /* notes */ TRUE);
   sim_aux_config(stderr);
   fprintf(stderr, "\n");
 

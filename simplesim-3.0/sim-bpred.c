@@ -535,13 +535,16 @@ void sim_main(void)
 
       sim_num_branches++;
 
+      md_addr_t address = regs.regs_PC;
+      enum md_opcode lookup = address ^ ((op << 7) + prev);
+
       if (pred)
       {
         /* get the next predicted fetch address */
         pred_PC = bpred_lookup(pred,
                                /* branch addr */ regs.regs_PC,
                                /* target */ target_PC,
-                               /* prev inst opcode */ op << 8 + prev,
+                               /* prev inst opcode */ lookup,
                                /* inst opcode */ op,
                                /* call? */ MD_IS_CALL(op),
                                /* return? */ MD_IS_RETURN(op),
@@ -563,7 +566,7 @@ void sim_main(void)
                      /* pred taken? */ pred_PC != (regs.regs_PC +
                                                    sizeof(md_inst_t)),
                      /* correct pred? */ pred_PC == regs.regs_NPC,
-                     /* opcode */ op << 8 + prev,
+                     /* opcode */ lookup,
                      /* opcode */ op,
                      /* predictor update pointer */ &update_rec);
       }
