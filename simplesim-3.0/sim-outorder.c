@@ -110,7 +110,7 @@ static int ruu_branch_penalty;
 /* speed of front-end of machine relative to execution core */
 static int fetch_speed;
 
-/* branch predictor type {nottaken|taken|perfect|bimod|2lev} */
+/* "branch predictor type {nottaken|taken|perfect|bimod|opcode|2lev|comb|opcodecomb}", */
 static char *pred_type;
 
 /* bimodal predictor config (<table_size>) */
@@ -122,6 +122,11 @@ static int bimod_config[1] =
 static int twolev_nelt = 4;
 static int twolev_config[4] =
   { /* l1size */1, /* l2size */1024, /* hist */8, /* xor */FALSE};
+
+/* opcode predictor config (<table_size>) */
+static int opcode_nelt = 1;
+static int opcode_config[1] =
+  { /* opcode tbl size */2048 };
 
 /* combining predictor config (<meta_table_size> */
 static int comb_nelt = 1;
@@ -664,7 +669,12 @@ sim_reg_options(struct opt_odb_t *odb)
 		   bimod_config, bimod_nelt, &bimod_nelt,
 		   /* default */bimod_config,
 		   /* print */TRUE, /* format */NULL, /* !accrue */FALSE);
-
+  opt_reg_int_list(odb, "-bpred:opcode",
+                 "opcode predictor config (<table_size>)",
+                 opcode_config, opcode_nelt, &opcode_nelt,
+                 /* default */opcode_config,
+                 /* print */TRUE, /* format */NULL, /* !accrue */FALSE);
+                 
   opt_reg_int_list(odb, "-bpred:2lev",
                    "2-level predictor config "
 		   "(<l1size> <l2size> <hist_size> <xor>)",
@@ -942,6 +952,24 @@ sim_check_options(struct opt_odb_t *odb,        /* options database */
 			  /* btb assoc */btb_config[1],
 			  /* ret-addr stack size */ras_size);
     }
+  else if (!mystricmp(pred_type, "opcode"))
+  {
+    if (opcode_nelt != 1)
+      fatal("bad opcode predictor config (<table_size>)");
+    if (btb_nelt != 2)
+      fatal("bad btb config (<num_sets> <associativity>)");
+
+    pred = bpred_create(BPredOpcode,
+                        /* opcode table size */opcode_config[0],
+                        /* 2lev l1 size */0,
+                        /* 2lev l2 size */0,
+                        /* meta table size */0,
+                        /* history reg size */0,
+                        /* history xor address */0,
+                        /* btb sets */btb_config[0],
+                        /* btb assoc */btb_config[1],
+                        /* ret-addr stack size */ras_size);
+  }
   else if (!mystricmp(pred_type, "2lev"))
     {
       /* 2-level adaptive predictor, bpred_create() checks args */
