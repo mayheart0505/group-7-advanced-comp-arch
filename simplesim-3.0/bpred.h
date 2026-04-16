@@ -105,6 +105,7 @@ enum bpred_class
   BPredTaken,    /* static predict taken */
   BPredNotTaken, /* static predict not taken */
   BPredOpcode,   /* uses preceding opcode to index table with 2-bit counters */
+  BPredOpcodeComb, /* combined predictor using opcode and 2-level predictors*/
   BPred_NUM
 };
 

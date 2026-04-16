@@ -97,7 +97,27 @@ bpred_create(enum bpred_class class,     /* type of predictor to create */
         bpred_dir_create(BPred2bit, meta_size, 0, 0, 0);
 
     break;
+  
+    /*Added BPredOpcodeComb that it will chose between
+    bimod which will store the opcode based predictor 
+    then there's twolev that stores the gshare predictor
+    then meta stores the chooser predicting what to trust
+    adjusted from existing bpredcomb*/
 
+  case BPredOpcodeComb:
+    pred->dirpred.bimod =
+        bpred_dir_create(BPredOpcode, bimod_size, 0, 0, 0);
+
+    /* 2-level component */
+    pred->dirpred.twolev =
+        bpred_dir_create(BPred2Level, l1size, l2size, shift_width, xor);
+
+    /* metapredictor component */
+    pred->dirpred.meta =
+        bpred_dir_create(BPred2bit, meta_size, 0, 0, 0);
+
+    break;
+  
   case BPred2Level:
     pred->dirpred.twolev =
         bpred_dir_create(class, l1size, l2size, shift_width, xor);
@@ -125,6 +145,7 @@ bpred_create(enum bpred_class class,     /* type of predictor to create */
   switch (class)
   {
   case BPredComb:
+  case BPredOpcodeComb:
   case BPred2Level:
   case BPred2bit:
   case BPredOpcode:
@@ -319,6 +340,16 @@ void bpred_config(struct bpred_t *pred, /* branch predictor instance */
             pred->btb.sets, pred->btb.assoc);
     fprintf(stream, "ret_stack: %d entries", pred->retstack.size);
     break;
+  
+  //again adjusted bpredcomb, now for bpredopcodecomb:
+  case BPredOpcodeComb:
+      bpred_dir_config(pred->dirpred.bimod, "opcode", stream);
+      bpred_dir_config(pred->dirpred.twolev, "2lev", stream);
+      bpred_dir_config(pred->dirpred.meta, "meta", stream);
+      fprintf(stream, "btb: %d sets x %d associativity",
+            pred->btb.sets, pred->btb.assoc);
+      fprintf(stream, "ret_stack: %d entries", pred->retstack.size);
+      break;
 
   case BPred2Level:
     bpred_dir_config(pred->dirpred.twolev, "2lev", stream);
@@ -375,6 +406,9 @@ void bpred_reg_stats(struct bpred_t *pred,   /* branch predictor instance */
   case BPredComb:
     name = "bpred_comb";
     break;
+  case BPredOpcodeComb:
+    name = "bpred_opcodecomb";
+    break;
   case BPred2Level:
     name = "bpred_2lev";
     break;
@@ -408,7 +442,7 @@ void bpred_reg_stats(struct bpred_t *pred,   /* branch predictor instance */
                    "total number of direction-predicted hits "
                    "(includes addr-hits)",
                    &pred->dir_hits, 0, NULL);
-  if (pred->class == BPredComb)
+  if (pred->class == BPredComb || pred->class == BPredOpcodeComb) //added an or statement so now can choose new combination predictor
   {
     sprintf(buf, "%s.used_bimod", name);
     stat_reg_counter(sdb, buf,
@@ -623,6 +657,39 @@ bpred_lookup(struct bpred_t *pred,                  /* branch predictor instance
       }
     }
     break;
+
+  /*Again, add the Bpredopcodecomb referencing/adjusting the exsting combination predictor with added options*/
+  case BPredOpcodeComb:
+    if ((MD_OP_FLAGS(op) & (F_CTRL | F_UNCOND)) != (F_CTRL | F_UNCOND))
+    {
+      char *opcode_pred, *twolev, *meta;
+      
+      //first we have to look up at opcode component using the previous instruction opcode
+      opcode_pred = bpred_dir_lookup(pred->dirpred.bimod, 0, prev);
+
+      //the rest of the code similar to above, looking up 2 level component using branch address and meta chooser 
+      twolev = bpred_dir_lookup(pred->dirpred.twolev, baddr, 0);
+      meta = bpred_dir_lookup(pred->dirpred.meta, baddr, 0);
+
+      //this will save the state for future updates
+      dir_update_ptr->pmeta = meta;
+      dir_update_ptr->dir.meta = (*meta >= 2);
+      dir_update_ptr->dir.bimod = (*opcode_pred >= 2); 
+
+      //now the meta predictor will choose what happens
+      if (*meta >= 2)
+      {
+        dir_update_ptr->pdir1 = twolev;
+        dir_update_ptr->pdir2 = opcode_pred;
+      }
+      else
+      {
+        dir_update_ptr->pdir1 = opcode_pred;
+        dir_update_ptr->pdir2 = twolev;
+      }
+    }
+    break;
+
   case BPred2Level:
     if ((MD_OP_FLAGS(op) & (F_CTRL | F_UNCOND)) != (F_CTRL | F_UNCOND))
     {
@@ -853,7 +920,7 @@ void bpred_update(struct bpred_t *pred,                  /* branch predictor ins
   /* update L1 table if appropriate */
   /* L1 table is updated unconditionally for combining predictor too */
   if ((MD_OP_FLAGS(op) & (F_CTRL | F_UNCOND)) != (F_CTRL | F_UNCOND) &&
-      (pred->class == BPred2Level || pred->class == BPredComb))
+      (pred->class == BPred2Level || pred->class == BPredComb || pred->class == BPredOpcodeComb))
   {
     int l1index, shift_reg;
 

@@ -96,6 +96,11 @@ static int comb_nelt = 1;
 static int comb_config[1] =
     {/* meta_table_size */ 1024};
 
+/*opcode combined predictor config (<meta_table_size) same as the pocode predictor config*/
+static int opcodecomb_nelt = 1;
+static int opcodecomb_config[1] =
+    {/* meta_table_size*/ 1024};
+
 /* opcode predictor config (<meta_table_size> */
 static int opcode_nelt = 1;
 static int opcode_config[1] =
@@ -146,7 +151,7 @@ void sim_reg_options(struct opt_odb_t *odb)
                /* print */ TRUE, /* format */ NULL);
 
   opt_reg_string(odb, "-bpred",
-                 "branch predictor type {nottaken|taken|bimod|2lev|comb}",
+                 "branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}",
                  &pred_type, /* default */ "bimod",
                  /* print */ TRUE, /* format */ NULL);
 
@@ -174,7 +179,11 @@ void sim_reg_options(struct opt_odb_t *odb)
                    opcode_config, opcode_nelt, &opcode_nelt,
                    /* default */ opcode_config,
                    /* print */ TRUE, /* format */ NULL, /* !accrue */ FALSE);
-
+  
+  opt_reg_int_list(odb, "-bpred:opcodecomb",
+                    "opcode hybrid combining predictor config (<meta_table_size>)",
+                    opcodecomb_config, opcodecomb_nelt, &opcodecomb_nelt,
+                  /*default*/ opcodecomb_config, /*print*/ TRUE, /*format*/ NULL, /* !accrue*/ FALSE);  
   opt_reg_int(odb, "-bpred:ras",
               "return address stack size (0 for no return stack)",
               &ras_size, /* default */ ras_size,
@@ -273,6 +282,30 @@ void sim_check_options(struct opt_odb_t *odb, int argc, char **argv)
                         /* l1 size */ twolev_config[0],
                         /* l2 size */ twolev_config[1],
                         /* meta table size */ comb_config[0],
+                        /* history reg size */ twolev_config[2],
+                        /* history xor address */ twolev_config[3],
+                        /* btb sets */ btb_config[0],
+                        /* btb assoc */ btb_config[1],
+                        /* ret-addr stack size */ ras_size);
+  }
+  //add the choice opcodecomb
+  else if (!mystricmp(pred_type, "opcodecomb"))
+  {
+    /*opcode combined predictor, bpred create() checks arguments*/
+    if(twolev_nelt != 4)
+      fatal("bad 2-level pred config (<l1size> <l2size> <hist_size> <xor>)");
+    if(opcode_nelt != 1)
+      fatal("bad opcode predictor config (<table_size>)");
+    if(opcodecomb_nelt!=1)
+      fatal("bad opcode combining predictor config (<meta_table_size>)");
+    if(btb_nelt != 2)
+      fatal("bad btb config (<num_sets> <associativity>)");
+
+      pred = bpred_create (BPredOpcodeComb,
+                        /* bimod table size */ opcode_config[0],
+                        /* l1 size */ twolev_config[0],
+                        /* l2 size */ twolev_config[1],
+                        /* meta table size */ opcodecomb_config[0],
                         /* history reg size */ twolev_config[2],
                         /* history xor address */ twolev_config[3],
                         /* btb sets */ btb_config[0],

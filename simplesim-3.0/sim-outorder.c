@@ -650,7 +650,7 @@ sim_reg_options(struct opt_odb_t *odb)
                );
 
   opt_reg_string(odb, "-bpred",
-		 "branch predictor type {nottaken|taken|perfect|bimod|2lev|comb}",
+		 "branch predictor type {nottaken|taken|perfect|bimod|2lev|comb|opcodecomb}",
                  &pred_type, /* default */"bimod",
                  /* print */TRUE, /* format */NULL);
 
@@ -972,6 +972,29 @@ sim_check_options(struct opt_odb_t *odb,        /* options database */
 			  /* btb assoc */btb_config[1],
 			  /* ret-addr stack size */ras_size);
     }
+  else if (!mystricmp(pred_type, "opcodecomb"))
+  {
+    /* opcode combining predictor, bpred_create() checks args */
+    if (twolev_nelt != 4)
+      fatal("bad 2-level pred config (<l1size> <l2size> <hist_size> <xor>)");
+    if (bimod_nelt != 1)
+      fatal("bad bimod predictor config (<table_size>)");
+    if (comb_nelt != 1)
+      fatal("bad combining predictor config (<meta_table_size>)");
+    if (btb_nelt != 2)
+      fatal("bad btb config (<num_sets> <associativity>)");
+
+    pred = bpred_create(BPredOpcodeComb,
+                        /* bimod table size */bimod_config[0],
+                        /* l1 size */twolev_config[0],
+                        /* l2 size */twolev_config[1],
+                        /* meta table size */comb_config[0],
+                        /* history reg size */twolev_config[2],
+                        /* history xor address */twolev_config[3],
+                        /* btb sets */btb_config[0],
+                        /* btb assoc */btb_config[1],
+                        /* ret-addr stack size */ras_size);
+  }
   else
     fatal("cannot parse predictor type `%s'", pred_type);
 
@@ -2223,20 +2246,32 @@ ruu_commit(void)
 	  LSQ_num--;
 	}
 
-      if (pred
+            if (pred
 	  && bpred_spec_update == spec_CT
 	  && (MD_OP_FLAGS(rs->op) & F_CTRL))
 	{
+	  /*
+	   * Predictor update must use the same opcode context as lookup.
+	   * Rebuild prev_op from the previous instruction.
+	   */
+	  md_inst_t prev_inst;
+	  enum md_opcode prev_op = MD_NOP_OP;
+
+	  if (rs->PC >= sizeof(md_inst_t))
+	    {
+	      MD_FETCH_INST(prev_inst, mem, rs->PC - sizeof(md_inst_t));
+	      MD_SET_OPCODE(prev_op, prev_inst);
+	    }
+
 	  bpred_update(pred,
 		       /* branch address */rs->PC,
 		       /* actual target address */rs->next_PC,
-                       /* taken? */rs->next_PC != (rs->PC +
-                                                   sizeof(md_inst_t)),
-                       /* pred taken? */rs->pred_PC != (rs->PC +
-                                                        sizeof(md_inst_t)),
-                       /* correct pred? */rs->pred_PC == rs->next_PC,
-                       /* opcode */rs->op,
-                       /* dir predictor update pointer */&rs->dir_update);
+		       /* taken? */rs->next_PC != (rs->PC + sizeof(md_inst_t)),
+		       /* pred taken? */rs->pred_PC != (rs->PC + sizeof(md_inst_t)),
+		       /* correct pred? */rs->pred_PC == rs->next_PC,
+		       /* previous opcode */prev_op,
+		       /* current opcode */rs->op,
+		       /* dir predictor update pointer */&rs->dir_update);
 	}
 
       /* invalidate RUU operation instance */
@@ -2411,20 +2446,32 @@ ruu_writeback(void)
 	}
 
       /* if we speculatively update branch-predictor, do it here */
-      if (pred
+       if (pred
 	  && bpred_spec_update == spec_WB
 	  && !rs->in_LSQ
 	  && (MD_OP_FLAGS(rs->op) & F_CTRL))
 	{
+	  /*
+	   * Writeback-stage predictor update also needs prev_op so that
+	   * lookup and update use consistent indexing information.
+	   */
+	  md_inst_t prev_inst;
+	  enum md_opcode prev_op = MD_NOP_OP;
+
+	  if (rs->PC >= sizeof(md_inst_t))
+	    {
+	      MD_FETCH_INST(prev_inst, mem, rs->PC - sizeof(md_inst_t));
+	      MD_SET_OPCODE(prev_op, prev_inst);
+	    }
+
 	  bpred_update(pred,
 		       /* branch address */rs->PC,
 		       /* actual target address */rs->next_PC,
-		       /* taken? */rs->next_PC != (rs->PC +
-						   sizeof(md_inst_t)),
-		       /* pred taken? */rs->pred_PC != (rs->PC +
-							sizeof(md_inst_t)),
+		       /* taken? */rs->next_PC != (rs->PC + sizeof(md_inst_t)),
+		       /* pred taken? */rs->pred_PC != (rs->PC + sizeof(md_inst_t)),
 		       /* correct pred? */rs->pred_PC == rs->next_PC,
-		       /* opcode */rs->op,
+		       /* previous opcode */prev_op,
+		       /* current opcode */rs->op,
 		       /* dir predictor update pointer */&rs->dir_update);
 	}
 
@@ -4059,25 +4106,39 @@ ruu_dispatch(void)
 
 	  /* if this is a branching instruction update BTB, i.e., only
 	     non-speculative state is committed into the BTB */
-	  if (MD_OP_FLAGS(op) & F_CTRL)
+	  	  if (MD_OP_FLAGS(op) & F_CTRL)
 	    {
 	      sim_num_branches++;
+
 	      if (pred && bpred_spec_update == spec_ID)
 		{
+		  /*
+		   * Even for early/speculative updates, opcodecomb requires
+		   * the previous opcode as part of the predictor context.
+		   */
+		  md_inst_t prev_inst;
+		  enum md_opcode prev_op = MD_NOP_OP;
+
+		  if (regs.regs_PC >= sizeof(md_inst_t))
+		    {
+		      MD_FETCH_INST(prev_inst, mem, regs.regs_PC - sizeof(md_inst_t));
+		      MD_SET_OPCODE(prev_op, prev_inst);
+		    }
+
 		  bpred_update(pred,
 			       /* branch address */regs.regs_PC,
 			       /* actual target address */regs.regs_NPC,
-			       /* taken? */regs.regs_NPC != (regs.regs_PC +
-						       sizeof(md_inst_t)),
-			       /* pred taken? */pred_PC != (regs.regs_PC +
-							sizeof(md_inst_t)),
+			       /* taken? */regs.regs_NPC != (regs.regs_PC + sizeof(md_inst_t)),
+			       /* pred taken? */pred_PC != (regs.regs_PC + sizeof(md_inst_t)),
 			       /* correct pred? */pred_PC == regs.regs_NPC,
-			       /* opcode */op,
+			       /* previous opcode */prev_op,
+			       /* current opcode */op,
 			       /* predictor update ptr */&rs->dir_update);
 		}
 	    }
 
 	  /* is the trace generator trasitioning into mis-speculation mode? */
+	  	  /* is the trace generator trasitioning into mis-speculation mode? */
 	  if (pred_PC != regs.regs_NPC && !fetch_redirected)
 	    {
 	      /* entering mis-speculation mode, indicate this and save PC */
@@ -4281,16 +4342,33 @@ ruu_fetch(void)
 	  /* get the next predicted fetch address; only use branch predictor
 	     result for branches (assumes pre-decode bits); NOTE: returned
 	     value may be 1 if bpred can only predict a direction */
-	  if (MD_OP_FLAGS(op) & F_CTRL)
-	    fetch_pred_PC =
-	      bpred_lookup(pred,
-			   /* branch address */fetch_regs_PC,
-			   /* target address *//* FIXME: not computed */0,
-			   /* opcode */op,
-			   /* call? */MD_IS_CALL(op),
-			   /* return? */MD_IS_RETURN(op),
-			   /* updt */&(fetch_data[fetch_tail].dir_update),
-			   /* RSB index */&stack_recover_idx);
+	  	  if (MD_OP_FLAGS(op) & F_CTRL)
+	    {
+	      /*
+	       * For opcodecomb, we need the opcode of the previous instruction
+	       * as extra context during prediction.
+	       * If we are at the beginning of the program, default to NOP.
+	       */
+	      md_inst_t prev_inst;
+	      enum md_opcode prev_op = MD_NOP_OP;
+
+	      if (fetch_regs_PC >= sizeof(md_inst_t))
+		{
+		  MD_FETCH_INST(prev_inst, mem, fetch_regs_PC - sizeof(md_inst_t));
+		  MD_SET_OPCODE(prev_op, prev_inst);
+		}
+
+	      fetch_pred_PC =
+		bpred_lookup(pred,
+			     /* branch address */fetch_regs_PC,
+			     /* target address *//* FIXME: not computed */0,
+			     /* previous opcode */prev_op,
+			     /* current opcode */op,
+			     /* call? */MD_IS_CALL(op),
+			     /* return? */MD_IS_RETURN(op),
+			     /* updt */&(fetch_data[fetch_tail].dir_update),
+			     /* RSB index */&stack_recover_idx);
+	    }
 	  else
 	    fetch_pred_PC = 0;
 
