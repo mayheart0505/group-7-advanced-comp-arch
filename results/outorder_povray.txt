@@ -1,0 +1,156 @@
+===== BIMOD SIZE 8 =====
+sim_IPC                      0.9240 # instructions per cycle
+sim_CPI                      1.0823 # cycles per instruction
+===== OPCODE SIZE 8 =====
+sim_IPC                      0.9226 # instructions per cycle
+sim_CPI                      1.0839 # cycles per instruction
+===== COMB SIZE 8 =====
+sim_IPC                      0.9704 # instructions per cycle
+sim_CPI                      1.0305 # cycles per instruction
+===== OPCODECOMB SIZE 8 =====
+sim_IPC                      0.9370 # instructions per cycle
+sim_CPI                      1.0672 # cycles per instruction
+===== BIMOD SIZE 16 =====
+sim_IPC                      0.9325 # instructions per cycle
+sim_CPI                      1.0724 # cycles per instruction
+===== OPCODE SIZE 16 =====
+sim_IPC                      0.9285 # instructions per cycle
+sim_CPI                      1.0770 # cycles per instruction
+===== COMB SIZE 16 =====
+sim_IPC                      0.9696 # instructions per cycle
+sim_CPI                      1.0314 # cycles per instruction
+===== OPCODECOMB SIZE 16 =====
+sim_IPC                      0.9375 # instructions per cycle
+sim_CPI                      1.0667 # cycles per instruction
+===== BIMOD SIZE 32 =====
+sim_IPC                      0.9403 # instructions per cycle
+sim_CPI                      1.0634 # cycles per instruction
+===== OPCODE SIZE 32 =====
+sim_IPC                      0.9325 # instructions per cycle
+sim_CPI                      1.0724 # cycles per instruction
+===== COMB SIZE 32 =====
+sim_IPC                      0.9720 # instructions per cycle
+sim_CPI                      1.0289 # cycles per instruction
+===== OPCODECOMB SIZE 32 =====
+sim_IPC                      0.9357 # instructions per cycle
+sim_CPI                      1.0687 # cycles per instruction
+===== BIMOD SIZE 64 =====
+sim_IPC                      0.9478 # instructions per cycle
+sim_CPI                      1.0551 # cycles per instruction
+===== OPCODE SIZE 64 =====
+sim_IPC                      0.9345 # instructions per cycle
+sim_CPI                      1.0701 # cycles per instruction
+===== COMB SIZE 64 =====
+sim_IPC                      0.9733 # instructions per cycle
+sim_CPI                      1.0275 # cycles per instruction
+===== OPCODECOMB SIZE 64 =====
+sim_IPC                      0.9449 # instructions per cycle
+sim_CPI                      1.0583 # cycles per instruction
+===== BIMOD SIZE 128 =====
+sim_IPC                      0.9499 # instructions per cycle
+sim_CPI                      1.0528 # cycles per instruction
+===== OPCODE SIZE 128 =====
+sim_IPC                      0.9346 # instructions per cycle
+sim_CPI                      1.0700 # cycles per instruction
+===== COMB SIZE 128 =====
+sim_IPC                      0.9742 # instructions per cycle
+sim_CPI                      1.0265 # cycles per instruction
+===== OPCODECOMB SIZE 128 =====
+sim_IPC                      0.9416 # instructions per cycle
+sim_CPI                      1.0620 # cycles per instruction
+===== BIMOD SIZE 256 =====
+sim_IPC                      0.9590 # instructions per cycle
+sim_CPI                      1.0427 # cycles per instruction
+===== OPCODE SIZE 256 =====
+sim_IPC                      0.9346 # instructions per cycle
+sim_CPI                      1.0700 # cycles per instruction
+===== COMB SIZE 256 =====
+sim_IPC                      0.9730 # instructions per cycle
+sim_CPI                      1.0277 # cycles per instruction
+===== OPCODECOMB SIZE 256 =====
+sim_IPC                      0.9427 # instructions per cycle
+sim_CPI                      1.0607 # cycles per instruction
+===== BIMOD SIZE 512 =====
+sim_IPC                      0.9642 # instructions per cycle
+sim_CPI                      1.0371 # cycles per instruction
+===== OPCODE SIZE 512 =====
+sim_IPC                      0.9346 # instructions per cycle
+sim_CPI                      1.0700 # cycles per instruction
+===== COMB SIZE 512 =====
+sim_IPC                      0.9737 # instructions per cycle
+sim_CPI                      1.0270 # cycles per instruction
+===== OPCODECOMB SIZE 512 =====
+sim_IPC                      0.9426 # instructions per cycle
+sim_CPI                      1.0608 # cycles per instruction
+===== BIMOD SIZE 1024 =====
+sim_IPC                      0.9641 # instructions per cycle
+sim_CPI                      1.0372 # cycles per instruction
+===== OPCODE SIZE 1024 =====
+sim_IPC                      0.9346 # instructions per cycle
+sim_CPI                      1.0700 # cycles per instruction
+===== COMB SIZE 1024 =====
+sim_IPC                      0.9752 # instructions per cycle
+sim_CPI                      1.0254 # cycles per instruction
+===== OPCODECOMB SIZE 1024 =====
+sim_IPC                      0.9413 # instructions per cycle
+sim_CPI                      1.0623 # cycles per instruction
+===== BIMOD SIZE 2048 =====
+sim_IPC                      0.9664 # instructions per cycle
+sim_CPI                      1.0348 # cycles per instruction
+===== OPCODE SIZE 2048 =====
+sim_IPC                      0.9346 # instructions per cycle
+sim_CPI                      1.0700 # cycles per instruction
+===== COMB SIZE 2048 =====
+sim_IPC                      0.9747 # instructions per cycle
+sim_CPI                      1.0260 # cycles per instruction
+===== OPCODECOMB SIZE 2048 =====
+sim_IPC                      0.9407 # instructions per cycle
+sim_CPI                      1.0631 # cycles per instruction
+===== BIMOD SIZE 4096 =====
+sim_IPC                      0.9656 # instructions per cycle
+sim_CPI                      1.0357 # cycles per instruction
+===== OPCODE SIZE 4096 =====
+sim_IPC                      0.9346 # instructions per cycle
+sim_CPI                      1.0700 # cycles per instruction
+===== COMB SIZE 4096 =====
+sim_IPC                      0.9748 # instructions per cycle
+sim_CPI                      1.0259 # cycles per instruction
+===== OPCODECOMB SIZE 4096 =====
+sim_IPC                      0.9406 # instructions per cycle
+sim_CPI                      1.0632 # cycles per instruction
+===== BIMOD SIZE 8192 =====
+sim_IPC                      0.9655 # instructions per cycle
+sim_CPI                      1.0358 # cycles per instruction
+===== OPCODE SIZE 8192 =====
+sim_IPC                      0.9346 # instructions per cycle
+sim_CPI                      1.0700 # cycles per instruction
+===== COMB SIZE 8192 =====
+sim_IPC                      0.9750 # instructions per cycle
+sim_CPI                      1.0257 # cycles per instruction
+===== OPCODECOMB SIZE 8192 =====
+sim_IPC                      0.9404 # instructions per cycle
+sim_CPI                      1.0634 # cycles per instruction
+===== BIMOD SIZE 16384 =====
+sim_IPC                      0.9654 # instructions per cycle
+sim_CPI                      1.0359 # cycles per instruction
+===== OPCODE SIZE 16384 =====
+sim_IPC                      0.9346 # instructions per cycle
+sim_CPI                      1.0700 # cycles per instruction
+===== COMB SIZE 16384 =====
+sim_IPC                      0.9751 # instructions per cycle
+sim_CPI                      1.0255 # cycles per instruction
+===== OPCODECOMB SIZE 16384 =====
+sim_IPC                      0.9406 # instructions per cycle
+sim_CPI                      1.0631 # cycles per instruction
+===== BIMOD SIZE 32768 =====
+sim_IPC                      0.9654 # instructions per cycle
+sim_CPI                      1.0358 # cycles per instruction
+===== OPCODE SIZE 32768 =====
+sim_IPC                      0.9346 # instructions per cycle
+sim_CPI                      1.0700 # cycles per instruction
+===== COMB SIZE 32768 =====
+sim_IPC                      0.9751 # instructions per cycle
+sim_CPI                      1.0255 # cycles per instruction
+===== OPCODECOMB SIZE 32768 =====
+sim_IPC                      0.9410 # instructions per cycle
+sim_CPI                      1.0627 # cycles per instruction
