@@ -128,6 +128,11 @@ static int comb_nelt = 1;
 static int comb_config[1] =
   { /* meta_table_size */1024 };
 
+/* opcode hybrid combining predictor config (<meta_table_size>) */
+static int opcodecomb_nelt = 1;
+static int opcodecomb_config[1] =
+  { /* meta_table_size */1024 };
+
 /* return address stack (RAS) size */
 static int ras_size = 8;
 
@@ -672,7 +677,14 @@ sim_reg_options(struct opt_odb_t *odb)
 		   comb_config, comb_nelt, &comb_nelt,
 		   /* default */comb_config,
 		   /* print */TRUE, /* format */NULL, /* !accrue */FALSE);
+  
+  opt_reg_int_list(odb, "-bpred:opcodecomb",
+                 "opcode hybrid combining predictor config (<meta_table_size>)",
+                 opcodecomb_config, opcodecomb_nelt, &opcodecomb_nelt,
+                 /* default */opcodecomb_config,
+                 /* print */TRUE, /* format */NULL, /* !accrue */FALSE);
 
+                 
   opt_reg_int(odb, "-bpred:ras",
               "return address stack size (0 for no return stack)",
               &ras_size, /* default */ras_size,
@@ -974,13 +986,12 @@ sim_check_options(struct opt_odb_t *odb,        /* options database */
     }
   else if (!mystricmp(pred_type, "opcodecomb"))
   {
-    /* opcode combining predictor, bpred_create() checks args */
     if (twolev_nelt != 4)
       fatal("bad 2-level pred config (<l1size> <l2size> <hist_size> <xor>)");
     if (bimod_nelt != 1)
       fatal("bad bimod predictor config (<table_size>)");
-    if (comb_nelt != 1)
-      fatal("bad combining predictor config (<meta_table_size>)");
+    if (opcodecomb_nelt != 1)
+      fatal("bad opcodecomb predictor config (<meta_table_size>)");
     if (btb_nelt != 2)
       fatal("bad btb config (<num_sets> <associativity>)");
 
@@ -988,7 +999,7 @@ sim_check_options(struct opt_odb_t *odb,        /* options database */
                         /* bimod table size */bimod_config[0],
                         /* l1 size */twolev_config[0],
                         /* l2 size */twolev_config[1],
-                        /* meta table size */comb_config[0],
+                        /* meta table size */opcodecomb_config[0],
                         /* history reg size */twolev_config[2],
                         /* history xor address */twolev_config[3],
                         /* btb sets */btb_config[0],
