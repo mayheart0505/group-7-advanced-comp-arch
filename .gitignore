@@ -3,14 +3,6 @@ results.md
 spec95-little/APO8
 spec95-little/APO11
 spec95-little/APV
-inputs/cc1.in
-inputs/compress95.in
-inputs/go.in
-inputs/perl.in
-results/povray_bimod.txt
-results/povray_opcode.txt
-results/xdoom_bimod.txt
-results/xdoom_opcode.txt
 APO6
 APO8
 APO11

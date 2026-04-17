@@ -1,0 +1,1092 @@
+getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+xlock: unable to open display .
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred bimod -redir:sim ../../../results/xlock_bouboule_bimod.txt -bpred:bimod 8 ./xlock -inwindow -nolock -delay 0 -mode bouboule 
+
+sim: simulation started @ Thu Jan  1 04:36:22 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/xlock_bouboule_bimod.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                  bimod # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     8 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      1024 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn                 253185 # total number of instructions executed
+sim_num_refs                  74912 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches              39354 # total number of branches executed
+sim_IPB                      6.4335 # instruction per branch
+bpred_bimod.lookups           39354 # total number of bpred lookups
+bpred_bimod.updates           39354 # total number of updates
+bpred_bimod.addr_hits         29864 # total number of address-predicted hits
+bpred_bimod.dir_hits          30886 # total number of direction-predicted hits (includes addr-hits)
+bpred_bimod.misses             8468 # total number of misses
+bpred_bimod.jr_hits            3439 # total number of address-predicted hits for JR's
+bpred_bimod.jr_seen            3606 # total number of JR's seen
+bpred_bimod.jr_non_ras_hits.PP          162 # total number of address-predicted hits for non-RAS JR's
+bpred_bimod.jr_non_ras_seen.PP          221 # total number of non-RAS JR's seen
+bpred_bimod.bpred_addr_rate    0.7589 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_bimod.bpred_dir_rate    0.7848 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_bimod.bpred_jr_rate    0.9537 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_bimod.bpred_jr_non_ras_rate.PP    0.7330 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_bimod.retstack_pushes         3406 # total number of address pushed onto ret-addr stack
+bpred_bimod.retstack_pops         3385 # total number of address popped off of ret-addr stack
+bpred_bimod.used_ras.PP         3385 # total number of RAS predictions used
+bpred_bimod.ras_hits.PP         3277 # total number of RAS hits
+bpred_bimod.ras_rate.PP    0.9681 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+xlock: unable to open display .
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred bimod -redir:sim ../../../results/xlock_bouboule_bimod.txt -bpred:bimod 16 ./xlock -inwindow -nolock -delay 0 -mode bouboule 
+
+sim: simulation started @ Thu Jan  1 03:22:22 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/xlock_bouboule_bimod.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                  bimod # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     16 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      1024 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn                 253185 # total number of instructions executed
+sim_num_refs                  74912 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches              39354 # total number of branches executed
+sim_IPB                      6.4335 # instruction per branch
+bpred_bimod.lookups           39354 # total number of bpred lookups
+bpred_bimod.updates           39354 # total number of updates
+bpred_bimod.addr_hits         31068 # total number of address-predicted hits
+bpred_bimod.dir_hits          32099 # total number of direction-predicted hits (includes addr-hits)
+bpred_bimod.misses             7255 # total number of misses
+bpred_bimod.jr_hits            3439 # total number of address-predicted hits for JR's
+bpred_bimod.jr_seen            3606 # total number of JR's seen
+bpred_bimod.jr_non_ras_hits.PP          162 # total number of address-predicted hits for non-RAS JR's
+bpred_bimod.jr_non_ras_seen.PP          221 # total number of non-RAS JR's seen
+bpred_bimod.bpred_addr_rate    0.7894 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_bimod.bpred_dir_rate    0.8156 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_bimod.bpred_jr_rate    0.9537 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_bimod.bpred_jr_non_ras_rate.PP    0.7330 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_bimod.retstack_pushes         3406 # total number of address pushed onto ret-addr stack
+bpred_bimod.retstack_pops         3385 # total number of address popped off of ret-addr stack
+bpred_bimod.used_ras.PP         3385 # total number of RAS predictions used
+bpred_bimod.ras_hits.PP         3277 # total number of RAS hits
+bpred_bimod.ras_rate.PP    0.9681 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+xlock: unable to open display .
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred bimod -redir:sim ../../../results/xlock_bouboule_bimod.txt -bpred:bimod 32 ./xlock -inwindow -nolock -delay 0 -mode bouboule 
+
+sim: simulation started @ Thu Jan  1 03:33:42 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/xlock_bouboule_bimod.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                  bimod # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     32 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      1024 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn                 253185 # total number of instructions executed
+sim_num_refs                  74912 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches              39354 # total number of branches executed
+sim_IPB                      6.4335 # instruction per branch
+bpred_bimod.lookups           39354 # total number of bpred lookups
+bpred_bimod.updates           39354 # total number of updates
+bpred_bimod.addr_hits         31931 # total number of address-predicted hits
+bpred_bimod.dir_hits          32963 # total number of direction-predicted hits (includes addr-hits)
+bpred_bimod.misses             6391 # total number of misses
+bpred_bimod.jr_hits            3439 # total number of address-predicted hits for JR's
+bpred_bimod.jr_seen            3606 # total number of JR's seen
+bpred_bimod.jr_non_ras_hits.PP          162 # total number of address-predicted hits for non-RAS JR's
+bpred_bimod.jr_non_ras_seen.PP          221 # total number of non-RAS JR's seen
+bpred_bimod.bpred_addr_rate    0.8114 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_bimod.bpred_dir_rate    0.8376 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_bimod.bpred_jr_rate    0.9537 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_bimod.bpred_jr_non_ras_rate.PP    0.7330 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_bimod.retstack_pushes         3406 # total number of address pushed onto ret-addr stack
+bpred_bimod.retstack_pops         3385 # total number of address popped off of ret-addr stack
+bpred_bimod.used_ras.PP         3385 # total number of RAS predictions used
+bpred_bimod.ras_hits.PP         3277 # total number of RAS hits
+bpred_bimod.ras_rate.PP    0.9681 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+xlock: unable to open display .
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred bimod -redir:sim ../../../results/xlock_bouboule_bimod.txt -bpred:bimod 64 ./xlock -inwindow -nolock -delay 0 -mode bouboule 
+
+sim: simulation started @ Thu Jan  1 01:57:10 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/xlock_bouboule_bimod.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                  bimod # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     64 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      1024 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn                 253185 # total number of instructions executed
+sim_num_refs                  74912 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches              39354 # total number of branches executed
+sim_IPB                      6.4335 # instruction per branch
+bpred_bimod.lookups           39354 # total number of bpred lookups
+bpred_bimod.updates           39354 # total number of updates
+bpred_bimod.addr_hits         32643 # total number of address-predicted hits
+bpred_bimod.dir_hits          33670 # total number of direction-predicted hits (includes addr-hits)
+bpred_bimod.misses             5684 # total number of misses
+bpred_bimod.jr_hits            3439 # total number of address-predicted hits for JR's
+bpred_bimod.jr_seen            3606 # total number of JR's seen
+bpred_bimod.jr_non_ras_hits.PP          162 # total number of address-predicted hits for non-RAS JR's
+bpred_bimod.jr_non_ras_seen.PP          221 # total number of non-RAS JR's seen
+bpred_bimod.bpred_addr_rate    0.8295 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_bimod.bpred_dir_rate    0.8556 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_bimod.bpred_jr_rate    0.9537 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_bimod.bpred_jr_non_ras_rate.PP    0.7330 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_bimod.retstack_pushes         3406 # total number of address pushed onto ret-addr stack
+bpred_bimod.retstack_pops         3385 # total number of address popped off of ret-addr stack
+bpred_bimod.used_ras.PP         3385 # total number of RAS predictions used
+bpred_bimod.ras_hits.PP         3277 # total number of RAS hits
+bpred_bimod.ras_rate.PP    0.9681 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+xlock: unable to open display .
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred bimod -redir:sim ../../../results/xlock_bouboule_bimod.txt -bpred:bimod 128 ./xlock -inwindow -nolock -delay 0 -mode bouboule 
+
+sim: simulation started @ Thu Jan  1 03:06:08 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/xlock_bouboule_bimod.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                  bimod # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     128 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      1024 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn                 253185 # total number of instructions executed
+sim_num_refs                  74912 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches              39354 # total number of branches executed
+sim_IPB                      6.4335 # instruction per branch
+bpred_bimod.lookups           39354 # total number of bpred lookups
+bpred_bimod.updates           39354 # total number of updates
+bpred_bimod.addr_hits         33489 # total number of address-predicted hits
+bpred_bimod.dir_hits          34514 # total number of direction-predicted hits (includes addr-hits)
+bpred_bimod.misses             4840 # total number of misses
+bpred_bimod.jr_hits            3439 # total number of address-predicted hits for JR's
+bpred_bimod.jr_seen            3606 # total number of JR's seen
+bpred_bimod.jr_non_ras_hits.PP          162 # total number of address-predicted hits for non-RAS JR's
+bpred_bimod.jr_non_ras_seen.PP          221 # total number of non-RAS JR's seen
+bpred_bimod.bpred_addr_rate    0.8510 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_bimod.bpred_dir_rate    0.8770 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_bimod.bpred_jr_rate    0.9537 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_bimod.bpred_jr_non_ras_rate.PP    0.7330 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_bimod.retstack_pushes         3406 # total number of address pushed onto ret-addr stack
+bpred_bimod.retstack_pops         3385 # total number of address popped off of ret-addr stack
+bpred_bimod.used_ras.PP         3385 # total number of RAS predictions used
+bpred_bimod.ras_hits.PP         3277 # total number of RAS hits
+bpred_bimod.ras_rate.PP    0.9681 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+xlock: unable to open display .
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred bimod -redir:sim ../../../results/xlock_bouboule_bimod.txt -bpred:bimod 256 ./xlock -inwindow -nolock -delay 0 -mode bouboule 
+
+sim: simulation started @ Thu Jan  1 01:46:58 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/xlock_bouboule_bimod.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                  bimod # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     256 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      1024 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn                 253185 # total number of instructions executed
+sim_num_refs                  74912 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches              39354 # total number of branches executed
+sim_IPB                      6.4335 # instruction per branch
+bpred_bimod.lookups           39354 # total number of bpred lookups
+bpred_bimod.updates           39354 # total number of updates
+bpred_bimod.addr_hits         34098 # total number of address-predicted hits
+bpred_bimod.dir_hits          35101 # total number of direction-predicted hits (includes addr-hits)
+bpred_bimod.misses             4253 # total number of misses
+bpred_bimod.jr_hits            3439 # total number of address-predicted hits for JR's
+bpred_bimod.jr_seen            3606 # total number of JR's seen
+bpred_bimod.jr_non_ras_hits.PP          162 # total number of address-predicted hits for non-RAS JR's
+bpred_bimod.jr_non_ras_seen.PP          221 # total number of non-RAS JR's seen
+bpred_bimod.bpred_addr_rate    0.8664 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_bimod.bpred_dir_rate    0.8919 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_bimod.bpred_jr_rate    0.9537 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_bimod.bpred_jr_non_ras_rate.PP    0.7330 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_bimod.retstack_pushes         3406 # total number of address pushed onto ret-addr stack
+bpred_bimod.retstack_pops         3385 # total number of address popped off of ret-addr stack
+bpred_bimod.used_ras.PP         3385 # total number of RAS predictions used
+bpred_bimod.ras_hits.PP         3277 # total number of RAS hits
+bpred_bimod.ras_rate.PP    0.9681 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+xlock: unable to open display .
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred bimod -redir:sim ../../../results/xlock_bouboule_bimod.txt -bpred:bimod 512 ./xlock -inwindow -nolock -delay 0 -mode bouboule 
+
+sim: simulation started @ Thu Jan  1 02:15:10 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/xlock_bouboule_bimod.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                  bimod # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     512 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      1024 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn                 253185 # total number of instructions executed
+sim_num_refs                  74912 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches              39354 # total number of branches executed
+sim_IPB                      6.4335 # instruction per branch
+bpred_bimod.lookups           39354 # total number of bpred lookups
+bpred_bimod.updates           39354 # total number of updates
+bpred_bimod.addr_hits         34520 # total number of address-predicted hits
+bpred_bimod.dir_hits          35527 # total number of direction-predicted hits (includes addr-hits)
+bpred_bimod.misses             3827 # total number of misses
+bpred_bimod.jr_hits            3439 # total number of address-predicted hits for JR's
+bpred_bimod.jr_seen            3606 # total number of JR's seen
+bpred_bimod.jr_non_ras_hits.PP          162 # total number of address-predicted hits for non-RAS JR's
+bpred_bimod.jr_non_ras_seen.PP          221 # total number of non-RAS JR's seen
+bpred_bimod.bpred_addr_rate    0.8772 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_bimod.bpred_dir_rate    0.9028 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_bimod.bpred_jr_rate    0.9537 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_bimod.bpred_jr_non_ras_rate.PP    0.7330 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_bimod.retstack_pushes         3406 # total number of address pushed onto ret-addr stack
+bpred_bimod.retstack_pops         3385 # total number of address popped off of ret-addr stack
+bpred_bimod.used_ras.PP         3385 # total number of RAS predictions used
+bpred_bimod.ras_hits.PP         3277 # total number of RAS hits
+bpred_bimod.ras_rate.PP    0.9681 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+xlock: unable to open display .
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred bimod -redir:sim ../../../results/xlock_bouboule_bimod.txt -bpred:bimod 1024 ./xlock -inwindow -nolock -delay 0 -mode bouboule 
+
+sim: simulation started @ Thu Jan  1 02:55:46 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/xlock_bouboule_bimod.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                  bimod # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     1024 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      1024 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn                 253185 # total number of instructions executed
+sim_num_refs                  74912 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches              39354 # total number of branches executed
+sim_IPB                      6.4335 # instruction per branch
+bpred_bimod.lookups           39354 # total number of bpred lookups
+bpred_bimod.updates           39354 # total number of updates
+bpred_bimod.addr_hits         35005 # total number of address-predicted hits
+bpred_bimod.dir_hits          36014 # total number of direction-predicted hits (includes addr-hits)
+bpred_bimod.misses             3340 # total number of misses
+bpred_bimod.jr_hits            3439 # total number of address-predicted hits for JR's
+bpred_bimod.jr_seen            3606 # total number of JR's seen
+bpred_bimod.jr_non_ras_hits.PP          162 # total number of address-predicted hits for non-RAS JR's
+bpred_bimod.jr_non_ras_seen.PP          221 # total number of non-RAS JR's seen
+bpred_bimod.bpred_addr_rate    0.8895 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_bimod.bpred_dir_rate    0.9151 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_bimod.bpred_jr_rate    0.9537 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_bimod.bpred_jr_non_ras_rate.PP    0.7330 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_bimod.retstack_pushes         3406 # total number of address pushed onto ret-addr stack
+bpred_bimod.retstack_pops         3385 # total number of address popped off of ret-addr stack
+bpred_bimod.used_ras.PP         3385 # total number of RAS predictions used
+bpred_bimod.ras_hits.PP         3277 # total number of RAS hits
+bpred_bimod.ras_rate.PP    0.9681 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+xlock: unable to open display .
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred bimod -redir:sim ../../../results/xlock_bouboule_bimod.txt -bpred:bimod 2048 ./xlock -inwindow -nolock -delay 0 -mode bouboule 
+
+sim: simulation started @ Thu Jan  1 03:18:05 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/xlock_bouboule_bimod.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                  bimod # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     2048 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      1024 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn                 253185 # total number of instructions executed
+sim_num_refs                  74912 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches              39354 # total number of branches executed
+sim_IPB                      6.4335 # instruction per branch
+bpred_bimod.lookups           39354 # total number of bpred lookups
+bpred_bimod.updates           39354 # total number of updates
+bpred_bimod.addr_hits         35066 # total number of address-predicted hits
+bpred_bimod.dir_hits          36068 # total number of direction-predicted hits (includes addr-hits)
+bpred_bimod.misses             3286 # total number of misses
+bpred_bimod.jr_hits            3439 # total number of address-predicted hits for JR's
+bpred_bimod.jr_seen            3606 # total number of JR's seen
+bpred_bimod.jr_non_ras_hits.PP          162 # total number of address-predicted hits for non-RAS JR's
+bpred_bimod.jr_non_ras_seen.PP          221 # total number of non-RAS JR's seen
+bpred_bimod.bpred_addr_rate    0.8910 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_bimod.bpred_dir_rate    0.9165 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_bimod.bpred_jr_rate    0.9537 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_bimod.bpred_jr_non_ras_rate.PP    0.7330 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_bimod.retstack_pushes         3406 # total number of address pushed onto ret-addr stack
+bpred_bimod.retstack_pops         3385 # total number of address popped off of ret-addr stack
+bpred_bimod.used_ras.PP         3385 # total number of RAS predictions used
+bpred_bimod.ras_hits.PP         3277 # total number of RAS hits
+bpred_bimod.ras_rate.PP    0.9681 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+xlock: unable to open display .
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred bimod -redir:sim ../../../results/xlock_bouboule_bimod.txt -bpred:bimod 4096 ./xlock -inwindow -nolock -delay 0 -mode bouboule 
+
+sim: simulation started @ Thu Jan  1 03:00:34 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/xlock_bouboule_bimod.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                  bimod # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     4096 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      1024 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn                 253185 # total number of instructions executed
+sim_num_refs                  74912 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches              39354 # total number of branches executed
+sim_IPB                      6.4335 # instruction per branch
+bpred_bimod.lookups           39354 # total number of bpred lookups
+bpred_bimod.updates           39354 # total number of updates
+bpred_bimod.addr_hits         35155 # total number of address-predicted hits
+bpred_bimod.dir_hits          36159 # total number of direction-predicted hits (includes addr-hits)
+bpred_bimod.misses             3195 # total number of misses
+bpred_bimod.jr_hits            3439 # total number of address-predicted hits for JR's
+bpred_bimod.jr_seen            3606 # total number of JR's seen
+bpred_bimod.jr_non_ras_hits.PP          162 # total number of address-predicted hits for non-RAS JR's
+bpred_bimod.jr_non_ras_seen.PP          221 # total number of non-RAS JR's seen
+bpred_bimod.bpred_addr_rate    0.8933 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_bimod.bpred_dir_rate    0.9188 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_bimod.bpred_jr_rate    0.9537 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_bimod.bpred_jr_non_ras_rate.PP    0.7330 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_bimod.retstack_pushes         3406 # total number of address pushed onto ret-addr stack
+bpred_bimod.retstack_pops         3385 # total number of address popped off of ret-addr stack
+bpred_bimod.used_ras.PP         3385 # total number of RAS predictions used
+bpred_bimod.ras_hits.PP         3277 # total number of RAS hits
+bpred_bimod.ras_rate.PP    0.9681 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+xlock: unable to open display .
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred bimod -redir:sim ../../../results/xlock_bouboule_bimod.txt -bpred:bimod 8192 ./xlock -inwindow -nolock -delay 0 -mode bouboule 
+
+sim: simulation started @ Thu Jan  1 01:58:58 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/xlock_bouboule_bimod.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                  bimod # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     8192 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      1024 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn                 253185 # total number of instructions executed
+sim_num_refs                  74912 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches              39354 # total number of branches executed
+sim_IPB                      6.4335 # instruction per branch
+bpred_bimod.lookups           39354 # total number of bpred lookups
+bpred_bimod.updates           39354 # total number of updates
+bpred_bimod.addr_hits         35171 # total number of address-predicted hits
+bpred_bimod.dir_hits          36178 # total number of direction-predicted hits (includes addr-hits)
+bpred_bimod.misses             3176 # total number of misses
+bpred_bimod.jr_hits            3439 # total number of address-predicted hits for JR's
+bpred_bimod.jr_seen            3606 # total number of JR's seen
+bpred_bimod.jr_non_ras_hits.PP          162 # total number of address-predicted hits for non-RAS JR's
+bpred_bimod.jr_non_ras_seen.PP          221 # total number of non-RAS JR's seen
+bpred_bimod.bpred_addr_rate    0.8937 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_bimod.bpred_dir_rate    0.9193 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_bimod.bpred_jr_rate    0.9537 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_bimod.bpred_jr_non_ras_rate.PP    0.7330 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_bimod.retstack_pushes         3406 # total number of address pushed onto ret-addr stack
+bpred_bimod.retstack_pops         3385 # total number of address popped off of ret-addr stack
+bpred_bimod.used_ras.PP         3385 # total number of RAS predictions used
+bpred_bimod.ras_hits.PP         3277 # total number of RAS hits
+bpred_bimod.ras_rate.PP    0.9681 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+xlock: unable to open display .
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred bimod -redir:sim ../../../results/xlock_bouboule_bimod.txt -bpred:bimod 16384 ./xlock -inwindow -nolock -delay 0 -mode bouboule 
+
+sim: simulation started @ Thu Jan  1 02:54:05 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/xlock_bouboule_bimod.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                  bimod # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     16384 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      1024 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn                 253185 # total number of instructions executed
+sim_num_refs                  74912 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches              39354 # total number of branches executed
+sim_IPB                      6.4335 # instruction per branch
+bpred_bimod.lookups           39354 # total number of bpred lookups
+bpred_bimod.updates           39354 # total number of updates
+bpred_bimod.addr_hits         35235 # total number of address-predicted hits
+bpred_bimod.dir_hits          36244 # total number of direction-predicted hits (includes addr-hits)
+bpred_bimod.misses             3110 # total number of misses
+bpred_bimod.jr_hits            3439 # total number of address-predicted hits for JR's
+bpred_bimod.jr_seen            3606 # total number of JR's seen
+bpred_bimod.jr_non_ras_hits.PP          162 # total number of address-predicted hits for non-RAS JR's
+bpred_bimod.jr_non_ras_seen.PP          221 # total number of non-RAS JR's seen
+bpred_bimod.bpred_addr_rate    0.8953 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_bimod.bpred_dir_rate    0.9210 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_bimod.bpred_jr_rate    0.9537 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_bimod.bpred_jr_non_ras_rate.PP    0.7330 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_bimod.retstack_pushes         3406 # total number of address pushed onto ret-addr stack
+bpred_bimod.retstack_pops         3385 # total number of address popped off of ret-addr stack
+bpred_bimod.used_ras.PP         3385 # total number of RAS predictions used
+bpred_bimod.ras_hits.PP         3277 # total number of RAS hits
+bpred_bimod.ras_rate.PP    0.9681 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+xlock: unable to open display .
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred bimod -redir:sim ../../../results/xlock_bouboule_bimod.txt -bpred:bimod 32768 ./xlock -inwindow -nolock -delay 0 -mode bouboule 
+
+sim: simulation started @ Thu Jan  1 02:01:48 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/xlock_bouboule_bimod.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                  bimod # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     32768 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      1024 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn                 253185 # total number of instructions executed
+sim_num_refs                  74912 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches              39354 # total number of branches executed
+sim_IPB                      6.4335 # instruction per branch
+bpred_bimod.lookups           39354 # total number of bpred lookups
+bpred_bimod.updates           39354 # total number of updates
+bpred_bimod.addr_hits         35235 # total number of address-predicted hits
+bpred_bimod.dir_hits          36243 # total number of direction-predicted hits (includes addr-hits)
+bpred_bimod.misses             3111 # total number of misses
+bpred_bimod.jr_hits            3439 # total number of address-predicted hits for JR's
+bpred_bimod.jr_seen            3606 # total number of JR's seen
+bpred_bimod.jr_non_ras_hits.PP          162 # total number of address-predicted hits for non-RAS JR's
+bpred_bimod.jr_non_ras_seen.PP          221 # total number of non-RAS JR's seen
+bpred_bimod.bpred_addr_rate    0.8953 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_bimod.bpred_dir_rate    0.9209 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_bimod.bpred_jr_rate    0.9537 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_bimod.bpred_jr_non_ras_rate.PP    0.7330 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_bimod.retstack_pushes         3406 # total number of address pushed onto ret-addr stack
+bpred_bimod.retstack_pops         3385 # total number of address popped off of ret-addr stack
+bpred_bimod.used_ras.PP         3385 # total number of RAS predictions used
+bpred_bimod.ras_hits.PP         3277 # total number of RAS hits
+bpred_bimod.ras_rate.PP    0.9681 # RAS prediction rate (i.e., RAS hits/used RAS)
+

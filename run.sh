@@ -1,4 +1,6 @@
+#!/bin/bash
 rm ./results/*
+rm timing.txt
 
 cd simplesim-3.0/
 make clean
@@ -10,19 +12,27 @@ make
 cd ../xbenchmarks/povray/exe
 for ((i = 8 ; i < 65536 ; i*=2));
 do
-    ../../../simplesim-3.0/sim-bpred -bpred opcode -redir:sim ../../../results/povray_opcode.txt -bpred:opcode $i ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov 
+    ts=$(date +%s%N)
+    ../../../simplesim-3.0/sim-bpred -bpred opcode -redir:sim ../../../results/povray_opcode.txt -bpred:opcode $i ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov
+    echo "povray opcode $i $((($(date +%s%N) - $ts)/1000000))ms" >> ../../../timing.txt
 done
 for ((i = 8 ; i < 65536 ; i*=2));
 do
-    ../../../simplesim-3.0/sim-bpred -bpred bimod -redir:sim ../../../results/povray_bimod.txt -bpred:bimod $i ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov 
+    ts=$(date +%s%N)
+    ../../../simplesim-3.0/sim-bpred -bpred bimod -redir:sim ../../../results/povray_bimod.txt -bpred:bimod $i ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov
+    echo "povray bimod $i $((($(date +%s%N) - $ts)/1000000))ms" >> ../../../timing.txt
 done
 for ((i = 8 ; i < 65536 ; i*=2));
 do
-    ../../../simplesim-3.0/sim-bpred -bpred opcodecomb -redir:sim ../../../results/povray_opcodecomb.txt -bpred:opcodecomb $i ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov 
+    ts=$(date +%s%N)
+    ../../../simplesim-3.0/sim-bpred -bpred opcodecomb -redir:sim ../../../results/povray_opcodecomb.txt -bpred:opcodecomb $i ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov
+    echo "povray opcodecomb $i $((($(date +%s%N) - $ts)/1000000))ms" >> ../../../timing.txt
 done
 for ((i = 8 ; i < 65536 ; i*=2));
 do
-    ../../../simplesim-3.0/sim-bpred -bpred comb -redir:sim ../../../results/povray_comb.txt -bpred:comb $i ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov 
+    ts=$(date +%s%N)
+    ../../../simplesim-3.0/sim-bpred -bpred comb -redir:sim ../../../results/povray_comb.txt -bpred:comb $i ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov
+    echo "povray comb $i $((($(date +%s%N) - $ts)/1000000))ms" >> ../../../timing.txt
 done
 cd ../..
 
@@ -30,19 +40,27 @@ cd ../..
 cd xdoom/exe
 for ((i = 8 ; i < 65536 ; i*=2));
 do
+    ts=$(date +%s%N)
     ../../../simplesim-3.0/sim-bpred -bpred opcode -redir:sim ../../../results/xdoom_opcode.txt -bpred:opcode $i ./alphadoom -playdemo rockin
+    echo "xdoom opcode $i $((($(date +%s%N) - $ts)/1000000))ms" >> ../../../timing.txt
 done
 for ((i = 8 ; i < 65536 ; i*=2));
 do
+    ts=$(date +%s%N)
     ../../../simplesim-3.0/sim-bpred -bpred bimod -redir:sim ../../../results/xdoom_bimod.txt -bpred:bimod $i ./alphadoom -playdemo rockin
+    echo "xdoom bimod $i $((($(date +%s%N) - $ts)/1000000))ms" >> ../../../timing.txt
 done
 for ((i = 8 ; i < 65536 ; i*=2));
 do
+    ts=$(date +%s%N)
     ../../../simplesim-3.0/sim-bpred -bpred opcodecomb -redir:sim ../../../results/xdoom_opcodecomb.txt -bpred:opcodecomb $i ./alphadoom -playdemo rockin
+    echo "xdoom opcodecomb $i $((($(date +%s%N) - $ts)/1000000))ms" >> ../../../timing.txt
 done
 for ((i = 8 ; i < 65536 ; i*=2));
 do
+    ts=$(date +%s%N)
     ../../../simplesim-3.0/sim-bpred -bpred comb -redir:sim ../../../results/xdoom_comb.txt -bpred:comb $i ./alphadoom -playdemo rockin
+    echo "xdoom comb $i $((($(date +%s%N) - $ts)/1000000))ms" >> ../../../timing.txt
 done
 cd ../..
 
@@ -50,20 +68,28 @@ cd ../..
 cd xlock/exe
 for ((i = 8 ; i < 65536 ; i*=2));
 do
+    ts=$(date +%s%N)
     ../../../simplesim-3.0/sim-bpred -bpred opcode -redir:sim ../../../results/xlock_bouboule_opcode.txt -bpred:opcode $i ./xlock -inwindow -nolock -delay 0 -mode bouboule
+    echo "xlock opcode $i $((($(date +%s%N) - $ts)/1000000))ms" >> ../../../timing.txt
 done
 for ((i = 8 ; i < 65536 ; i*=2));
 do
+    ts=$(date +%s%N)
     ../../../simplesim-3.0/sim-bpred -bpred bimod -redir:sim ../../../results/xlock_bouboule_bimod.txt -bpred:bimod $i ./xlock -inwindow -nolock -delay 0 -mode bouboule
+    echo "xlock bimod $i $((($(date +%s%N) - $ts)/1000000))ms" >> ../../../timing.txt
 done
 
 for ((i = 8 ; i < 65536 ; i*=2));
 do
+    ts=$(date +%s%N)
     ../../../simplesim-3.0/sim-bpred -bpred opcodecomb -redir:sim ../../../results/xlock_bouboule_opcodecomb.txt -bpred:opcodecomb $i ./xlock -inwindow -nolock -delay 0 -mode bouboule
+    echo "xlock opcodecomb $i $((($(date +%s%N) - $ts)/1000000))ms" >> ../../../timing.txt
 done
 for ((i = 8 ; i < 65536 ; i*=2));
 do
+    ts=$(date +%s%N)
     ../../../simplesim-3.0/sim-bpred -bpred comb -redir:sim ../../../results/xlock_bouboule_comb.txt -bpred:comb $i ./xlock -inwindow -nolock -delay 0 -mode bouboule
+    echo "xlock comb $i $((($(date +%s%N) - $ts)/1000000))ms" >> ../../../timing.txt
 done
 cd ../..
 
@@ -81,20 +107,28 @@ cd ./spec95-little/
 
 for ((i = 8 ; i < 65536 ; i*=2));
 do
+    ts=$(date +%s%N)
     ../simplesim-3.0/sim-bpred -bpred opcode -redir:sim ../results/cc1_opcode.txt -bpred:opcode $i cc1.ss ../inputs/cc1.in
+    echo "cc1 opcode $i $((($(date +%s%N) - $ts)/1000000))ms" >> ../timing.txt
 done
 for ((i = 8 ; i < 65536 ; i*=2));
 do
+    ts=$(date +%s%N)
     ../simplesim-3.0/sim-bpred -bpred bimod -redir:sim ../results/cc1_bimod.txt -bpred:bimod $i cc1.ss ../inputs/cc1.in
+    echo "cc1 bimod $i $((($(date +%s%N) - $ts)/1000000))ms" >> ../timing.txt
 done
 
 for ((i = 8 ; i < 65536 ; i*=2));
 do
+    ts=$(date +%s%N)
     ../simplesim-3.0/sim-bpred -bpred opcodecomb -redir:sim ../results/cc1_opcodecomb.txt -bpred:opcodecomb $i cc1.ss ../inputs/cc1.in
+    echo "cc1 opcodecomb $i $((($(date +%s%N) - $ts)/1000000))ms" >> ../timing.txt
 done
 for ((i = 8 ; i < 65536 ; i*=2));
 do
+    ts=$(date +%s%N)
     ../simplesim-3.0/sim-bpred -bpred comb -redir:sim ../results/cc1_comb.txt -bpred:comb $i cc1.ss ../inputs/cc1.in
+    echo "cc1 comb $i $((($(date +%s%N) - $ts)/1000000))ms" >> ../timing.txt
 done
 
 # for ((i = 8 ; i < 65536 ; i*=2));
@@ -139,20 +173,30 @@ done
 
 for ((i = 8 ; i < 65536 ; i*=2));
 do
+    ts=$(date +%s%N)
     ../simplesim-3.0/sim-bpred -bpred opcode -redir:sim ../results/perl_opcode.txt -bpred:opcode $i perl.ss ../inputs/perl.in
+    echo "perl opcode $i $((($(date +%s%N) - $ts)/1000000))ms" >> ../timing.txt
 done
 for ((i = 8 ; i < 65536 ; i*=2));
 do
+    ts=$(date +%s%N)
     ../simplesim-3.0/sim-bpred -bpred bimod -redir:sim ../results/perl_bimod.txt -bpred:bimod $i perl.ss ../inputs/perl.in
+    echo "perl bimod $i $((($(date +%s%N) - $ts)/1000000))ms" >> ../timing.txt
 done
 
 for ((i = 8 ; i < 65536 ; i*=2));
 do
+    ts=$(date +%s%N)
     ../simplesim-3.0/sim-bpred -bpred opcodecomb -redir:sim ../results/perl_opcodecomb.txt -bpred:opcodecomb $i perl.ss ../inputs/perl.in
+    echo "perl opcodecomb $i $((($(date +%s%N) - $ts)/1000000))ms" >> ../timing.txt
 done
 for ((i = 8 ; i < 65536 ; i*=2));
 do
+    ts=$(date +%s%N)
     ../simplesim-3.0/sim-bpred -bpred comb -redir:sim ../results/perl_comb.txt -bpred:comb $i perl.ss ../inputs/perl.in
+    echo "perl comb $i $((($(date +%s%N) - $ts)/1000000))ms" >> ../timing.txt
 done
 
-cd ../..
+cd ..
+
+

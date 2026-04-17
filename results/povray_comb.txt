@@ -1,0 +1,1716 @@
+Persistence of Vision(tm) Ray Tracer Version 3.02.OSF1.cc
+  This is an unofficial version compiled by:
+  FILL IN NAME HERE.........................
+  The POV-Ray Team(tm) is not responsible for supporting this version.
+Copyright 1997 POV-Ray Team(tm)
+Parsing Options
+  Input file: showoff/mist.pov (compatible to version 3.0)
+  Remove bounds........On  Split unions........Off
+  Library paths: include
+Output Options
+  Image resolution 320 by 200 (rows 1 to 200, columns 1 to 320).
+  Rendering to screen only. No file output.
+  Graphic display......On  (type: 0, palette: 3, gamma:  2.2)
+  Mosaic preview......Off
+  CPU usage histogram.Off
+  Continued trace.....Off  Allow interruption...On  Pause when done......On
+  Verbose messages....Off
+Tracing Options
+  Quality:  4
+  Bounding boxes.......On  Bounding threshold: 3 
+  Light Buffer.........On  Vista Buffer.........On  Draw Vista Buffer...Off
+  Antialiasing........Off
+  Radiosity...........Off
+Animation Options
+  Clock value....   0.000  (Animation off)
+Redirecting Options
+  All Streams to console..........On
+  Debug Stream to console.........On
+  Fatal Stream to console.........On
+  Render Stream to console........On
+  Statistics Stream to console....On
+  Warning Stream to console.......On
+
+
+Parsing...........
+
+Creating bounding slabs.
+Scene contains 13 frame level objects; 1 infinite.
+
+Creating vista buffer.
+Creating light buffers..
+Displaying...getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+
+The display ':0' is not a valid display,
+or you do not have permission to open a window there.
+Slab building error.
+
+Error opening X display.
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred comb -redir:sim ../../../results/povray_comb.txt -bpred:comb 8 ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov 
+
+sim: simulation started @ Thu Jan  1 03:01:28 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/povray_comb.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                   comb # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     2048 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      8 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn               14844543 # total number of instructions executed
+sim_num_refs                5400027 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches            2395010 # total number of branches executed
+sim_IPB                      6.1981 # instruction per branch
+bpred_comb.lookups          2395010 # total number of bpred lookups
+bpred_comb.updates          2395010 # total number of updates
+bpred_comb.addr_hits        2221546 # total number of address-predicted hits
+bpred_comb.dir_hits         2248955 # total number of direction-predicted hits (includes addr-hits)
+bpred_comb.used_bimod       1029180 # total number of bimodal predictions used
+bpred_comb.used_2lev         518524 # total number of 2-level predictions used
+bpred_comb.misses            146055 # total number of misses
+bpred_comb.jr_hits           344709 # total number of address-predicted hits for JR's
+bpred_comb.jr_seen           375711 # total number of JR's seen
+bpred_comb.jr_non_ras_hits.PP        16698 # total number of address-predicted hits for non-RAS JR's
+bpred_comb.jr_non_ras_seen.PP        36543 # total number of non-RAS JR's seen
+bpred_comb.bpred_addr_rate    0.9276 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_comb.bpred_dir_rate    0.9390 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_comb.bpred_jr_rate    0.9175 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_comb.bpred_jr_non_ras_rate.PP    0.4569 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_comb.retstack_pushes       339197 # total number of address pushed onto ret-addr stack
+bpred_comb.retstack_pops       339168 # total number of address popped off of ret-addr stack
+bpred_comb.used_ras.PP       339168 # total number of RAS predictions used
+bpred_comb.ras_hits.PP       328011 # total number of RAS hits
+bpred_comb.ras_rate.PP    0.9671 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+Persistence of Vision(tm) Ray Tracer Version 3.02.OSF1.cc
+  This is an unofficial version compiled by:
+  FILL IN NAME HERE.........................
+  The POV-Ray Team(tm) is not responsible for supporting this version.
+Copyright 1997 POV-Ray Team(tm)
+Parsing Options
+  Input file: showoff/mist.pov (compatible to version 3.0)
+  Remove bounds........On  Split unions........Off
+  Library paths: include
+Output Options
+  Image resolution 320 by 200 (rows 1 to 200, columns 1 to 320).
+  Rendering to screen only. No file output.
+  Graphic display......On  (type: 0, palette: 3, gamma:  2.2)
+  Mosaic preview......Off
+  CPU usage histogram.Off
+  Continued trace.....Off  Allow interruption...On  Pause when done......On
+  Verbose messages....Off
+Tracing Options
+  Quality:  4
+  Bounding boxes.......On  Bounding threshold: 3 
+  Light Buffer.........On  Vista Buffer.........On  Draw Vista Buffer...Off
+  Antialiasing........Off
+  Radiosity...........Off
+Animation Options
+  Clock value....   0.000  (Animation off)
+Redirecting Options
+  All Streams to console..........On
+  Debug Stream to console.........On
+  Fatal Stream to console.........On
+  Render Stream to console........On
+  Statistics Stream to console....On
+  Warning Stream to console.......On
+
+
+Parsing...........
+
+Creating bounding slabs.
+Scene contains 13 frame level objects; 1 infinite.
+
+Creating vista buffer.
+Creating light buffers..
+Displaying...getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+
+The display ':0' is not a valid display,
+or you do not have permission to open a window there.
+Slab building error.
+
+Error opening X display.
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred comb -redir:sim ../../../results/povray_comb.txt -bpred:comb 16 ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov 
+
+sim: simulation started @ Thu Jan  1 01:57:14 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/povray_comb.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                   comb # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     2048 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      16 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn               14844543 # total number of instructions executed
+sim_num_refs                5400027 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches            2395010 # total number of branches executed
+sim_IPB                      6.1981 # instruction per branch
+bpred_comb.lookups          2395010 # total number of bpred lookups
+bpred_comb.updates          2395010 # total number of updates
+bpred_comb.addr_hits        2233129 # total number of address-predicted hits
+bpred_comb.dir_hits         2260510 # total number of direction-predicted hits (includes addr-hits)
+bpred_comb.used_bimod       1016994 # total number of bimodal predictions used
+bpred_comb.used_2lev         530710 # total number of 2-level predictions used
+bpred_comb.misses            134500 # total number of misses
+bpred_comb.jr_hits           344709 # total number of address-predicted hits for JR's
+bpred_comb.jr_seen           375711 # total number of JR's seen
+bpred_comb.jr_non_ras_hits.PP        16698 # total number of address-predicted hits for non-RAS JR's
+bpred_comb.jr_non_ras_seen.PP        36543 # total number of non-RAS JR's seen
+bpred_comb.bpred_addr_rate    0.9324 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_comb.bpred_dir_rate    0.9438 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_comb.bpred_jr_rate    0.9175 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_comb.bpred_jr_non_ras_rate.PP    0.4569 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_comb.retstack_pushes       339197 # total number of address pushed onto ret-addr stack
+bpred_comb.retstack_pops       339168 # total number of address popped off of ret-addr stack
+bpred_comb.used_ras.PP       339168 # total number of RAS predictions used
+bpred_comb.ras_hits.PP       328011 # total number of RAS hits
+bpred_comb.ras_rate.PP    0.9671 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+Persistence of Vision(tm) Ray Tracer Version 3.02.OSF1.cc
+  This is an unofficial version compiled by:
+  FILL IN NAME HERE.........................
+  The POV-Ray Team(tm) is not responsible for supporting this version.
+Copyright 1997 POV-Ray Team(tm)
+Parsing Options
+  Input file: showoff/mist.pov (compatible to version 3.0)
+  Remove bounds........On  Split unions........Off
+  Library paths: include
+Output Options
+  Image resolution 320 by 200 (rows 1 to 200, columns 1 to 320).
+  Rendering to screen only. No file output.
+  Graphic display......On  (type: 0, palette: 3, gamma:  2.2)
+  Mosaic preview......Off
+  CPU usage histogram.Off
+  Continued trace.....Off  Allow interruption...On  Pause when done......On
+  Verbose messages....Off
+Tracing Options
+  Quality:  4
+  Bounding boxes.......On  Bounding threshold: 3 
+  Light Buffer.........On  Vista Buffer.........On  Draw Vista Buffer...Off
+  Antialiasing........Off
+  Radiosity...........Off
+Animation Options
+  Clock value....   0.000  (Animation off)
+Redirecting Options
+  All Streams to console..........On
+  Debug Stream to console.........On
+  Fatal Stream to console.........On
+  Render Stream to console........On
+  Statistics Stream to console....On
+  Warning Stream to console.......On
+
+
+Parsing...........
+
+Creating bounding slabs.
+Scene contains 13 frame level objects; 1 infinite.
+
+Creating vista buffer.
+Creating light buffers..
+Displaying...getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+
+The display ':0' is not a valid display,
+or you do not have permission to open a window there.
+Slab building error.
+
+Error opening X display.
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred comb -redir:sim ../../../results/povray_comb.txt -bpred:comb 32 ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov 
+
+sim: simulation started @ Thu Jan  1 02:21:42 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/povray_comb.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                   comb # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     2048 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      32 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn               14844543 # total number of instructions executed
+sim_num_refs                5400027 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches            2395010 # total number of branches executed
+sim_IPB                      6.1981 # instruction per branch
+bpred_comb.lookups          2395010 # total number of bpred lookups
+bpred_comb.updates          2395010 # total number of updates
+bpred_comb.addr_hits        2246218 # total number of address-predicted hits
+bpred_comb.dir_hits         2273604 # total number of direction-predicted hits (includes addr-hits)
+bpred_comb.used_bimod       1033999 # total number of bimodal predictions used
+bpred_comb.used_2lev         513705 # total number of 2-level predictions used
+bpred_comb.misses            121406 # total number of misses
+bpred_comb.jr_hits           344709 # total number of address-predicted hits for JR's
+bpred_comb.jr_seen           375711 # total number of JR's seen
+bpred_comb.jr_non_ras_hits.PP        16698 # total number of address-predicted hits for non-RAS JR's
+bpred_comb.jr_non_ras_seen.PP        36543 # total number of non-RAS JR's seen
+bpred_comb.bpred_addr_rate    0.9379 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_comb.bpred_dir_rate    0.9493 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_comb.bpred_jr_rate    0.9175 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_comb.bpred_jr_non_ras_rate.PP    0.4569 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_comb.retstack_pushes       339197 # total number of address pushed onto ret-addr stack
+bpred_comb.retstack_pops       339168 # total number of address popped off of ret-addr stack
+bpred_comb.used_ras.PP       339168 # total number of RAS predictions used
+bpred_comb.ras_hits.PP       328011 # total number of RAS hits
+bpred_comb.ras_rate.PP    0.9671 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+Persistence of Vision(tm) Ray Tracer Version 3.02.OSF1.cc
+  This is an unofficial version compiled by:
+  FILL IN NAME HERE.........................
+  The POV-Ray Team(tm) is not responsible for supporting this version.
+Copyright 1997 POV-Ray Team(tm)
+Parsing Options
+  Input file: showoff/mist.pov (compatible to version 3.0)
+  Remove bounds........On  Split unions........Off
+  Library paths: include
+Output Options
+  Image resolution 320 by 200 (rows 1 to 200, columns 1 to 320).
+  Rendering to screen only. No file output.
+  Graphic display......On  (type: 0, palette: 3, gamma:  2.2)
+  Mosaic preview......Off
+  CPU usage histogram.Off
+  Continued trace.....Off  Allow interruption...On  Pause when done......On
+  Verbose messages....Off
+Tracing Options
+  Quality:  4
+  Bounding boxes.......On  Bounding threshold: 3 
+  Light Buffer.........On  Vista Buffer.........On  Draw Vista Buffer...Off
+  Antialiasing........Off
+  Radiosity...........Off
+Animation Options
+  Clock value....   0.000  (Animation off)
+Redirecting Options
+  All Streams to console..........On
+  Debug Stream to console.........On
+  Fatal Stream to console.........On
+  Render Stream to console........On
+  Statistics Stream to console....On
+  Warning Stream to console.......On
+
+
+Parsing...........
+
+Creating bounding slabs.
+Scene contains 13 frame level objects; 1 infinite.
+
+Creating vista buffer.
+Creating light buffers..
+Displaying...getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+
+The display ':0' is not a valid display,
+or you do not have permission to open a window there.
+Slab building error.
+
+Error opening X display.
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred comb -redir:sim ../../../results/povray_comb.txt -bpred:comb 64 ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov 
+
+sim: simulation started @ Thu Jan  1 02:26:17 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/povray_comb.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                   comb # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     2048 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      64 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn               14844543 # total number of instructions executed
+sim_num_refs                5400027 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches            2395010 # total number of branches executed
+sim_IPB                      6.1981 # instruction per branch
+bpred_comb.lookups          2395010 # total number of bpred lookups
+bpred_comb.updates          2395010 # total number of updates
+bpred_comb.addr_hits        2253722 # total number of address-predicted hits
+bpred_comb.dir_hits         2281114 # total number of direction-predicted hits (includes addr-hits)
+bpred_comb.used_bimod       1022885 # total number of bimodal predictions used
+bpred_comb.used_2lev         524819 # total number of 2-level predictions used
+bpred_comb.misses            113896 # total number of misses
+bpred_comb.jr_hits           344709 # total number of address-predicted hits for JR's
+bpred_comb.jr_seen           375711 # total number of JR's seen
+bpred_comb.jr_non_ras_hits.PP        16698 # total number of address-predicted hits for non-RAS JR's
+bpred_comb.jr_non_ras_seen.PP        36543 # total number of non-RAS JR's seen
+bpred_comb.bpred_addr_rate    0.9410 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_comb.bpred_dir_rate    0.9524 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_comb.bpred_jr_rate    0.9175 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_comb.bpred_jr_non_ras_rate.PP    0.4569 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_comb.retstack_pushes       339197 # total number of address pushed onto ret-addr stack
+bpred_comb.retstack_pops       339168 # total number of address popped off of ret-addr stack
+bpred_comb.used_ras.PP       339168 # total number of RAS predictions used
+bpred_comb.ras_hits.PP       328011 # total number of RAS hits
+bpred_comb.ras_rate.PP    0.9671 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+Persistence of Vision(tm) Ray Tracer Version 3.02.OSF1.cc
+  This is an unofficial version compiled by:
+  FILL IN NAME HERE.........................
+  The POV-Ray Team(tm) is not responsible for supporting this version.
+Copyright 1997 POV-Ray Team(tm)
+Parsing Options
+  Input file: showoff/mist.pov (compatible to version 3.0)
+  Remove bounds........On  Split unions........Off
+  Library paths: include
+Output Options
+  Image resolution 320 by 200 (rows 1 to 200, columns 1 to 320).
+  Rendering to screen only. No file output.
+  Graphic display......On  (type: 0, palette: 3, gamma:  2.2)
+  Mosaic preview......Off
+  CPU usage histogram.Off
+  Continued trace.....Off  Allow interruption...On  Pause when done......On
+  Verbose messages....Off
+Tracing Options
+  Quality:  4
+  Bounding boxes.......On  Bounding threshold: 3 
+  Light Buffer.........On  Vista Buffer.........On  Draw Vista Buffer...Off
+  Antialiasing........Off
+  Radiosity...........Off
+Animation Options
+  Clock value....   0.000  (Animation off)
+Redirecting Options
+  All Streams to console..........On
+  Debug Stream to console.........On
+  Fatal Stream to console.........On
+  Render Stream to console........On
+  Statistics Stream to console....On
+  Warning Stream to console.......On
+
+
+Parsing...........
+
+Creating bounding slabs.
+Scene contains 13 frame level objects; 1 infinite.
+
+Creating vista buffer.
+Creating light buffers..
+Displaying...getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+
+The display ':0' is not a valid display,
+or you do not have permission to open a window there.
+Slab building error.
+
+Error opening X display.
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred comb -redir:sim ../../../results/povray_comb.txt -bpred:comb 128 ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov 
+
+sim: simulation started @ Thu Jan  1 03:28:54 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/povray_comb.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                   comb # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     2048 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      128 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn               14844543 # total number of instructions executed
+sim_num_refs                5400027 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches            2395010 # total number of branches executed
+sim_IPB                      6.1981 # instruction per branch
+bpred_comb.lookups          2395010 # total number of bpred lookups
+bpred_comb.updates          2395010 # total number of updates
+bpred_comb.addr_hits        2262131 # total number of address-predicted hits
+bpred_comb.dir_hits         2289511 # total number of direction-predicted hits (includes addr-hits)
+bpred_comb.used_bimod       1072109 # total number of bimodal predictions used
+bpred_comb.used_2lev         475595 # total number of 2-level predictions used
+bpred_comb.misses            105499 # total number of misses
+bpred_comb.jr_hits           344709 # total number of address-predicted hits for JR's
+bpred_comb.jr_seen           375711 # total number of JR's seen
+bpred_comb.jr_non_ras_hits.PP        16698 # total number of address-predicted hits for non-RAS JR's
+bpred_comb.jr_non_ras_seen.PP        36543 # total number of non-RAS JR's seen
+bpred_comb.bpred_addr_rate    0.9445 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_comb.bpred_dir_rate    0.9560 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_comb.bpred_jr_rate    0.9175 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_comb.bpred_jr_non_ras_rate.PP    0.4569 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_comb.retstack_pushes       339197 # total number of address pushed onto ret-addr stack
+bpred_comb.retstack_pops       339168 # total number of address popped off of ret-addr stack
+bpred_comb.used_ras.PP       339168 # total number of RAS predictions used
+bpred_comb.ras_hits.PP       328011 # total number of RAS hits
+bpred_comb.ras_rate.PP    0.9671 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+Persistence of Vision(tm) Ray Tracer Version 3.02.OSF1.cc
+  This is an unofficial version compiled by:
+  FILL IN NAME HERE.........................
+  The POV-Ray Team(tm) is not responsible for supporting this version.
+Copyright 1997 POV-Ray Team(tm)
+Parsing Options
+  Input file: showoff/mist.pov (compatible to version 3.0)
+  Remove bounds........On  Split unions........Off
+  Library paths: include
+Output Options
+  Image resolution 320 by 200 (rows 1 to 200, columns 1 to 320).
+  Rendering to screen only. No file output.
+  Graphic display......On  (type: 0, palette: 3, gamma:  2.2)
+  Mosaic preview......Off
+  CPU usage histogram.Off
+  Continued trace.....Off  Allow interruption...On  Pause when done......On
+  Verbose messages....Off
+Tracing Options
+  Quality:  4
+  Bounding boxes.......On  Bounding threshold: 3 
+  Light Buffer.........On  Vista Buffer.........On  Draw Vista Buffer...Off
+  Antialiasing........Off
+  Radiosity...........Off
+Animation Options
+  Clock value....   0.000  (Animation off)
+Redirecting Options
+  All Streams to console..........On
+  Debug Stream to console.........On
+  Fatal Stream to console.........On
+  Render Stream to console........On
+  Statistics Stream to console....On
+  Warning Stream to console.......On
+
+
+Parsing...........
+
+Creating bounding slabs.
+Scene contains 13 frame level objects; 1 infinite.
+
+Creating vista buffer.
+Creating light buffers..
+Displaying...getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+
+The display ':0' is not a valid display,
+or you do not have permission to open a window there.
+Slab building error.
+
+Error opening X display.
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred comb -redir:sim ../../../results/povray_comb.txt -bpred:comb 256 ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov 
+
+sim: simulation started @ Thu Jan  1 01:44:57 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/povray_comb.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                   comb # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     2048 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      256 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn               14844543 # total number of instructions executed
+sim_num_refs                5400027 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches            2395010 # total number of branches executed
+sim_IPB                      6.1981 # instruction per branch
+bpred_comb.lookups          2395010 # total number of bpred lookups
+bpred_comb.updates          2395010 # total number of updates
+bpred_comb.addr_hits        2268049 # total number of address-predicted hits
+bpred_comb.dir_hits         2295420 # total number of direction-predicted hits (includes addr-hits)
+bpred_comb.used_bimod       1124547 # total number of bimodal predictions used
+bpred_comb.used_2lev         423157 # total number of 2-level predictions used
+bpred_comb.misses             99590 # total number of misses
+bpred_comb.jr_hits           344709 # total number of address-predicted hits for JR's
+bpred_comb.jr_seen           375711 # total number of JR's seen
+bpred_comb.jr_non_ras_hits.PP        16698 # total number of address-predicted hits for non-RAS JR's
+bpred_comb.jr_non_ras_seen.PP        36543 # total number of non-RAS JR's seen
+bpred_comb.bpred_addr_rate    0.9470 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_comb.bpred_dir_rate    0.9584 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_comb.bpred_jr_rate    0.9175 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_comb.bpred_jr_non_ras_rate.PP    0.4569 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_comb.retstack_pushes       339197 # total number of address pushed onto ret-addr stack
+bpred_comb.retstack_pops       339168 # total number of address popped off of ret-addr stack
+bpred_comb.used_ras.PP       339168 # total number of RAS predictions used
+bpred_comb.ras_hits.PP       328011 # total number of RAS hits
+bpred_comb.ras_rate.PP    0.9671 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+Persistence of Vision(tm) Ray Tracer Version 3.02.OSF1.cc
+  This is an unofficial version compiled by:
+  FILL IN NAME HERE.........................
+  The POV-Ray Team(tm) is not responsible for supporting this version.
+Copyright 1997 POV-Ray Team(tm)
+Parsing Options
+  Input file: showoff/mist.pov (compatible to version 3.0)
+  Remove bounds........On  Split unions........Off
+  Library paths: include
+Output Options
+  Image resolution 320 by 200 (rows 1 to 200, columns 1 to 320).
+  Rendering to screen only. No file output.
+  Graphic display......On  (type: 0, palette: 3, gamma:  2.2)
+  Mosaic preview......Off
+  CPU usage histogram.Off
+  Continued trace.....Off  Allow interruption...On  Pause when done......On
+  Verbose messages....Off
+Tracing Options
+  Quality:  4
+  Bounding boxes.......On  Bounding threshold: 3 
+  Light Buffer.........On  Vista Buffer.........On  Draw Vista Buffer...Off
+  Antialiasing........Off
+  Radiosity...........Off
+Animation Options
+  Clock value....   0.000  (Animation off)
+Redirecting Options
+  All Streams to console..........On
+  Debug Stream to console.........On
+  Fatal Stream to console.........On
+  Render Stream to console........On
+  Statistics Stream to console....On
+  Warning Stream to console.......On
+
+
+Parsing...........
+
+Creating bounding slabs.
+Scene contains 13 frame level objects; 1 infinite.
+
+Creating vista buffer.
+Creating light buffers..
+Displaying...getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+
+The display ':0' is not a valid display,
+or you do not have permission to open a window there.
+Slab building error.
+
+Error opening X display.
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred comb -redir:sim ../../../results/povray_comb.txt -bpred:comb 512 ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov 
+
+sim: simulation started @ Thu Jan  1 03:06:59 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/povray_comb.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                   comb # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     2048 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      512 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn               14844543 # total number of instructions executed
+sim_num_refs                5400027 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches            2395010 # total number of branches executed
+sim_IPB                      6.1981 # instruction per branch
+bpred_comb.lookups          2395010 # total number of bpred lookups
+bpred_comb.updates          2395010 # total number of updates
+bpred_comb.addr_hits        2271511 # total number of address-predicted hits
+bpred_comb.dir_hits         2298846 # total number of direction-predicted hits (includes addr-hits)
+bpred_comb.used_bimod       1119861 # total number of bimodal predictions used
+bpred_comb.used_2lev         427843 # total number of 2-level predictions used
+bpred_comb.misses             96164 # total number of misses
+bpred_comb.jr_hits           344709 # total number of address-predicted hits for JR's
+bpred_comb.jr_seen           375711 # total number of JR's seen
+bpred_comb.jr_non_ras_hits.PP        16698 # total number of address-predicted hits for non-RAS JR's
+bpred_comb.jr_non_ras_seen.PP        36543 # total number of non-RAS JR's seen
+bpred_comb.bpred_addr_rate    0.9484 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_comb.bpred_dir_rate    0.9598 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_comb.bpred_jr_rate    0.9175 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_comb.bpred_jr_non_ras_rate.PP    0.4569 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_comb.retstack_pushes       339197 # total number of address pushed onto ret-addr stack
+bpred_comb.retstack_pops       339168 # total number of address popped off of ret-addr stack
+bpred_comb.used_ras.PP       339168 # total number of RAS predictions used
+bpred_comb.ras_hits.PP       328011 # total number of RAS hits
+bpred_comb.ras_rate.PP    0.9671 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+Persistence of Vision(tm) Ray Tracer Version 3.02.OSF1.cc
+  This is an unofficial version compiled by:
+  FILL IN NAME HERE.........................
+  The POV-Ray Team(tm) is not responsible for supporting this version.
+Copyright 1997 POV-Ray Team(tm)
+Parsing Options
+  Input file: showoff/mist.pov (compatible to version 3.0)
+  Remove bounds........On  Split unions........Off
+  Library paths: include
+Output Options
+  Image resolution 320 by 200 (rows 1 to 200, columns 1 to 320).
+  Rendering to screen only. No file output.
+  Graphic display......On  (type: 0, palette: 3, gamma:  2.2)
+  Mosaic preview......Off
+  CPU usage histogram.Off
+  Continued trace.....Off  Allow interruption...On  Pause when done......On
+  Verbose messages....Off
+Tracing Options
+  Quality:  4
+  Bounding boxes.......On  Bounding threshold: 3 
+  Light Buffer.........On  Vista Buffer.........On  Draw Vista Buffer...Off
+  Antialiasing........Off
+  Radiosity...........Off
+Animation Options
+  Clock value....   0.000  (Animation off)
+Redirecting Options
+  All Streams to console..........On
+  Debug Stream to console.........On
+  Fatal Stream to console.........On
+  Render Stream to console........On
+  Statistics Stream to console....On
+  Warning Stream to console.......On
+
+
+Parsing...........
+
+Creating bounding slabs.
+Scene contains 13 frame level objects; 1 infinite.
+
+Creating vista buffer.
+Creating light buffers..
+Displaying...getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+
+The display ':0' is not a valid display,
+or you do not have permission to open a window there.
+Slab building error.
+
+Error opening X display.
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred comb -redir:sim ../../../results/povray_comb.txt -bpred:comb 1024 ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov 
+
+sim: simulation started @ Thu Jan  1 01:19:41 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/povray_comb.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                   comb # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     2048 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      1024 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn               14844543 # total number of instructions executed
+sim_num_refs                5400027 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches            2395010 # total number of branches executed
+sim_IPB                      6.1981 # instruction per branch
+bpred_comb.lookups          2395010 # total number of bpred lookups
+bpred_comb.updates          2395010 # total number of updates
+bpred_comb.addr_hits        2272599 # total number of address-predicted hits
+bpred_comb.dir_hits         2299903 # total number of direction-predicted hits (includes addr-hits)
+bpred_comb.used_bimod       1116594 # total number of bimodal predictions used
+bpred_comb.used_2lev         431110 # total number of 2-level predictions used
+bpred_comb.misses             95107 # total number of misses
+bpred_comb.jr_hits           344709 # total number of address-predicted hits for JR's
+bpred_comb.jr_seen           375711 # total number of JR's seen
+bpred_comb.jr_non_ras_hits.PP        16698 # total number of address-predicted hits for non-RAS JR's
+bpred_comb.jr_non_ras_seen.PP        36543 # total number of non-RAS JR's seen
+bpred_comb.bpred_addr_rate    0.9489 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_comb.bpred_dir_rate    0.9603 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_comb.bpred_jr_rate    0.9175 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_comb.bpred_jr_non_ras_rate.PP    0.4569 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_comb.retstack_pushes       339197 # total number of address pushed onto ret-addr stack
+bpred_comb.retstack_pops       339168 # total number of address popped off of ret-addr stack
+bpred_comb.used_ras.PP       339168 # total number of RAS predictions used
+bpred_comb.ras_hits.PP       328011 # total number of RAS hits
+bpred_comb.ras_rate.PP    0.9671 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+Persistence of Vision(tm) Ray Tracer Version 3.02.OSF1.cc
+  This is an unofficial version compiled by:
+  FILL IN NAME HERE.........................
+  The POV-Ray Team(tm) is not responsible for supporting this version.
+Copyright 1997 POV-Ray Team(tm)
+Parsing Options
+  Input file: showoff/mist.pov (compatible to version 3.0)
+  Remove bounds........On  Split unions........Off
+  Library paths: include
+Output Options
+  Image resolution 320 by 200 (rows 1 to 200, columns 1 to 320).
+  Rendering to screen only. No file output.
+  Graphic display......On  (type: 0, palette: 3, gamma:  2.2)
+  Mosaic preview......Off
+  CPU usage histogram.Off
+  Continued trace.....Off  Allow interruption...On  Pause when done......On
+  Verbose messages....Off
+Tracing Options
+  Quality:  4
+  Bounding boxes.......On  Bounding threshold: 3 
+  Light Buffer.........On  Vista Buffer.........On  Draw Vista Buffer...Off
+  Antialiasing........Off
+  Radiosity...........Off
+Animation Options
+  Clock value....   0.000  (Animation off)
+Redirecting Options
+  All Streams to console..........On
+  Debug Stream to console.........On
+  Fatal Stream to console.........On
+  Render Stream to console........On
+  Statistics Stream to console....On
+  Warning Stream to console.......On
+
+
+Parsing...........
+
+Creating bounding slabs.
+Scene contains 13 frame level objects; 1 infinite.
+
+Creating vista buffer.
+Creating light buffers..
+Displaying...getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+
+The display ':0' is not a valid display,
+or you do not have permission to open a window there.
+Slab building error.
+
+Error opening X display.
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred comb -redir:sim ../../../results/povray_comb.txt -bpred:comb 2048 ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov 
+
+sim: simulation started @ Thu Jan  1 02:38:13 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/povray_comb.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                   comb # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     2048 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      2048 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn               14844543 # total number of instructions executed
+sim_num_refs                5400027 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches            2395010 # total number of branches executed
+sim_IPB                      6.1981 # instruction per branch
+bpred_comb.lookups          2395010 # total number of bpred lookups
+bpred_comb.updates          2395010 # total number of updates
+bpred_comb.addr_hits        2273189 # total number of address-predicted hits
+bpred_comb.dir_hits         2300431 # total number of direction-predicted hits (includes addr-hits)
+bpred_comb.used_bimod       1113097 # total number of bimodal predictions used
+bpred_comb.used_2lev         434607 # total number of 2-level predictions used
+bpred_comb.misses             94579 # total number of misses
+bpred_comb.jr_hits           344709 # total number of address-predicted hits for JR's
+bpred_comb.jr_seen           375711 # total number of JR's seen
+bpred_comb.jr_non_ras_hits.PP        16698 # total number of address-predicted hits for non-RAS JR's
+bpred_comb.jr_non_ras_seen.PP        36543 # total number of non-RAS JR's seen
+bpred_comb.bpred_addr_rate    0.9491 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_comb.bpred_dir_rate    0.9605 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_comb.bpred_jr_rate    0.9175 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_comb.bpred_jr_non_ras_rate.PP    0.4569 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_comb.retstack_pushes       339197 # total number of address pushed onto ret-addr stack
+bpred_comb.retstack_pops       339168 # total number of address popped off of ret-addr stack
+bpred_comb.used_ras.PP       339168 # total number of RAS predictions used
+bpred_comb.ras_hits.PP       328011 # total number of RAS hits
+bpred_comb.ras_rate.PP    0.9671 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+Persistence of Vision(tm) Ray Tracer Version 3.02.OSF1.cc
+  This is an unofficial version compiled by:
+  FILL IN NAME HERE.........................
+  The POV-Ray Team(tm) is not responsible for supporting this version.
+Copyright 1997 POV-Ray Team(tm)
+Parsing Options
+  Input file: showoff/mist.pov (compatible to version 3.0)
+  Remove bounds........On  Split unions........Off
+  Library paths: include
+Output Options
+  Image resolution 320 by 200 (rows 1 to 200, columns 1 to 320).
+  Rendering to screen only. No file output.
+  Graphic display......On  (type: 0, palette: 3, gamma:  2.2)
+  Mosaic preview......Off
+  CPU usage histogram.Off
+  Continued trace.....Off  Allow interruption...On  Pause when done......On
+  Verbose messages....Off
+Tracing Options
+  Quality:  4
+  Bounding boxes.......On  Bounding threshold: 3 
+  Light Buffer.........On  Vista Buffer.........On  Draw Vista Buffer...Off
+  Antialiasing........Off
+  Radiosity...........Off
+Animation Options
+  Clock value....   0.000  (Animation off)
+Redirecting Options
+  All Streams to console..........On
+  Debug Stream to console.........On
+  Fatal Stream to console.........On
+  Render Stream to console........On
+  Statistics Stream to console....On
+  Warning Stream to console.......On
+
+
+Parsing...........
+
+Creating bounding slabs.
+Scene contains 13 frame level objects; 1 infinite.
+
+Creating vista buffer.
+Creating light buffers..
+Displaying...getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+
+The display ':0' is not a valid display,
+or you do not have permission to open a window there.
+Slab building error.
+
+Error opening X display.
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred comb -redir:sim ../../../results/povray_comb.txt -bpred:comb 4096 ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov 
+
+sim: simulation started @ Thu Jan  1 02:35:32 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/povray_comb.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                   comb # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     2048 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      4096 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn               14844543 # total number of instructions executed
+sim_num_refs                5400027 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches            2395010 # total number of branches executed
+sim_IPB                      6.1981 # instruction per branch
+bpred_comb.lookups          2395010 # total number of bpred lookups
+bpred_comb.updates          2395010 # total number of updates
+bpred_comb.addr_hits        2274161 # total number of address-predicted hits
+bpred_comb.dir_hits         2301394 # total number of direction-predicted hits (includes addr-hits)
+bpred_comb.used_bimod       1124923 # total number of bimodal predictions used
+bpred_comb.used_2lev         422781 # total number of 2-level predictions used
+bpred_comb.misses             93616 # total number of misses
+bpred_comb.jr_hits           344709 # total number of address-predicted hits for JR's
+bpred_comb.jr_seen           375711 # total number of JR's seen
+bpred_comb.jr_non_ras_hits.PP        16698 # total number of address-predicted hits for non-RAS JR's
+bpred_comb.jr_non_ras_seen.PP        36543 # total number of non-RAS JR's seen
+bpred_comb.bpred_addr_rate    0.9495 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_comb.bpred_dir_rate    0.9609 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_comb.bpred_jr_rate    0.9175 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_comb.bpred_jr_non_ras_rate.PP    0.4569 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_comb.retstack_pushes       339197 # total number of address pushed onto ret-addr stack
+bpred_comb.retstack_pops       339168 # total number of address popped off of ret-addr stack
+bpred_comb.used_ras.PP       339168 # total number of RAS predictions used
+bpred_comb.ras_hits.PP       328011 # total number of RAS hits
+bpred_comb.ras_rate.PP    0.9671 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+Persistence of Vision(tm) Ray Tracer Version 3.02.OSF1.cc
+  This is an unofficial version compiled by:
+  FILL IN NAME HERE.........................
+  The POV-Ray Team(tm) is not responsible for supporting this version.
+Copyright 1997 POV-Ray Team(tm)
+Parsing Options
+  Input file: showoff/mist.pov (compatible to version 3.0)
+  Remove bounds........On  Split unions........Off
+  Library paths: include
+Output Options
+  Image resolution 320 by 200 (rows 1 to 200, columns 1 to 320).
+  Rendering to screen only. No file output.
+  Graphic display......On  (type: 0, palette: 3, gamma:  2.2)
+  Mosaic preview......Off
+  CPU usage histogram.Off
+  Continued trace.....Off  Allow interruption...On  Pause when done......On
+  Verbose messages....Off
+Tracing Options
+  Quality:  4
+  Bounding boxes.......On  Bounding threshold: 3 
+  Light Buffer.........On  Vista Buffer.........On  Draw Vista Buffer...Off
+  Antialiasing........Off
+  Radiosity...........Off
+Animation Options
+  Clock value....   0.000  (Animation off)
+Redirecting Options
+  All Streams to console..........On
+  Debug Stream to console.........On
+  Fatal Stream to console.........On
+  Render Stream to console........On
+  Statistics Stream to console....On
+  Warning Stream to console.......On
+
+
+Parsing...........
+
+Creating bounding slabs.
+Scene contains 13 frame level objects; 1 infinite.
+
+Creating vista buffer.
+Creating light buffers..
+Displaying...getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+
+The display ':0' is not a valid display,
+or you do not have permission to open a window there.
+Slab building error.
+
+Error opening X display.
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred comb -redir:sim ../../../results/povray_comb.txt -bpred:comb 8192 ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov 
+
+sim: simulation started @ Thu Jan  1 01:47:16 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/povray_comb.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                   comb # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     2048 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      8192 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn               14844543 # total number of instructions executed
+sim_num_refs                5400027 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches            2395010 # total number of branches executed
+sim_IPB                      6.1981 # instruction per branch
+bpred_comb.lookups          2395010 # total number of bpred lookups
+bpred_comb.updates          2395010 # total number of updates
+bpred_comb.addr_hits        2274438 # total number of address-predicted hits
+bpred_comb.dir_hits         2301677 # total number of direction-predicted hits (includes addr-hits)
+bpred_comb.used_bimod       1126672 # total number of bimodal predictions used
+bpred_comb.used_2lev         421032 # total number of 2-level predictions used
+bpred_comb.misses             93333 # total number of misses
+bpred_comb.jr_hits           344709 # total number of address-predicted hits for JR's
+bpred_comb.jr_seen           375711 # total number of JR's seen
+bpred_comb.jr_non_ras_hits.PP        16698 # total number of address-predicted hits for non-RAS JR's
+bpred_comb.jr_non_ras_seen.PP        36543 # total number of non-RAS JR's seen
+bpred_comb.bpred_addr_rate    0.9497 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_comb.bpred_dir_rate    0.9610 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_comb.bpred_jr_rate    0.9175 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_comb.bpred_jr_non_ras_rate.PP    0.4569 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_comb.retstack_pushes       339197 # total number of address pushed onto ret-addr stack
+bpred_comb.retstack_pops       339168 # total number of address popped off of ret-addr stack
+bpred_comb.used_ras.PP       339168 # total number of RAS predictions used
+bpred_comb.ras_hits.PP       328011 # total number of RAS hits
+bpred_comb.ras_rate.PP    0.9671 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+Persistence of Vision(tm) Ray Tracer Version 3.02.OSF1.cc
+  This is an unofficial version compiled by:
+  FILL IN NAME HERE.........................
+  The POV-Ray Team(tm) is not responsible for supporting this version.
+Copyright 1997 POV-Ray Team(tm)
+Parsing Options
+  Input file: showoff/mist.pov (compatible to version 3.0)
+  Remove bounds........On  Split unions........Off
+  Library paths: include
+Output Options
+  Image resolution 320 by 200 (rows 1 to 200, columns 1 to 320).
+  Rendering to screen only. No file output.
+  Graphic display......On  (type: 0, palette: 3, gamma:  2.2)
+  Mosaic preview......Off
+  CPU usage histogram.Off
+  Continued trace.....Off  Allow interruption...On  Pause when done......On
+  Verbose messages....Off
+Tracing Options
+  Quality:  4
+  Bounding boxes.......On  Bounding threshold: 3 
+  Light Buffer.........On  Vista Buffer.........On  Draw Vista Buffer...Off
+  Antialiasing........Off
+  Radiosity...........Off
+Animation Options
+  Clock value....   0.000  (Animation off)
+Redirecting Options
+  All Streams to console..........On
+  Debug Stream to console.........On
+  Fatal Stream to console.........On
+  Render Stream to console........On
+  Statistics Stream to console....On
+  Warning Stream to console.......On
+
+
+Parsing...........
+
+Creating bounding slabs.
+Scene contains 13 frame level objects; 1 infinite.
+
+Creating vista buffer.
+Creating light buffers..
+Displaying...getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+
+The display ':0' is not a valid display,
+or you do not have permission to open a window there.
+Slab building error.
+
+Error opening X display.
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred comb -redir:sim ../../../results/povray_comb.txt -bpred:comb 16384 ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov 
+
+sim: simulation started @ Thu Jan  1 01:40:46 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/povray_comb.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                   comb # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     2048 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      16384 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn               14844543 # total number of instructions executed
+sim_num_refs                5400027 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches            2395010 # total number of branches executed
+sim_IPB                      6.1981 # instruction per branch
+bpred_comb.lookups          2395010 # total number of bpred lookups
+bpred_comb.updates          2395010 # total number of updates
+bpred_comb.addr_hits        2275432 # total number of address-predicted hits
+bpred_comb.dir_hits         2302675 # total number of direction-predicted hits (includes addr-hits)
+bpred_comb.used_bimod       1125893 # total number of bimodal predictions used
+bpred_comb.used_2lev         421811 # total number of 2-level predictions used
+bpred_comb.misses             92335 # total number of misses
+bpred_comb.jr_hits           344709 # total number of address-predicted hits for JR's
+bpred_comb.jr_seen           375711 # total number of JR's seen
+bpred_comb.jr_non_ras_hits.PP        16698 # total number of address-predicted hits for non-RAS JR's
+bpred_comb.jr_non_ras_seen.PP        36543 # total number of non-RAS JR's seen
+bpred_comb.bpred_addr_rate    0.9501 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_comb.bpred_dir_rate    0.9614 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_comb.bpred_jr_rate    0.9175 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_comb.bpred_jr_non_ras_rate.PP    0.4569 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_comb.retstack_pushes       339197 # total number of address pushed onto ret-addr stack
+bpred_comb.retstack_pops       339168 # total number of address popped off of ret-addr stack
+bpred_comb.used_ras.PP       339168 # total number of RAS predictions used
+bpred_comb.ras_hits.PP       328011 # total number of RAS hits
+bpred_comb.ras_rate.PP    0.9671 # RAS prediction rate (i.e., RAS hits/used RAS)
+
+Persistence of Vision(tm) Ray Tracer Version 3.02.OSF1.cc
+  This is an unofficial version compiled by:
+  FILL IN NAME HERE.........................
+  The POV-Ray Team(tm) is not responsible for supporting this version.
+Copyright 1997 POV-Ray Team(tm)
+Parsing Options
+  Input file: showoff/mist.pov (compatible to version 3.0)
+  Remove bounds........On  Split unions........Off
+  Library paths: include
+Output Options
+  Image resolution 320 by 200 (rows 1 to 200, columns 1 to 320).
+  Rendering to screen only. No file output.
+  Graphic display......On  (type: 0, palette: 3, gamma:  2.2)
+  Mosaic preview......Off
+  CPU usage histogram.Off
+  Continued trace.....Off  Allow interruption...On  Pause when done......On
+  Verbose messages....Off
+Tracing Options
+  Quality:  4
+  Bounding boxes.......On  Bounding threshold: 3 
+  Light Buffer.........On  Vista Buffer.........On  Draw Vista Buffer...Off
+  Antialiasing........Off
+  Radiosity...........Off
+Animation Options
+  Clock value....   0.000  (Animation off)
+Redirecting Options
+  All Streams to console..........On
+  Debug Stream to console.........On
+  Fatal Stream to console.........On
+  Render Stream to console........On
+  Statistics Stream to console....On
+  Warning Stream to console.......On
+
+
+Parsing...........
+
+Creating bounding slabs.
+Scene contains 13 frame level objects; 1 infinite.
+
+Creating vista buffer.
+Creating light buffers..
+Displaying...getsvc: stat of /etc/svc.conf failed
+getsvc: stat failed: No such file or directory
+
+The display ':0' is not a valid display,
+or you do not have permission to open a window there.
+Slab building error.
+
+Error opening X display.
+sim-bpred: SimpleScalar/Alpha Tool Set version 3.0 of March, 2023.
+Copyright (c) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
+All Rights Reserved. This version of SimpleScalar is licensed for academic
+non-commercial use.  No portion of this work may be used by any commercial
+entity, or for any commercial purpose, without the prior written permission
+of SimpleScalar, LLC (info@simplescalar.com).
+
+warning: section `.comment' ignored...
+sim: command line: ../../../simplesim-3.0/sim-bpred -bpred comb -redir:sim ../../../results/povray_comb.txt -bpred:comb 32768 ./x-povray povray.ini -W320 -H200 -F +D -Q4 +I showoff/mist.pov 
+
+sim: simulation started @ Thu Jan  1 03:25:47 1970, options follow:
+
+sim-bpred: This simulator implements a branch predictor analyzer.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     ../../../results/povray_comb.txt # redirect simulator output to file (non-interactive only)
+# -redir:prog          <null> # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-bpred                   comb # branch predictor type {nottaken|taken|bimod|2lev|comb|opcode|opcodecomb}
+-bpred:bimod     2048 # bimodal predictor config (<table size>)
+-bpred:2lev      1 1024 8 0 # 2-level predictor config (<l1size> <l2size> <hist_size> <xor>)
+-bpred:comb      32768 # combining predictor config (<meta_table_size>)
+-bpred:opcode    2048 # opcode predictor config (<meta_table_size>)
+-bpred:opcodecomb 1024 # opcode hybrid combining predictor config (<meta_table_size>)
+-bpred:ras                  8 # return address stack size (0 for no return stack)
+-bpred:btb       512 4 # BTB config (<num_sets> <associativity>)
+
+  Branch predictor configuration examples for 2-level predictor:
+    Configurations:   N, M, W, X
+      N   # entries in first level (# of shift register(s))
+      W   width of shift register(s)
+      M   # entries in 2nd level (# of counters, or other FSM)
+      X   (yes-1/no-0) xor history and address for 2nd level index
+    Sample predictors:
+      GAg     : 1, W, 2^W, 0
+      GAp     : 1, W, M (M > 2^W), 0
+      PAg     : N, W, 2^W, 0
+      PAp     : N, W, M (M == 2^(N+W)), 0
+      gshare  : 1, W, 2^W, 1
+  Predictor `comb' combines a bimodal and a 2-level predictor.
+
+
+
+sim: ** starting functional simulation w/ predictors **
+warning: partially supported sigprocmask() call...
+
+sim: ** simulation statistics **
+sim_num_insn               14844543 # total number of instructions executed
+sim_num_refs                5400027 # total number of loads and stores executed
+sim_elapsed_time             0.0000 # total simulation time in seconds
+sim_inst_rate          <error: divide by zero> # simulation speed (in insts/sec)
+sim_num_branches            2395010 # total number of branches executed
+sim_IPB                      6.1981 # instruction per branch
+bpred_comb.lookups          2395010 # total number of bpred lookups
+bpred_comb.updates          2395010 # total number of updates
+bpred_comb.addr_hits        2275730 # total number of address-predicted hits
+bpred_comb.dir_hits         2302980 # total number of direction-predicted hits (includes addr-hits)
+bpred_comb.used_bimod       1125470 # total number of bimodal predictions used
+bpred_comb.used_2lev         422234 # total number of 2-level predictions used
+bpred_comb.misses             92030 # total number of misses
+bpred_comb.jr_hits           344709 # total number of address-predicted hits for JR's
+bpred_comb.jr_seen           375711 # total number of JR's seen
+bpred_comb.jr_non_ras_hits.PP        16698 # total number of address-predicted hits for non-RAS JR's
+bpred_comb.jr_non_ras_seen.PP        36543 # total number of non-RAS JR's seen
+bpred_comb.bpred_addr_rate    0.9502 # branch address-prediction rate (i.e., addr-hits/updates)
+bpred_comb.bpred_dir_rate    0.9616 # branch direction-prediction rate (i.e., all-hits/updates)
+bpred_comb.bpred_jr_rate    0.9175 # JR address-prediction rate (i.e., JR addr-hits/JRs seen)
+bpred_comb.bpred_jr_non_ras_rate.PP    0.4569 # non-RAS JR addr-pred rate (ie, non-RAS JR hits/JRs seen)
+bpred_comb.retstack_pushes       339197 # total number of address pushed onto ret-addr stack
+bpred_comb.retstack_pops       339168 # total number of address popped off of ret-addr stack
+bpred_comb.used_ras.PP       339168 # total number of RAS predictions used
+bpred_comb.ras_hits.PP       328011 # total number of RAS hits
+bpred_comb.ras_rate.PP    0.9671 # RAS prediction rate (i.e., RAS hits/used RAS)
+
