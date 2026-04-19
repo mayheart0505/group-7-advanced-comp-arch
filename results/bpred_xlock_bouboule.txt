@@ -1,0 +1,208 @@
+===== BIMOD SIZE 8 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_bimod.misses             8183 # total number of misses
+bpred_bimod.bpred_dir_rate    0.7704 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODE SIZE 8 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcode.misses            9328 # total number of misses
+bpred_opcode.bpred_dir_rate    0.7383 # branch direction-prediction rate (i.e., all-hits/updates)
+===== COMB SIZE 8 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_comb.misses              3063 # total number of misses
+bpred_comb.bpred_dir_rate    0.9141 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODECOMB SIZE 8 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcodecomb.misses         3259 # total number of misses
+bpred_opcodecomb.bpred_dir_rate    0.9086 # branch direction-prediction rate (i.e., all-hits/updates)
+===== BIMOD SIZE 16 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_bimod.misses             6937 # total number of misses
+bpred_bimod.bpred_dir_rate    0.8054 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODE SIZE 16 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcode.misses            7418 # total number of misses
+bpred_opcode.bpred_dir_rate    0.7919 # branch direction-prediction rate (i.e., all-hits/updates)
+===== COMB SIZE 16 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_comb.misses              2881 # total number of misses
+bpred_comb.bpred_dir_rate    0.9192 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODECOMB SIZE 16 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcodecomb.misses         3286 # total number of misses
+bpred_opcodecomb.bpred_dir_rate    0.9078 # branch direction-prediction rate (i.e., all-hits/updates)
+===== BIMOD SIZE 32 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_bimod.misses             6251 # total number of misses
+bpred_bimod.bpred_dir_rate    0.8246 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODE SIZE 32 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcode.misses            6285 # total number of misses
+bpred_opcode.bpred_dir_rate    0.8236 # branch direction-prediction rate (i.e., all-hits/updates)
+===== COMB SIZE 32 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_comb.misses              2854 # total number of misses
+bpred_comb.bpred_dir_rate    0.9199 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODECOMB SIZE 32 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcodecomb.misses         3346 # total number of misses
+bpred_opcodecomb.bpred_dir_rate    0.9061 # branch direction-prediction rate (i.e., all-hits/updates)
+===== BIMOD SIZE 64 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_bimod.misses             5522 # total number of misses
+bpred_bimod.bpred_dir_rate    0.8451 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODE SIZE 64 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcode.misses            5602 # total number of misses
+bpred_opcode.bpred_dir_rate    0.8428 # branch direction-prediction rate (i.e., all-hits/updates)
+===== COMB SIZE 64 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_comb.misses              2755 # total number of misses
+bpred_comb.bpred_dir_rate    0.9227 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODECOMB SIZE 64 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcodecomb.misses         3286 # total number of misses
+bpred_opcodecomb.bpred_dir_rate    0.9078 # branch direction-prediction rate (i.e., all-hits/updates)
+===== BIMOD SIZE 128 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_bimod.misses             4682 # total number of misses
+bpred_bimod.bpred_dir_rate    0.8686 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODE SIZE 128 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcode.misses            4728 # total number of misses
+bpred_opcode.bpred_dir_rate    0.8673 # branch direction-prediction rate (i.e., all-hits/updates)
+===== COMB SIZE 128 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_comb.misses              2720 # total number of misses
+bpred_comb.bpred_dir_rate    0.9237 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODECOMB SIZE 128 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcodecomb.misses         3358 # total number of misses
+bpred_opcodecomb.bpred_dir_rate    0.9058 # branch direction-prediction rate (i.e., all-hits/updates)
+===== BIMOD SIZE 256 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_bimod.misses             4099 # total number of misses
+bpred_bimod.bpred_dir_rate    0.8850 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODE SIZE 256 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcode.misses            3951 # total number of misses
+bpred_opcode.bpred_dir_rate    0.8891 # branch direction-prediction rate (i.e., all-hits/updates)
+===== COMB SIZE 256 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_comb.misses              2710 # total number of misses
+bpred_comb.bpred_dir_rate    0.9240 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODECOMB SIZE 256 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcodecomb.misses         3419 # total number of misses
+bpred_opcodecomb.bpred_dir_rate    0.9041 # branch direction-prediction rate (i.e., all-hits/updates)
+===== BIMOD SIZE 512 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_bimod.misses             3664 # total number of misses
+bpred_bimod.bpred_dir_rate    0.8972 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODE SIZE 512 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcode.misses            3678 # total number of misses
+bpred_opcode.bpred_dir_rate    0.8968 # branch direction-prediction rate (i.e., all-hits/updates)
+===== COMB SIZE 512 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_comb.misses              2691 # total number of misses
+bpred_comb.bpred_dir_rate    0.9245 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODECOMB SIZE 512 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcodecomb.misses         3408 # total number of misses
+bpred_opcodecomb.bpred_dir_rate    0.9044 # branch direction-prediction rate (i.e., all-hits/updates)
+===== BIMOD SIZE 1024 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_bimod.misses             3185 # total number of misses
+bpred_bimod.bpred_dir_rate    0.9106 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODE SIZE 1024 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcode.misses            3285 # total number of misses
+bpred_opcode.bpred_dir_rate    0.9078 # branch direction-prediction rate (i.e., all-hits/updates)
+===== COMB SIZE 1024 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_comb.misses              2651 # total number of misses
+bpred_comb.bpred_dir_rate    0.9256 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODECOMB SIZE 1024 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcodecomb.misses         3289 # total number of misses
+bpred_opcodecomb.bpred_dir_rate    0.9077 # branch direction-prediction rate (i.e., all-hits/updates)
+===== BIMOD SIZE 2048 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_bimod.misses             3131 # total number of misses
+bpred_bimod.bpred_dir_rate    0.9121 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODE SIZE 2048 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcode.misses            3212 # total number of misses
+bpred_opcode.bpred_dir_rate    0.9099 # branch direction-prediction rate (i.e., all-hits/updates)
+===== COMB SIZE 2048 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_comb.misses              2656 # total number of misses
+bpred_comb.bpred_dir_rate    0.9255 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODECOMB SIZE 2048 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcodecomb.misses         3308 # total number of misses
+bpred_opcodecomb.bpred_dir_rate    0.9072 # branch direction-prediction rate (i.e., all-hits/updates)
+===== BIMOD SIZE 4096 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_bimod.misses             3041 # total number of misses
+bpred_bimod.bpred_dir_rate    0.9147 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODE SIZE 4096 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcode.misses            3108 # total number of misses
+bpred_opcode.bpred_dir_rate    0.9128 # branch direction-prediction rate (i.e., all-hits/updates)
+===== COMB SIZE 4096 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_comb.misses              2643 # total number of misses
+bpred_comb.bpred_dir_rate    0.9258 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODECOMB SIZE 4096 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcodecomb.misses         3311 # total number of misses
+bpred_opcodecomb.bpred_dir_rate    0.9071 # branch direction-prediction rate (i.e., all-hits/updates)
+===== BIMOD SIZE 8192 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_bimod.misses             3018 # total number of misses
+bpred_bimod.bpred_dir_rate    0.9153 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODE SIZE 8192 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcode.misses            3053 # total number of misses
+bpred_opcode.bpred_dir_rate    0.9143 # branch direction-prediction rate (i.e., all-hits/updates)
+===== COMB SIZE 8192 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_comb.misses              2641 # total number of misses
+bpred_comb.bpred_dir_rate    0.9259 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODECOMB SIZE 8192 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcodecomb.misses         3320 # total number of misses
+bpred_opcodecomb.bpred_dir_rate    0.9068 # branch direction-prediction rate (i.e., all-hits/updates)
+===== BIMOD SIZE 16384 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_bimod.misses             2952 # total number of misses
+bpred_bimod.bpred_dir_rate    0.9172 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODE SIZE 16384 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcode.misses            3040 # total number of misses
+bpred_opcode.bpred_dir_rate    0.9147 # branch direction-prediction rate (i.e., all-hits/updates)
+===== COMB SIZE 16384 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_comb.misses              2632 # total number of misses
+bpred_comb.bpred_dir_rate    0.9261 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODECOMB SIZE 16384 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcodecomb.misses         3322 # total number of misses
+bpred_opcodecomb.bpred_dir_rate    0.9068 # branch direction-prediction rate (i.e., all-hits/updates)
+===== BIMOD SIZE 32768 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_bimod.misses             2953 # total number of misses
+bpred_bimod.bpred_dir_rate    0.9171 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODE SIZE 32768 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcode.misses            3023 # total number of misses
+bpred_opcode.bpred_dir_rate    0.9152 # branch direction-prediction rate (i.e., all-hits/updates)
+===== COMB SIZE 32768 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_comb.misses              2633 # total number of misses
+bpred_comb.bpred_dir_rate    0.9261 # branch direction-prediction rate (i.e., all-hits/updates)
+===== OPCODECOMB SIZE 32768 =====
+sim_num_branches              35639 # total number of branches executed
+bpred_opcodecomb.misses         3321 # total number of misses
+bpred_opcodecomb.bpred_dir_rate    0.9068 # branch direction-prediction rate (i.e., all-hits/updates)

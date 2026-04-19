@@ -2293,14 +2293,14 @@ ruu_commit(void)
 	   * Predictor update must use the same opcode context as lookup.
 	   * Rebuild prev_op from the previous instruction.
 	   */
-	  md_inst_t prev_inst;
-	  enum md_opcode prev_op = MD_NOP_OP;
+	  md_inst_t inst;
+    enum md_opcode prev_op = MD_NOP_OP;
 
-	  if (rs->PC >= sizeof(md_inst_t))
-	    {
-	      MD_FETCH_INST(prev_inst, mem, rs->PC - sizeof(md_inst_t));
-	      MD_SET_OPCODE(prev_op, prev_inst);
-	    }
+    if (rs->PC >= sizeof(md_inst_t))
+      {
+        MD_FETCH_INST(inst, mem, rs->PC - sizeof(md_inst_t));
+        MD_SET_OPCODE(prev_op, inst);
+      }
 
 	  bpred_update(pred,
 		       /* branch address */rs->PC,
@@ -2494,14 +2494,14 @@ ruu_writeback(void)
 	   * Writeback-stage predictor update also needs prev_op so that
 	   * lookup and update use consistent indexing information.
 	   */
-	  md_inst_t prev_inst;
-	  enum md_opcode prev_op = MD_NOP_OP;
+	  md_inst_t inst;
+    enum md_opcode prev_op = MD_NOP_OP;
 
-	  if (rs->PC >= sizeof(md_inst_t))
-	    {
-	      MD_FETCH_INST(prev_inst, mem, rs->PC - sizeof(md_inst_t));
-	      MD_SET_OPCODE(prev_op, prev_inst);
-	    }
+    if (rs->PC >= sizeof(md_inst_t))
+      {
+        MD_FETCH_INST(inst, mem, rs->PC - sizeof(md_inst_t));
+        MD_SET_OPCODE(prev_op, inst);
+      }
 
 	  bpred_update(pred,
 		       /* branch address */rs->PC,
@@ -4388,13 +4388,13 @@ ruu_fetch(void)
 	       * as extra context during prediction.
 	       * If we are at the beginning of the program, default to NOP.
 	       */
-	      md_inst_t prev_inst;
+	      md_inst_t inst;
 	      enum md_opcode prev_op = MD_NOP_OP;
 
 	      if (fetch_regs_PC >= sizeof(md_inst_t))
 		{
-		  MD_FETCH_INST(prev_inst, mem, fetch_regs_PC - sizeof(md_inst_t));
-		  MD_SET_OPCODE(prev_op, prev_inst);
+		  MD_FETCH_INST(inst, mem, fetch_regs_PC - sizeof(md_inst_t));
+      MD_SET_OPCODE(prev_op, inst);
 		}
 
 	      fetch_pred_PC =
